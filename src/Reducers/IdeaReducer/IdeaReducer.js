@@ -1,4 +1,4 @@
-import { FETCH_IDEAS, NEW_IDEA } from '../../Actions/types'
+import { FETCH_IDEAS, NEW_IDEA, SAVE_IDEA } from '../../Actions/types'
 
 
 const initialState = {
@@ -14,6 +14,11 @@ export default function(state = initialState, action) {
         items: action.payload
       }
     case NEW_IDEA:
+      return {
+        ...state,
+        item: action.payload
+      }
+    case SAVE_IDEA:
       return {
         ...state,
         item: action.payload

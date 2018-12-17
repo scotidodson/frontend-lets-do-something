@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Redirect, Route, Link, Switch} from 'react-router-dom'
 import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createIdea } from '../../../../Actions/IdeaActions.js'
@@ -30,7 +29,6 @@ class IdeaForm extends Component {
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
-    setTimeout(()=>{console.log(this.state)}, 200)
   }
 
   handleCheckbox = (e) => {

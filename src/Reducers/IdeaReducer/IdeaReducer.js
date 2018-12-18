@@ -1,9 +1,12 @@
-import { FETCH_IDEAS, NEW_IDEA, SAVE_IDEA } from '../../Actions/types'
+import { FETCH_IDEAS, NEW_IDEA, SAVE_IDEA, REMOVE_IDEA, SAVED_IDEAS, USER_IDEAS } from '../../Actions/types'
 
 
 const initialState = {
-  items: [],
-  item: {}
+  allIdeas: [],
+  idea: {},
+  savedIdeas: [],
+  userIdeas: []
+
 }
 
 export default function(state = initialState, action) {
@@ -11,17 +14,22 @@ export default function(state = initialState, action) {
     case FETCH_IDEAS:
       return {
         ...state,
-        items: action.payload
+        allIdeas: action.payload
+      }
+    case SAVED_IDEAS:
+      return {
+        ...state,
+        savedIdeas: action.payload
       }
     case NEW_IDEA:
       return {
         ...state,
-        item: action.payload
+        idea: action.payload
       }
-    case SAVE_IDEA:
+    case USER_IDEAS:
       return {
         ...state,
-        item: action.payload
+        userIdeas: action.payload
       }
     default:
       return state;

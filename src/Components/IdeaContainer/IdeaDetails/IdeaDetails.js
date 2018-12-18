@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { saveIdea, fetchIdeas } from '../../../../Actions/IdeaActions.js'
+import { saveIdea, fetchIdeas, removeIdea, fetchUserIdeas } from '../../../Actions/IdeaActions.js'
 
 
 class IdeaDetails extends Component {
+
+  componentWillMount() {
+    this.props.fetchUserIdeas()
+  }
+
   handleSaveIdea = () => {
     console.log('saving this one');
     const saveThisIdea = {
@@ -18,8 +23,16 @@ class IdeaDetails extends Component {
     // window.location.href = "http://localhost:3000/brainstorm"
   }
 
+  handleRemoveIdea = () => {
+    console.log('removing this one');
+    const ideaId = Number(this.props.match.params.ideaId)
+    const record = this.props.userIdeas.find(record =>(record.user_id === 1 && record.idea_id === ideaId))
+    this.props.removeIdea(record.id)
+    // window.location.href = "http://localhost:3000/brainstorm"
+  }
+
   render() {
-    const idea = this.props.ideas.find(idea => {
+    const idea = this.props.allIdeas.find(idea => {
       return idea.id === Number(this.props.match.params.ideaId)
     })
 
@@ -30,7 +43,11 @@ class IdeaDetails extends Component {
         <Link to="/brainstorm">
           <button>Back to all ideas</button>
         </Link>
+        <Link to="/saved-ideas">
+          <button>Back to my saved ideas</button>
+        </Link>
         <button onClick={this.handleSaveIdea}>Save Idea</button>
+        <button onClick={this.handleRemoveIdea}>Remove Idea</button>
 
       </div>
     );
@@ -40,11 +57,14 @@ class IdeaDetails extends Component {
 IdeaDetails.propTypes = {
   fetchIdeas: PropTypes.func.isRequired,
   saveIdea: PropTypes.func.isRequired,
-  ideas: PropTypes.array.isRequired
+  allIdeas: PropTypes.array.isRequired,
+  removeIdea: PropTypes.func.isRequired,
+  fetchUserIdeas: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
-  ideas: state.ideas.items
+  allIdeas: state.ideas.allIdeas,
+  userIdeas: state.ideas.userIdeas
 })
 
-export default connect(mapStateToProps, { fetchIdeas, saveIdea })(IdeaDetails);
+export default connect(mapStateToProps, { fetchIdeas, saveIdea, removeIdea, fetchUserIdeas })(IdeaDetails);

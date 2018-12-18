@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import IdeaCard from './IdeaCard/IdeaCard.js'
-
 import { connect } from 'react-redux';
-import { fetchIdeas } from '../../../Actions/IdeaActions.js'
+import { fetchIdeas } from '../../Actions/IdeaActions.js'
 
 
 class IdeaContainer extends Component {
@@ -14,7 +13,7 @@ class IdeaContainer extends Component {
   }
 
   renderIdeaCards = () => {
-    return this.props.ideas.map(idea => {
+    return this.props.allIdeas.map(idea => {
       return(<IdeaCard key={idea.id} idea={idea} />)
     })}
 
@@ -24,7 +23,7 @@ class IdeaContainer extends Component {
         <h3>All Ideas</h3>
         {this.renderIdeaCards()}
         <p><Link to="/new-idea">Add New Idea</Link></p>
-        <p><Link to="/saved-ideas">View Saved Ideas</Link></p>
+        <p><Link to="/saved-ideas">View Saved Ideas</Link></p>\
       </div>
 
     );
@@ -33,11 +32,11 @@ class IdeaContainer extends Component {
 
 IdeaContainer.propTypes = {
   fetchIdeas: PropTypes.func.isRequired,
-  ideas: PropTypes.array.isRequired
+  allIdeas: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({
-  ideas: state.ideas.items
+  allIdeas: state.ideas.allIdeas
 })
 
 export default connect(mapStateToProps, { fetchIdeas })(IdeaContainer);

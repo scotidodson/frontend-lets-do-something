@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import { Route, Switch} from 'react-router-dom'
+import { Route, Switch, Link } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import store from '../store.js'
-import Login from './Login/Login.js'
-import PageContainer from './PageContainer/PageContainer.js'
-import SignUp from './SignUp/SignUp.js'
-import Splash from './Splash/Splash.js'
 import './App.css';
 
+import ContactsContainer from './Contacts/ContactsContainer/ContactsContainer.js'
+import EventForm from './EventContainer/EventForm/EventForm.js'
+import IdeaBoard from './IdeaContainer/IdeaBoard/IdeaBoard.js'
+import IdeaContainer from './IdeaContainer/IdeaContainer.js'
+import IdeaDetails from './IdeaContainer/IdeaDetails/IdeaDetails.js'
+import IdeaForm from './IdeaContainer/IdeaForm/IdeaForm.js'
+import Navigation from './Navigation/Navigation.js'
+import Splash from './Splash/Splash.js'
+import Login from './Login/Login.js'
+import SignUp from './SignUp/SignUp.js'
+import PageContainer from './PageContainer/PageContainer.js'
 
 class App extends Component {
   render() {
@@ -15,30 +22,14 @@ class App extends Component {
       <Provider store={store}>
         <Switch>
           <Route exact path='/welcome' component={Splash}/>
-          <Route path='/login' component={Login}/>
-          <Route path='/sign-up' component={SignUp}/>
+          <Route exact path='/login' component={Login}/>
+          <Route exact path='/sign-up' component={SignUp}/>
           <Route path='/' component={PageContainer}/>
         </Switch>
+
       </Provider>
     );
   }
 }
 
 export default App;
-
-// <div className="App">
-//   <header className="App-header">
-//     <img src={logo} className="App-logo" alt="logo" />
-//     <p>
-//       Edit <code>src/App.js</code> and save to reload.
-//     </p>
-//     <a
-//       className="App-link"
-//       href="https://reactjs.org"
-//       target="_blank"
-//       rel="noopener noreferrer"
-//     >
-//       Learn React
-//     </a>
-//   </header>
-// </div>

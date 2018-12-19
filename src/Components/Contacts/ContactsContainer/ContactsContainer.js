@@ -13,12 +13,6 @@ class ContactsContainer extends Component {
     searchInput: "",
   }
 
-  componentWillMount() {
-    this.props.fetchUsers()
-    this.props.fetchCurrentUser(1)
-  }
-
-
   handleChange = (e) => {
       this.setState({ searchInput: e.target.value })
     }

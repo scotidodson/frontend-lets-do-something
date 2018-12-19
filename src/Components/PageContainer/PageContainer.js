@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchUsers, fetchCurrentUser } from '../../Actions/UserActions.js'
-
 import { Route, Switch, Link } from 'react-router-dom'
 import Navigation from '../Navigation/Navigation.js'
 import ContactsContainer from '../Contacts/ContactsContainer/ContactsContainer.js'

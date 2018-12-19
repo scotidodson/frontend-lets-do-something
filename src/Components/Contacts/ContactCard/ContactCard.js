@@ -16,7 +16,6 @@ class ContactCard extends Component {
   }
 
   componentWillMount() {
-
     // console.log(this.props.user);
     // console.log(this.props.currentUser);
   }
@@ -35,6 +34,7 @@ class ContactCard extends Component {
       this.props.addFriend(userId, friendId)
     }
   }
+
   //
   // alreadyFriended = () => {
   //   // const friends = this.props.currentUser.friends
@@ -82,15 +82,19 @@ class ContactCard extends Component {
     return (
         <div data-id={this.props.user.id} >
           {console.log(this.props.currentUser)}
-          <button data-id={this.props.user.id} name={addFriend}
+          <button data-id={this.props.user.id} name="addFriend"
           onClick={this.handleFriendship}> Add Friend </button>
 
-          <button data-id={this.props.user.id} name={removeFriend}
+          <button data-id={this.props.user.id} name="removeFriend"
           onClick={this.handleFriendship}> Remove Friend </button>
           <h4>{this.props.user.first_name} {this.props.user.last_name} </h4>
           <p>Username: {this.props.user.username} </p>
           <p>City: {this.props.user.default_city} </p>
           <p>Bio: {this.props.user.bio} </p>
+
+          <br/>
+          <br/>
+          
         </div>
     );
   }

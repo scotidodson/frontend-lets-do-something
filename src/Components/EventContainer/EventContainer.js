@@ -20,7 +20,7 @@ class EventContainer extends Component {
   render() {
     return (
       <div>
-        <h3>User's Events Here</h3>
+        {this.renderEvents()}
       </div>
 
     );

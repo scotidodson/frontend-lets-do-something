@@ -25,14 +25,6 @@ class PageContainer extends Component {
     return (
       <div>
         <Navigation />
-        <ul>
-          <li>
-            <Link to="/brainstorm">Brainstorm</Link>
-          </li>
-          <li>
-            <Link to="/host">Host</Link>
-          </li>
-        </ul>
         <Switch>
           <Route path='/brainstorm' component={IdeaContainer} />
           <Route path='/new-idea' component={IdeaForm} />

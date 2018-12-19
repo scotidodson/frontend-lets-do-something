@@ -6,6 +6,7 @@ import './App.css';
 
 import ContactsContainer from './Contacts/ContactsContainer/ContactsContainer.js'
 import EventForm from './EventContainer/EventForm/EventForm.js'
+import Home from './Home/Home.js'
 import IdeaBoard from './IdeaContainer/IdeaBoard/IdeaBoard.js'
 import IdeaContainer from './IdeaContainer/IdeaContainer.js'
 import IdeaDetails from './IdeaContainer/IdeaDetails/IdeaDetails.js'
@@ -25,6 +26,7 @@ class App extends Component {
           <Route exact path='/login' component={Login}/>
           <Route exact path='/sign-up' component={SignUp}/>
           <Route path='/' component={PageContainer}/>
+          <Route exact path='/' component={Home}/>
         </Switch>
 
       </Provider>

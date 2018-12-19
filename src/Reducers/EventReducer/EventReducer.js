@@ -3,7 +3,7 @@ import { CURRENT_USER, FETCH_USERS } from '../../Actions/types'
 
 const initialState = {
   currentUser: {},
-  allUsers: []
+  allUsers: [] 
 }
 
 export default function(state = initialState, action) {

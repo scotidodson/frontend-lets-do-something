@@ -23,7 +23,7 @@ class IdeaContainer extends Component {
         <h3>All Ideas</h3>
         {this.renderIdeaCards()}
         <p><Link to="/new-idea">Add New Idea</Link></p>
-        <p><Link to="/saved-ideas">View Saved Ideas</Link></p>\
+        <p><Link to="/saved-ideas">View Saved Ideas</Link></p>
       </div>
 
     );

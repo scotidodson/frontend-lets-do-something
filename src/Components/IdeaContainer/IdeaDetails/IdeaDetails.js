@@ -31,15 +31,66 @@ class IdeaDetails extends Component {
     // window.location.href = "http://localhost:3000/brainstorm"
   }
 
+  checkPrice = (idea) => {
+    let price = ''
+    switch (idea.price_range) {
+      case 0:
+        price = "free"
+      break;
+      case 1:
+        price = "$"
+      break;
+      case 2:
+        price = "$$"
+      break;
+      case 3:
+        price = "$$$"
+      default:
+        price = "?"
+    }
+    return price
+  }
+
+  // checkSeasons = (idea) => {
+  //   let seasons = []
+  //   switch (expression) {
+  //     case expression:
+  //
+  //       break;
+  //     default:
+  //
+  //   }
+  //
+  //   if (idea.winter) {
+  //     seasons.push("Winter")
+  //   }
+  // }
+
   render() {
     const idea = this.props.allIdeas.find(idea => {
       return idea.id === Number(this.props.match.params.ideaId)
     })
 
+
     return (
       <div>
         <h4>-- {idea.title} --</h4>
-        <p>Details here</p>
+        <p>Location: {idea.street} {idea.city} {idea.state} {idea.zip}</p>
+        <p>Neighborhood: {idea.neighborhood}</p>
+        <p>Category: {idea.category}</p>
+        <p>Price Range: {this.checkPrice(idea)}</p>
+        <p>Good For:
+          {idea.winter ? " Winter" : null}
+          {idea.spring ? " Spring" : null}
+          {idea.summer ? " Summer" : null}
+          {idea.fall ? " Fall" : null}</p>
+        <p>Duration: {idea.duration}</p>
+        <p>Category: {idea.category}</p>
+        { idea.expiration ? <p>Have to go by: {idea.expiration.date}</p> : null }
+        { idea.website.length > 0  ? <p>Website: {idea.website}</p> : null }
+        <p>Details: {idea.details}</p>
+
+        <br/><br/>
         <Link to="/brainstorm">
           <button>Back to all ideas</button>
         </Link>

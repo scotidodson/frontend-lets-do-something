@@ -7,7 +7,7 @@ class NotificationContainer extends Component {
   render() {
     return (
       <div>
-        Notifications
+        Notifications will be here
       </div>
     );
   }

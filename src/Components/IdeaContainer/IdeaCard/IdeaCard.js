@@ -12,7 +12,6 @@ class IdeaCard extends Component {
       <Link to={`/ideas/${this.props.idea.id}`}>
         <div data-id={this.props.idea.id} >
           <h4>-- {this.props.idea.title} --</h4>
-
         </div>
       </Link>
 

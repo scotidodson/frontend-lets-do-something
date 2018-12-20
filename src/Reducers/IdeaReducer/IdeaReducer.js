@@ -1,12 +1,12 @@
-import { FETCH_IDEAS, NEW_IDEA, SAVE_IDEA, REMOVE_IDEA, SAVED_IDEAS, USER_IDEAS } from '../../Actions/types'
+import { FETCH_IDEAS, NEW_IDEA, SAVED_IDEAS, USER_IDEAS } from '../../Actions/types'
 
 
 const initialState = {
   allIdeas: [],
   idea: {},
   savedIdeas: [],
-  userIdeas: []
-
+  userIdeas: [],
+  tester: []
 }
 
 export default function(state = initialState, action) {

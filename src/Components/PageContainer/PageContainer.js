@@ -22,11 +22,14 @@ class PageContainer extends Component {
   }
 
   componentWillMount() {
-    if (this.state.currentUserId === 0) {
-      window.location.href = "http://localhost:3000/welcome"
-    } else {
       this.props.fetchUsers()
       this.props.fetchCurrentUser(1)
+
+  }
+  
+  componentDidMount() {
+    if (this.state.currentUserId === 0) {
+      window.location.href = "http://localhost:3000/welcome"
     }
   }
 

@@ -5,17 +5,14 @@ export const fetchCurrentUser = (userId) => dispatch => {
     fetch('http://localhost:4000/api/v1/users')
     .then(resp => resp.json())
     .then(users => {
-      console.log(users)
-      const currentUser = users.map(userObj =>{
-        if (userObj.id === userId) {
-          return  userObj
-        }
+      const current = users.filter(userObj => {
+        return userObj.id === userId
       })[0]
       dispatch({
-      type: CURRENT_USER,
-      payload: currentUser
-    })}
-  )
+        type: CURRENT_USER,
+        payload: current
+    })
+  })
 }
 
 export const fetchUsers = () => dispatch => {
@@ -37,13 +34,13 @@ export const createUser = (userData) => dispatch => {
       },
       body: JSON.stringify(userData)
     })
-    .then(resp => resp.json())
-    .then(newUser => {
-      dispatch({
-      type: NEW_USER,
-      payload: newUser
-    })}
-  )
+  //   .then(resp => resp.json())
+  //   .then(newUser => {
+  //     dispatch({
+  //     type: NEW_USER,
+  //     payload: newUser
+  //   })}
+  // )
 }
 
 export const addFriend = (userId, friendId) => dispatch => {

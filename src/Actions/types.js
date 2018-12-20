@@ -8,4 +8,4 @@ export const CURRENT_USER = 'CURRENT_USER'
 export const FETCH_USERS = 'FETCH_USERS'
 export const NEW_USER = 'NEW_USER'
 
-// export const NEW_EVENT = 'NEW_EVENT'
+export const ALL_EVENTS = 'ALL_EVENTS'

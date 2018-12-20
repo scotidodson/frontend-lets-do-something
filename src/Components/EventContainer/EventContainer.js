@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
-// import IdeaCard from './IdeaCard/IdeaCard.js'
+import EventCard from './EventCard.js'
 import { connect } from 'react-redux';
-import { fetchIdeas } from '../../Actions/IdeaActions.js'
+import { fetchEvents } from '../../Actions/EventActions.js'
 
 
 class EventContainer extends Component {
-
   componentWillMount() {
-    // this.props.fetchIdeas()
+    this.props.fetchEvents()
   }
 
-  // renderIdeaCards = () => {
-  //   return this.props.allIdeas.map(idea => {
-  //     return(<IdeaCard key={idea.id} idea={idea} />)
-  //   })}
+  renderEvents = () => {
+    return this.props.allEvents.map(event => {
+      return(<EventCard key={event.id} event={event} />)
+    })
+  }
 
   render() {
     return (
       <div>
+        <h4>My Events</h4>
         {this.renderEvents()}
       </div>
 
@@ -28,12 +29,12 @@ class EventContainer extends Component {
 }
 
 EventContainer.propTypes = {
-  // fetchIdeas: PropTypes.func.isRequired,
-  // allIdeas: PropTypes.array.isRequired
+  fetchEvents: PropTypes.func.isRequired,
+  allEvents: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({
-  allIdeas: state.ideas.allIdeas
+  allEvents: state.events.allEvents
 })
 
-export default connect(mapStateToProps, { fetchIdeas })(EventContainer);
+export default connect(mapStateToProps, { fetchEvents })(EventContainer);

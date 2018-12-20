@@ -13,6 +13,8 @@ class ContactsContainer extends Component {
     searchInput: "",
   }
 
+
+
   handleChange = (e) => {
       this.setState({ searchInput: e.target.value })
     }
@@ -53,8 +55,7 @@ class ContactsContainer extends Component {
 ContactsContainer.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
   fetchCurrentUser: PropTypes.func.isRequired,
-  allUsers: PropTypes.array.isRequired,
-  currentUser: PropTypes.object.isRequired
+  allUsers: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({

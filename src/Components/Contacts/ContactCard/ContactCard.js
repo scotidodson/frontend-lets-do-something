@@ -81,7 +81,6 @@ class ContactCard extends Component {
 
     return (
         <div data-id={this.props.user.id} >
-          {console.log(this.props.currentUser)}
           <button data-id={this.props.user.id} name="addFriend"
           onClick={this.handleFriendship}> Add Friend </button>
 
@@ -94,7 +93,7 @@ class ContactCard extends Component {
 
           <br/>
           <br/>
-          
+
         </div>
     );
   }

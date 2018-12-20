@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchUsers, fetchCurrentUser } from '../../Actions/UserActions.js'
-import { Route, Switch, Link } from 'react-router-dom'
+import { fetchIdeas } from '../../Actions/IdeaActions.js'
+import { Route, Switch } from 'react-router-dom'
 import Navigation from '../Navigation/Navigation.js'
 import ContactsContainer from '../Contacts/ContactsContainer/ContactsContainer.js'
 import IdeaContainer from '../IdeaContainer/IdeaContainer.js'
@@ -26,7 +27,7 @@ class PageContainer extends Component {
       this.props.fetchCurrentUser(1)
 
   }
-  
+
   componentDidMount() {
     if (this.state.currentUserId === 0) {
       window.location.href = "http://localhost:3000/welcome"
@@ -56,7 +57,7 @@ class PageContainer extends Component {
 PageContainer.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
   fetchCurrentUser: PropTypes.func.isRequired,
-  allUsers: PropTypes.array.isRequired,
+  fetchIdeas: PropTypes.func.isRequired,
   currentUser: PropTypes.object.isRequired
 }
 
@@ -65,4 +66,4 @@ const mapStateToProps = state => ({
   currentUser: state.users.currentUser
 })
 
-export default connect(mapStateToProps, { fetchUsers, fetchCurrentUser })(PageContainer);
+export default connect(mapStateToProps, { fetchUsers, fetchCurrentUser, fetchIdeas })(PageContainer);

@@ -45,6 +45,8 @@ class EventDetails extends Component {
   //       price = "?"
   //   }
   //   return price
+  //    default:
+    //  return
   // }
 
   render() {

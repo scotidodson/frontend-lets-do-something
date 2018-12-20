@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 // import IdeaCard from './IdeaCard/IdeaCard.js'
 import { connect } from 'react-redux';
 import { createEvent } from '../../../Actions/EventActions.js'
@@ -73,6 +73,8 @@ class EventForm extends Component {
             })
           }
         break;
+      default:
+        return
 
     }
     setTimeout(()=> {console.log(this.state);}, 300)
@@ -247,7 +249,7 @@ class EventForm extends Component {
         this.submitOptions(newOption)
       })
     })
-    // window.location.href = "http://localhost:3000/brainstorm"
+    this.props.history.push('/events');
   }
 
   submitGuests = (newGuest) => {

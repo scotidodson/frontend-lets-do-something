@@ -39,7 +39,7 @@ class IdeaForm extends Component {
     e.preventDefault();
     const newIdea = {...this.state}
     this.props.createIdea(newIdea)
-    window.location.href = "http://localhost:3000/brainstorm"
+    this.props.history.push('/brainstorm');
   }
 
 

@@ -1,17 +1,17 @@
-import { CURRENT_USER, NEW_USER, FETCH_USERS
+import { CURRENT_USER, FETCH_USERS
  } from './types'
 
 export const fetchCurrentUser = (userId) => dispatch => {
     fetch('http://localhost:4000/api/v1/users')
     .then(resp => resp.json())
     .then(users => {
-      const current = users.filter(userObj => {
-        return userObj.id === userId
-      })[0]
-      dispatch({
-        type: CURRENT_USER,
-        payload: current
-    })
+      // const current = users.filter(userObj => {
+      //   return userObj.id === userId
+      // })[0]
+    //   dispatch({
+    //     type: CURRENT_USER,
+    //     payload: current
+    // })
   })
 }
 
@@ -22,7 +22,14 @@ export const fetchUsers = () => dispatch => {
       dispatch({
       type: FETCH_USERS,
       payload: allUsers
-    })}
+    })
+    dispatch({
+      type: CURRENT_USER,
+      payload: allUsers.filter(userObj => {
+        return userObj.id === 1
+      })[0]
+  })
+  }
   )
 }
 
@@ -64,11 +71,11 @@ export const addFriend = (userId, friendId) => dispatch => {
         friend_id: userId
       })
     })
-    fetchCurrentUser(userId)
+    fetchUsers()
 }
 
 export const removeFriend = (friendship_one, friendship_two) => dispatch => {
-    const userId = friendship_one.user_id
+    // const userId = friendship_one.user_id
     fetch(`http://localhost:4000/api/v1/friendships/${friendship_one.id}`, {
       method: 'DELETE'
     })
@@ -76,5 +83,5 @@ export const removeFriend = (friendship_one, friendship_two) => dispatch => {
     fetch(`http://localhost:4000/api/v1/friendships/${friendship_two.id}`, {
       method: 'DELETE'
     })
-    fetchCurrentUser(userId)
+    fetchUsers()
 }

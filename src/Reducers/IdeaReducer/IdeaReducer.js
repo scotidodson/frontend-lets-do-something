@@ -5,8 +5,7 @@ const initialState = {
   allIdeas: [],
   idea: {},
   savedIdeas: [],
-  userIdeas: [],
-  tester: []
+  userIdeas: []
 }
 
 export default function(state = initialState, action) {

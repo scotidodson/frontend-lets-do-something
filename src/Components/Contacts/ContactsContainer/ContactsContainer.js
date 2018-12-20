@@ -10,30 +10,42 @@ class ContactsContainer extends Component {
   state = {
     showUsers: true,
     showForm: false,
-    searchInput: "",
+    searchInput: ""
   }
-
-
 
   handleChange = (e) => {
       this.setState({ searchInput: e.target.value })
     }
 
   renderContactCards = () => {
-    let contacts = []
-    console.log('render user', this.props.currentUser);
+    const userFriends = this.findUserFriends()
+    const friendNumbers = userFriends.map(user=>{return user.id})
     return this.props.allUsers.map(user => {
-      if (user.id !== 1) {
+      if (user.id !== 1 && !friendNumbers.includes(user.id)) {
         return(<ContactCard key={user.id} user={user} loggedIn={this.props.currentUser}/>)
+      } else {
+        return null
       }
     })
+  }
+
+  renderFriendCards = () => {
+    const userFriends = this.findUserFriends()
+    return userFriends.map(user => { return(<ContactCard key={user.id} user={user} loggedIn={this.props.currentUser}/>) })
+  }
+
+  findUserFriends = () => {
+    const userFriendships = this.props.currentUser.friendships
+    let userFriends = []
+    userFriendships.forEach(friendship=> {userFriends.push(friendship.friend)})
+    return userFriends
   }
 
   render() {
     return(
       <div>
       <h2>Your Contacts</h2>
-      <p>current friends here</p>
+      {this.renderFriendCards()}
 
       <br/><br/>
       <h2>Find Friends</h2>
@@ -55,11 +67,13 @@ class ContactsContainer extends Component {
 ContactsContainer.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
   fetchCurrentUser: PropTypes.func.isRequired,
-  allUsers: PropTypes.array.isRequired
+  allUsers: PropTypes.array.isRequired,
+  currentUser: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  allUsers: state.users.allUsers
+  allUsers: state.users.allUsers,
+  currentUser: state.users.currentUser
 })
 
 export default connect(mapStateToProps, { fetchUsers, fetchCurrentUser })(ContactsContainer);

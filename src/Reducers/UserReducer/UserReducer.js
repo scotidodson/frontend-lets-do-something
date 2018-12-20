@@ -7,7 +7,6 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
-  console.log('in reducer', action.payload);
   switch (action.type) {
     case CURRENT_USER:
       return {

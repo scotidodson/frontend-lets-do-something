@@ -20,6 +20,8 @@ export const fetchSavedIdeas = (userId) => dispatch => {
       const savedIdeas = ideas.map(userObj =>{
         if (userObj.id === userId) {
           return  userObj.ideas
+        } else {
+          return null
         }
       })[0]
       dispatch({
@@ -53,7 +55,9 @@ export const createIdea = (ideaData) => dispatch => {
       dispatch({
       type: NEW_IDEA,
       payload: newIdea
-    })}
+    })
+    fetchIdeas()
+  }
   )
 }
 

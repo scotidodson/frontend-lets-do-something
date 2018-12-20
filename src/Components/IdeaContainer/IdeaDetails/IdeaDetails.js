@@ -45,6 +45,7 @@ class IdeaDetails extends Component {
       break;
       case 3:
         price = "$$$"
+      break;
       default:
         price = "?"
     }

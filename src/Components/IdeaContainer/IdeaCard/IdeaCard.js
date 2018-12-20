@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // import { createBrowserHistory } from 'history';
-import IdeaDetails from '../IdeaDetails/IdeaDetails.js'
+// import IdeaDetails from '../IdeaDetails/IdeaDetails.js'
 
 
 

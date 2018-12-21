@@ -5,6 +5,7 @@ import { fetchUsers, fetchCurrentUser } from '../../Actions/UserActions.js'
 import { fetchIdeas } from '../../Actions/IdeaActions.js'
 import { Route, Switch } from 'react-router-dom'
 import Navigation from '../Navigation/Navigation.js'
+import Account from '../Account/AccountContainer.js'
 import ContactsContainer from '../Contacts/ContactsContainer/ContactsContainer.js'
 import IdeaContainer from '../IdeaContainer/IdeaContainer.js'
 import EventContainer from '../EventContainer/EventContainer.js'
@@ -13,7 +14,10 @@ import IdeaBoard from '../IdeaContainer/IdeaBoard/IdeaBoard.js'
 import EventForm from '../EventContainer/EventForm/EventForm.js'
 import IdeaDetails from '../IdeaContainer/IdeaDetails/IdeaDetails.js'
 import Home from '../Home/Home.js'
+import Menu from '../Navigation/Menu/Menu.js'
 import NotificationContainer from '../Navigation/NotificationContainer/NotificationContainer.js'
+import './PageContainer.css';
+
 
 
 
@@ -36,7 +40,7 @@ class PageContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="page" >
         <Navigation />
         <Switch>
           <Route path='/brainstorm' component={IdeaContainer} />
@@ -46,8 +50,10 @@ class PageContainer extends Component {
           <Route path='/notifications' component={NotificationContainer} />
           <Route path='/contacts' component={ContactsContainer} />
           <Route path='/events' component={EventContainer} />
+          <Route path='/menu' component={Menu} />
           <Route path={`/ideas/:ideaId`} component={IdeaDetails} />
           <Route exact path='/' component={Home}/>
+          <Route exact path='/account' component={Account}/>
         </Switch>
       </div>
     );

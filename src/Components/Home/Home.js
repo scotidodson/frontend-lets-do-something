@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import './Home.css'
 
 class Home extends Component {
   render() {
     return (
-      <ul>
-        <li>
+      <div className="home">
+        <div className="home-brainstorm">
           <Link to="/brainstorm">Brainstorm</Link>
-        </li>
-        <li>
+        </div>
+        <div className="home-brainstorm">
           <Link to="/host">Host</Link>
-        </li>
-      </ul>
+        </div>
+      </div>
     );
   }
 }

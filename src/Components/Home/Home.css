@@ -1,0 +1,40 @@
+.home-container {
+   width: 100%;
+   font-family: tahoma;
+   font-size: 3em;
+   font-weight: 800;
+   text-transform: uppercase;
+   color: white;
+ }
+
+ .home-brainstorm {
+   float:left;
+   width: 50%;
+   height: 100vh;
+   background-color: #161846;
+ }
+
+ .home-brainstorm h3 {
+   text-align: center;
+   padding-top: 35%;
+
+ }
+
+ .home-host {
+   float:left;
+   width: 50%;
+   height: 100vh;
+   background-color: #54a4a6;
+
+ }
+
+ .home-host h3 {
+   text-align: center;
+   padding-top: 35%;
+
+ }
+
+ .home-container a {
+   text-decoration: none;
+   color: white;
+ }

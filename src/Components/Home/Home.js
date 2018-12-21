@@ -5,12 +5,18 @@ import './Home.css'
 class Home extends Component {
   render() {
     return (
-      <div className="home">
-        <div className="home-brainstorm">
-          <Link to="/brainstorm">Brainstorm</Link>
-        </div>
-        <div className="home-brainstorm">
-          <Link to="/host">Host</Link>
+      <div className="home-container">
+        <div className="home">
+          <Link to="/brainstorm">
+            <div className="home-brainstorm">
+              <h3>Brainstorm</h3>
+            </div>
+          </Link>
+          <Link to="/host">
+            <div className="home-host">
+              <h3>Host</h3>
+            </div>
+          </Link>
         </div>
       </div>
     );

@@ -27,7 +27,9 @@ header::after {
 .logo {
   float: center;
   display: block;
-  max-height:120px;
+  max-height:140px;
+  height: auto;
+  width: auto;
   padding: 2% 5% 0 5%;
 }
 

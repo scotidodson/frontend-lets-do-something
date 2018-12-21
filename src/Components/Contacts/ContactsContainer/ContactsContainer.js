@@ -5,7 +5,6 @@ import { fetchUsers, fetchCurrentUser } from '../../../Actions/UserActions.js'
 import ContactForm from '../ContactForm/ContactForm.js'
 import ContactCard from '../ContactCard/ContactCard.js'
 
-
 class ContactsContainer extends Component {
   state = {
     showUsers: true,
@@ -22,7 +21,7 @@ class ContactsContainer extends Component {
     const friendNumbers = userFriends.map(user=>{return user.id})
     return this.props.allUsers.map(user => {
       if (user.id !== 1 && !friendNumbers.includes(user.id)) {
-        return(<ContactCard key={user.id} user={user} loggedIn={this.props.currentUser}/>)
+        return(<ContactCard key={user.id} user={user} loggedIn={this.props.currentUser} alreadyFriended={false} />)
       } else {
         return null
       }
@@ -31,7 +30,7 @@ class ContactsContainer extends Component {
 
   renderFriendCards = () => {
     const userFriends = this.findUserFriends()
-    return userFriends.map(user => { return(<ContactCard key={user.id} user={user} loggedIn={this.props.currentUser}/>) })
+    return userFriends.map(user => { return(<ContactCard key={user.id} user={user} loggedIn={this.props.currentUser} alreadyFriended={true} /> ) })
   }
 
   findUserFriends = () => {

@@ -5,9 +5,9 @@ export const fetchCurrentUser = (userId) => dispatch => {
     fetch('http://localhost:4000/api/v1/users')
     .then(resp => resp.json())
     .then(users => {
-      // const current = users.filter(userObj => {
-      //   return userObj.id === userId
-      // })[0]
+    // const current = users.filter(userObj => {
+    //   return userObj.id === userId
+    // })[0]
     //   dispatch({
     //     type: CURRENT_USER,
     //     payload: current
@@ -75,12 +75,14 @@ export const addFriend = (userId, friendId) => dispatch => {
 }
 
 export const removeFriend = (friendship_one, friendship_two) => dispatch => {
+  console.log('f 1 id', friendship_one);
+  console.log('f 2 id', friendship_two);
     // const userId = friendship_one.user_id
-    fetch(`http://localhost:4000/api/v1/friendships/${friendship_one.id}`, {
+    fetch(`http://localhost:4000/api/v1/friendships/${friendship_one}`, {
       method: 'DELETE'
     })
 
-    fetch(`http://localhost:4000/api/v1/friendships/${friendship_two.id}`, {
+    fetch(`http://localhost:4000/api/v1/friendships/${friendship_two}`, {
       method: 'DELETE'
     })
     fetchUsers()

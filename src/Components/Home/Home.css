@@ -8,10 +8,14 @@
  }
 
  .home-brainstorm {
-   float:left;
+   float: left;
    width: 50%;
    height: 100vh;
    background-color: #161846;
+ }
+
+ .home-brainstorm h3:hover {
+   color: #dd7a00;
  }
 
  .home-brainstorm h3 {
@@ -26,6 +30,10 @@
    height: 100vh;
    background-color: #54a4a6;
 
+ }
+
+ .home-host h3:hover {
+   color: #161846;
  }
 
  .home-host h3 {

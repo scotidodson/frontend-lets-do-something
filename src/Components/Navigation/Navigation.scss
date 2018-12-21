@@ -9,6 +9,7 @@ header {
   // background: #cf8553;
 }
 
+
 header::after {
   content: '';
   display: table;
@@ -16,7 +17,7 @@ header::after {
 }
 
 .container {
-  width: 95%;
+  width: 90%;
   margin: 0 auto;
   // display: inline-block;
   display: flex;
@@ -30,7 +31,7 @@ header::after {
   max-height:140px;
   height: auto;
   width: auto;
-  padding: 2% 5% 0 5%;
+  padding: 2% 5% 2% 5%;
 }
 
 #account {
@@ -97,7 +98,6 @@ nav a:hover::before {
 }
 
 nav img {
-  // background-color: red;
   margin: 5%;
 
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom'
-// import IdeaCard from './IdeaCard/IdeaCard.js'
+import OptionsHolder from '../OptionsHolder.js'
 import { connect } from 'react-redux';
 import { createEvent } from '../../../Actions/EventActions.js'
 
@@ -9,6 +9,10 @@ import { createEvent } from '../../../Actions/EventActions.js'
 class EventForm extends Component {
 
   state = {
+    dateStage: true,
+    ideaStage: false,
+    guestStage: false,
+    event_id: 0,
     date: "",
     past: false,
     time: "",
@@ -30,128 +34,146 @@ class EventForm extends Component {
     const targetId = Number(e.target.dataset.id)
     switch (e.target.name) {
       case "idea":
-        if (e.target.checked === true) {
-          this.setState((currentState) => {
-          return {
-            options: [
-              ...this.state.options,
-              {idea_id: targetId}
-            ]
-          }
-        })} else {
-          this.setState((currentState) => {
-            console.log('currentState', currentState);
-            const reducedIdeaSets = currentState.options.filter(idea => {
-              return idea.idea_id !== targetId
-            })
-            console.log('reducedIdeaSets', reducedIdeaSets);
-            return {
-              options: [...reducedIdeaSets]
-            }
-          })
-        }
+        this.ideaChecked(e, targetId)
         break;
       case "guests":
-          if (e.target.checked === true) {
-            this.setState((currentState) => {
-            return {
-              guests: [
-                ...this.state.guests,
-                {user_id: targetId, host: false}
-              ]
-            }
-          })} else {
-            this.setState((currentState) => {
-              console.log('currentState', currentState);
-              const reducedGuestSets = currentState.guests.filter(guest => {
-                return guest.user_id !== targetId
-              })
-              console.log('reducedGuestSets', reducedGuestSets);
-              return {
-                guests: [...reducedGuestSets]
-              }
-            })
-          }
+          this.guestChecked(e, targetId)
         break;
       default:
         return
-
     }
     setTimeout(()=> {console.log(this.state);}, 300)
   }
 
-  renderIdeas = () => {
-    const ideas = [{
-        id: 1,
-        title: "Times Square",
-        street: "1555 Broadway",
-        city: "New York",
-        state: "NY",
-        zip: "10036",
-        neighborhood: "Midtown",
-        category: "Sightseeing / Tour",
-        details: "Bustling destination in the heart of the Theater District known for bright lights, shopping & shows.",
-        winter: true,
-        spring: true,
-        summer: true,
-        fall: true,
-        price_range: 0,
-        duration: "quick",
-        website: "timessquarenyc.org",
-        expiration: false,
-        expiration_date: null,
-        private: null,
-        submitted_by: null
-        }, {
-        id: 2,
-        title: "Comedy Cellar",
-        street: "1267, 117 Macdougal St",
-        city: "New York",
-        state: "NY",
-        zip: "10012",
-        neighborhood: "Greenwich Village",
-        category: "Comedy",
-        details: "Famous comics are often in the lineup at this brick-walled comedy club with several shows nightly.",
-        winter: true,
-        spring: true,
-        summer: true,
-        fall: true,
-        price_range: 2,
-        duration: "evening",
-        website: "comedycellar.com",
-        expiration: false,
-        expiration_date: null,
-        private: null,
-        submitted_by: null
-        }, {
-        id: 3,
-        title: "Statue of Liberty",
-        street: "",
-        city: "New York",
-        state: "NY",
-        zip: "10004",
-        neighborhood: "Financial District",
-        category: "Sightseeing / Tour",
-        details: "The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. The copper statue, a gift from the people of France to the people of the United States, was designed by French sculptor Frédéric Auguste Bartholdi and built by Gustave Eiffel.",
-        winter: false,
-        spring: true,
-        summer: true,
-        fall: true,
-        price_range: 0,
-        duration: "a few hours",
-        website: "",
-        expiration: false,
-        expiration_date: null,
-        private: null,
-        submitted_by: null
-        }]
-      return ideas.map(idea =>{
-        return(
-            <p>
-              <input key={idea.id} type="checkbox" name="idea" data-id={idea.id} onChange={this.handleCheckbox} />
-              {idea.title}
-            </p>)
+  ideaChecked = (e, targetId) => {
+    if (e.target.checked === true) {
+      const ideaToAdd = this.props.allIdeas.find(idea => idea.id === targetId )
+      this.setState((currentState) => {
+      return {
+        options: [
+          ...currentState.options,
+          { ...ideaToAdd }
+        ]
+      }})
+    } else {
+      this.setState((currentState) => {
+        console.log('currentState', currentState);
+        const reducedIdeaSets = currentState.options.filter(idea => {
+          return idea.idea_id !== targetId
+        })
+        console.log('reducedIdeaSets', reducedIdeaSets);
+        return {
+          options: [...reducedIdeaSets]
+        }
       })
+    }
+  }
+
+  guestChecked = (e, targetId) => {
+    if (e.target.checked === true) {
+      this.setState((currentState) => {
+      return {
+        guests: [
+          ...this.state.guests,
+          {user_id: targetId, host: false}
+        ]
+      }
+    })} else {
+      this.setState((currentState) => {
+        console.log('currentState', currentState);
+        const reducedGuestSets = currentState.guests.filter(guest => {
+          return guest.user_id !== targetId
+        })
+        console.log('reducedGuestSets', reducedGuestSets);
+        return {
+          guests: [...reducedGuestSets]
+        }
+      })
+    }
+  }
+
+  // renderOptions = () => {
+  //   const options = [...this.state.options]
+  //   switch (options.length) {
+  //     case 0:
+  //       return (
+  //         <div>
+  //           <div>
+  //             <p> Select up to 3</p>
+  //           </div>
+  //           <div >
+  //             <p> Select up to 3</p>
+  //           </div>
+  //           <div>
+  //             <p> Select up to 3</p>
+  //           </div>
+  //         </div>
+  //       )
+  //       break;
+  //     case 1:
+  //       return (
+  //         <div>
+  //           <div>
+  //             <p>{options[0].title}</p>
+  //           </div>
+  //           <div >
+  //             <p> Select up to 3</p>
+  //           </div>
+  //           <div>
+  //             <p> Select up to 3</p>
+  //           </div>
+  //         </div>
+  //       )
+  //       break;
+  //     case 2:
+  //       return (
+  //         <div>
+  //           <div>
+  //             <p>{options[0].title}</p>
+  //           </div>
+  //           <div>
+  //             <p>{options[1].title}</p>
+  //           </div>
+  //           <div>
+  //             <p> Select up to 3</p>
+  //           </div>
+  //         </div>
+  //       )
+  //       break;
+  //     case 0:
+  //       return (
+  //         <div>
+  //           <div>
+  //             <p>{options[0].title}</p>
+  //           </div>
+  //           <div>
+  //             <p>{options[1].title}</p>
+  //           </div>
+  //           <div>
+  //             <p>{options[2].title}</p>
+  //           </div>
+  //         </div>
+  //       )
+  //       break;
+  //     default:
+  //
+  //   }
+  // }
+
+  renderIdeas = () => {
+    const ideas = this.props.savedIdeas.map(ideaObj=> ideaObj.idea )
+    const mySaved = ideas.map(idea => { return idea.id })
+    const suggestions = this.props.allIdeas.filter(idea=> {  return !mySaved.includes(idea.id) })
+
+    console.log('ideas', ideas);
+    console.log('suggestions', suggestions);
+    return ideas.map(idea =>{
+      return(
+          <p>
+            <input key={idea.id} type="checkbox" name="idea" data-id={idea.id} onChange={this.handleCheckbox} />
+            {idea.title}
+          </p>)
+    })
   }
 
   renderFriends = () => {
@@ -210,7 +232,7 @@ class EventForm extends Component {
     })
   }
 
-  handleSubmit = (e) => {
+  handleDateSubmit = (e) => {
     e.preventDefault();
     const newEvent = {
       date: this.state.date,
@@ -219,8 +241,7 @@ class EventForm extends Component {
       rating: this.state.rating,
       winner: this.state.winner
     }
-    const newGuests = [...this.state.guests]
-    const newOptions = [...this.state.options]
+
     this.props.createEvent(newEvent)
 
     fetch(`http://localhost:4000/api/v1/events`, {
@@ -231,23 +252,49 @@ class EventForm extends Component {
       body: JSON.stringify(newEvent)
     }).then(resp => resp.json())
     .then(newEvent => {
-      const newRecord = newEvent.id
+      this.setState({
+        event_id: newEvent.id,
+        dateStage: false,
+        ideaStage: true
+      })
+      })
+  }
 
-      newGuests.forEach(guestObj=> {
-        const newGuest = {
-          user_id: guestObj.user_id,
-          host: guestObj.host,
-          event_id: newRecord
-        }
-        this.submitGuests(newGuest)
-      })
-      newOptions.forEach(optObj=> {
-        const newOption = {
-          idea_id: optObj.idea_id,
-          event_id: newRecord
-        }
-        this.submitOptions(newOption)
-      })
+  handleOptionSubmit = (e) => {
+    e.preventDefault();
+
+    const newOptions = [...this.state.options]
+
+    newOptions.forEach(optObj=> {
+      const newOption = {
+        idea_id: optObj.id,
+        event_id: this.state.event_id
+      }
+      this.submitOptions(newOption)
+    })
+
+    this.setState({
+      ideaStage: false,
+      guestStage: true
+    })
+  }
+
+  handleGuestSubmit = (e) => {
+    e.preventDefault();
+    const newGuests = [...this.state.guests]
+
+    newGuests.forEach(guestObj=> {
+      const newGuest = {
+        user_id: guestObj.user_id,
+        host: guestObj.host,
+        event_id: this.state.event_id
+      }
+      this.submitGuests(newGuest)
+    })
+
+    this.setState({
+      ideaStage: false,
+      guestStage: true
     })
     this.props.history.push('/events');
   }
@@ -272,30 +319,51 @@ class EventForm extends Component {
     })
   }
 
-
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <br/>
-        <h4>Let's do something on:
-        <input type="date" name="date" onChange={this.handleChange}
-           value={this.state.date}
-           min="2018-01-01" max="2020-12-31" />
-        at
-        <input name="time" onChange={this.handleChange} /> </h4>
-        <h4>ideas</h4>
-        {this.renderIdeas()}
-        <h4>invite</h4>
-        {this.renderFriends()}
+      <div>
+        <form onSubmit={this.handleDateSubmit} style={this.state.dateStage ? {} : { display: 'none' }}>
+          <br/>
+            <h4>Let's do something on:
+            <input type="date" name="date" onChange={this.handleChange}
+               value={this.state.date}
+               min="2018-01-01" max="2020-12-31" />
+            at
+            <input name="time" onChange={this.handleChange} /> </h4>
+            <input type="submit" value="Submit" />
+        </form>
 
+        <div style={this.state.ideaStage ? {} : { display: 'none' }}>
+            <h4>ideas</h4>
+            <OptionsHolder selectedOptions={this.state.options} />
+          <form onSubmit={this.handleOptionSubmit} >
+              {this.state.options.length < 3 ? this.renderIdeas():<p>Great - time to invite guests!</p>}
+              <input type="submit" value="Submit" />
+          </form>
+        </div>
 
-        <input type="submit" value="Submit" />
-      </form>
+        <form onSubmit={this.handleGuestSubmit} style={this.state.guestStage ? {} : { display: 'none' }}>
+          <h4>invite</h4>
+          {this.renderFriends()}
+          <input type="submit" value="Submit" />
+
+        </form>
+      </div>
     );
   }
 }
 
 EventForm.propTypes = {
-  createEvent: PropTypes.func.isRequired
+  createEvent: PropTypes.func.isRequired,
+  allIdeas: PropTypes.array.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  savedIdeas: PropTypes.array.isRequired
 }
-export default connect(null, { createEvent })(EventForm);
+
+const mapStateToProps = state => ({
+  allIdeas: state.ideas.allIdeas,
+  currentUser: state.users.currentUser,
+  savedIdeas: state.ideas.savedIdeas
+})
+
+export default connect(mapStateToProps, { createEvent })(EventForm);

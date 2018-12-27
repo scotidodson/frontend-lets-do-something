@@ -9,10 +9,6 @@ import './IdeaContainer.css'
 
 class IdeaContainer extends Component {
 
-  componentWillMount() {
-    this.props.fetchIdeas()
-  }
-
   renderIdeaCards = () => {
     return this.props.allIdeas.map(idea => {
       return(<IdeaCard key={idea.id} idea={idea} />)

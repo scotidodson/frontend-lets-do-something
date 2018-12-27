@@ -28,6 +28,7 @@ class PageContainer extends Component {
 
   componentWillMount() {
       this.props.fetchUsers()
+      this.props.fetchIdeas()
   }
 
   componentDidMount() {

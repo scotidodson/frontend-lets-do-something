@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addFriend, removeFriend, fetchUsers } from '../../../Actions/UserActions.js'
+import { updateUser } from '../../../Actions/UserActions.js'
 // import { Route, Link } from 'react-router-dom'
 // import { createBrowserHistory } from 'history';
 import FriendButton from '../FriendButton/FriendButton.js'
@@ -24,6 +25,7 @@ class ContactCard extends Component {
     const friendId = this.props.user.id
     console.log(this.props.user);
     console.log(friendId);
+
     if (e.target.name === "removeFriend") {
       const friendship_one = user.friendships.filter(friendshipObj => {
         return friendshipObj.friend.id === friend.id })[0]
@@ -32,23 +34,65 @@ class ContactCard extends Component {
 
       const friendship_two = friendObj.friendships.filter(friendshipObj => { return friendshipObj.friend.id === user.id })[0]
 
-      console.log(user.friendships);
-      console.log(friendObj.friendships);
-      console.log(friendship_one, friendship_two);
+      // console.log(user.friendships);
+      // console.log(friendObj.friendships);
+      // console.log(friendship_one, friendship_two);
 
       this.props.removeFriend(friendship_one.id, friendship_two.id)
+      this.removeFriend(friendship_one.id)
 
     } else {
-      this.props.addFriend(userId, friendId)
+      this.addFriend(userId, friendId, friend)
     }
-    this.props.fetchUsers()
-    this.redirect()
   }
 
-  redirect = () => {
-    this.setState((currentState)=>{
-      return{friendStatus: !currentState.friendStatus}
+  removeFriend = (friendshipId) => {
+    let updatedUserObj = {...this.props.currentUser}
+    const updatedFriendships = updatedUserObj.friendships.filter(friendship=>{
+      return friendship.id !== friendshipId
     })
+
+    updatedUserObj.friendships = [ ...updatedFriendships ]
+    this.props.updateUser(updatedUserObj)
+
+  }
+
+  addFriend = (userId, friendId, friend) => {
+    let updatedUserObj = {...this.props.currentUser}
+
+    updatedUserObj.friendships = [
+      ...updatedUserObj.friendships,
+      {
+        id: 0,
+        friend: { ...friend }
+      }]
+      this.props.updateUser(updatedUserObj)
+
+    fetch('http://localhost:4000/api/v1/friendships', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: userId,
+        friend_id: friendId
+      })
+    })
+
+
+
+    fetch('http://localhost:4000/api/v1/friendships', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: friendId,
+        friend_id: userId
+      })
+    })
+    // this.props.history.push('/contacts');
+
   }
 
 
@@ -78,7 +122,8 @@ ContactCard.propTypes = {
   allUsers: PropTypes.array.isRequired,
   addFriend: PropTypes.func.isRequired,
   removeFriend: PropTypes.func.isRequired,
-  fetchUsers: PropTypes.func.isRequired
+  fetchUsers: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -86,4 +131,4 @@ const mapStateToProps = state => ({
   allUsers: state.users.allUsers
 })
 
-export default connect(mapStateToProps, { addFriend, removeFriend, fetchUsers })(ContactCard);
+export default connect(mapStateToProps, { updateUser, addFriend, removeFriend, fetchUsers })(ContactCard);

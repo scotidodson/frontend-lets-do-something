@@ -19,6 +19,7 @@ class ContactsContainer extends Component {
   renderContactCards = () => {
     const userFriends = this.findUserFriends()
     const friendNumbers = userFriends.map(user=>{return user.id})
+
     return this.props.allUsers.map(user => {
       if (user.id !== 1 && !friendNumbers.includes(user.id)) {
         return(<ContactCard key={user.id} user={user} loggedIn={this.props.currentUser} alreadyFriended={false} />)

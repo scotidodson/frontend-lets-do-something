@@ -133,7 +133,8 @@ IdeaDetails.propTypes = {
   allIdeas: PropTypes.array.isRequired,
   savedIdeas: PropTypes.array.isRequired,
   removeIdea: PropTypes.func.isRequired,
-  fetchUserIdeas: PropTypes.func.isRequired
+  fetchUserIdeas: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

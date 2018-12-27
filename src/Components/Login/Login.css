@@ -1,0 +1,38 @@
+.login-form {
+  width: 100%;
+  font-family: tahoma;
+  color: black;
+  /* font-size: 3em; */
+  font-weight: 800;
+  text-transform: uppercase;
+  position: fixed;
+  text-align: center;
+  padding: 10%;
+
+}
+
+.login-form input {
+  min-height: 30px;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: tahoma;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.login-form select {
+  min-height: 30px;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: tahoma;
+}
+
+.login-form textarea {
+  min-height: 30px;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: tahoma;
+}

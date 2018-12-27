@@ -2,6 +2,7 @@ export const FETCH_IDEAS = 'FETCH_IDEAS'
 export const NEW_IDEA = 'NEW_IDEA'
 export const SAVED_IDEAS = 'SAVED_IDEAS'
 export const USER_IDEAS = 'USER_IDEAS'
+export const UPDATE_USER = 'UPDATE_USER'
 
 
 export const CURRENT_USER = 'CURRENT_USER'

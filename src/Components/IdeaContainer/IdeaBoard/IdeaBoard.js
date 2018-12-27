@@ -4,14 +4,9 @@ import { Link } from 'react-router-dom'
 import IdeaCard from '../IdeaCard/IdeaCard.js'
 
 import { connect } from 'react-redux';
-import { fetchSavedIdeas } from '../../../Actions/IdeaActions.js'
 
 
 class IdeaBoard extends Component {
-
-  componentWillMount() {
-    this.props.fetchSavedIdeas(1)
-  }
 
   renderSavedIdeaCards = () => {
     if (this.props.savedIdeas.length === 0) {
@@ -19,8 +14,8 @@ class IdeaBoard extends Component {
         <h3>You don't have anything saved yet!</h3>
       )
     } else {
-      return this.props.savedIdeas.map(idea => {
-        return(<IdeaCard key={idea.id} idea={idea} />)
+      return this.props.savedIdeas.map(ideaObj => {
+        return(<IdeaCard key={ideaObj.id} userEventId={ideaObj.id} idea={ideaObj.idea} />)
       })
     }
   }
@@ -39,12 +34,13 @@ class IdeaBoard extends Component {
 }
 
 IdeaBoard.propTypes = {
-  fetchSavedIdeas: PropTypes.func.isRequired,
   savedIdeas: PropTypes.array.isRequired
 }
 
-const mapStateToProps = state => ({
-  savedIdeas: state.ideas.savedIdeas
-})
+function mapStateToProps(state){
+  return {
+    savedIdeas: state.ideas.savedIdeas
+  }
+}
 
-export default connect(mapStateToProps, { fetchSavedIdeas })(IdeaBoard);
+export default connect(mapStateToProps)(IdeaBoard);

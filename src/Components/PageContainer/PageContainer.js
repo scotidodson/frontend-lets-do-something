@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchUsers, fetchCurrentUser } from '../../Actions/UserActions.js'
-import { fetchIdeas } from '../../Actions/IdeaActions.js'
+import { fetchUsers } from '../../Actions/UserActions.js'
+import { fetchIdeas, fetchSavedIdeas } from '../../Actions/IdeaActions.js'
 import { Route, Switch } from 'react-router-dom'
 import Navigation from '../Navigation/Navigation.js'
 import Account from '../Account/AccountContainer.js'
@@ -28,8 +28,6 @@ class PageContainer extends Component {
 
   componentWillMount() {
       this.props.fetchUsers()
-      this.props.fetchCurrentUser(1)
-
   }
 
   componentDidMount() {
@@ -64,12 +62,15 @@ PageContainer.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
   fetchCurrentUser: PropTypes.func.isRequired,
   fetchIdeas: PropTypes.func.isRequired,
-  currentUser: PropTypes.object.isRequired
+  fetchSavedIdeas: PropTypes.func.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  savedIdeas: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({
   allUsers: state.users.allUsers,
-  currentUser: state.users.currentUser
+  currentUser: state.users.currentUser,
+  savedIdeas: state.ideas.savedIdeas
 })
 
-export default connect(mapStateToProps, { fetchUsers, fetchCurrentUser, fetchIdeas })(PageContainer);
+export default connect(mapStateToProps, { fetchUsers, fetchIdeas, fetchSavedIdeas })(PageContainer);

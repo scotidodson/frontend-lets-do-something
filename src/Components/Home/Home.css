@@ -5,6 +5,7 @@
    font-weight: 800;
    text-transform: uppercase;
    color: white;
+   position: fixed;
  }
 
  .home-brainstorm {

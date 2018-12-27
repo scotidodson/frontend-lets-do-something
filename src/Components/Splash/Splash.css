@@ -1,0 +1,34 @@
+.splash {
+  height: 100vh;
+  width: 100vw;
+  padding:0;
+  background-color: #161846;
+  color: white;
+  text-transform: uppercase;
+  font-size: 2em;
+  font-weight: 900;
+  font-family: tahoma;
+  position: absolute;
+  position: fixed;
+
+}
+
+.splash-logo {
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+
+}
+
+.arrow {
+  height: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+}

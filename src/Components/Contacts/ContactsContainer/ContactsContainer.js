@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchUsers, fetchCurrentUser } from '../../../Actions/UserActions.js'
+import { fetchUsers } from '../../../Actions/UserActions.js'
 import ContactForm from '../ContactForm/ContactForm.js'
 import ContactCard from '../ContactCard/ContactCard.js'
 
@@ -65,7 +65,7 @@ class ContactsContainer extends Component {
 
 ContactsContainer.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
-  fetchCurrentUser: PropTypes.func.isRequired,
+  urrentUser: PropTypes.func.isRequired,
   allUsers: PropTypes.array.isRequired,
   currentUser: PropTypes.object.isRequired
 }
@@ -75,4 +75,4 @@ const mapStateToProps = state => ({
   currentUser: state.users.currentUser
 })
 
-export default connect(mapStateToProps, { fetchUsers, fetchCurrentUser })(ContactsContainer);
+export default connect(mapStateToProps, { fetchUsers })(ContactsContainer);

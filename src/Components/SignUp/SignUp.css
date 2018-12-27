@@ -1,0 +1,41 @@
+.sign-up-form {
+  width: 100vw;
+  display: block;
+  /* margin-left: auto;
+  margin-right: auto; */
+  font-family: tahoma;
+  color: black;
+  /* font-size: 3em; */
+  font-weight: 800;
+  text-transform: uppercase;
+  position: relative;
+  text-align: center;
+  padding: 2%;
+
+}
+
+.sign-up-form input {
+  min-height: 30px;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: tahoma;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.sign-up-form select {
+  min-height: 30px;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: tahoma;
+}
+
+.sign-up-form textarea {
+  min-height: 30px;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: tahoma;
+}

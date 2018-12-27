@@ -1,4 +1,5 @@
 import { FETCH_IDEAS, NEW_IDEA, SAVED_IDEAS, USER_IDEAS } from './types'
+import { fetchUsers } from './UserActions.js'
 
 export const fetchIdeas = () => dispatch => {
     fetch('http://localhost:4000/api/v1/ideas')
@@ -27,8 +28,8 @@ export const fetchSavedIdeas = (userId) => dispatch => {
       dispatch({
       type: SAVED_IDEAS,
       payload: savedIdeas
-    })}
-  )
+    })
+  })
 }
 
 export const fetchUserIdeas = () => dispatch => {
@@ -68,6 +69,8 @@ export const saveIdea = (ideaData) => dispatch => {
         'content-type': 'application/json'
       },
       body: JSON.stringify(ideaData)
+    }).then(resp =>{
+      fetchUsers()
     })
 }
 

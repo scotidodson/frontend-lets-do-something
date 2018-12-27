@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addFriend, removeFriend, fetchCurrentUser, fetchUsers } from '../../../Actions/UserActions.js'
+import { addFriend, removeFriend, fetchUsers } from '../../../Actions/UserActions.js'
 // import { Route, Link } from 'react-router-dom'
 // import { createBrowserHistory } from 'history';
 import FriendButton from '../FriendButton/FriendButton.js'
@@ -37,7 +37,7 @@ class ContactCard extends Component {
       console.log(friendship_one, friendship_two);
 
       this.props.removeFriend(friendship_one.id, friendship_two.id)
-      
+
     } else {
       this.props.addFriend(userId, friendId)
     }
@@ -86,4 +86,4 @@ const mapStateToProps = state => ({
   allUsers: state.users.allUsers
 })
 
-export default connect(mapStateToProps, { addFriend, removeFriend, fetchCurrentUser, fetchUsers })(ContactCard);
+export default connect(mapStateToProps, { addFriend, removeFriend, fetchUsers })(ContactCard);

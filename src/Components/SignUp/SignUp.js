@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createUser } from '../../Actions/UserActions.js'
+import './SignUp.css'
 // import IdeaCard from '../IdeaCard/IdeaCard.js'
 // import Home from './Home/Home.js'
 
@@ -15,7 +16,6 @@ class SignUp extends Component {
     phone: '',
     email: '',
     birthday: '',
-    gender: '',
     default_city: 'NYC',
     bio: '',
     app_member: true,
@@ -34,46 +34,44 @@ class SignUp extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <div className="sign-up-form">
+        <h2>Sign Up</h2>
+        <form onSubmit={this.handleSubmit}>
 
-        First Name:<br/>
-        <input type="text" name="first_name" onChange={this.handleChange} value={this.state.title} /><br/><br/>
-
-        Last Name:<br/>
-        <input type="text" name="last_name" onChange={this.handleChange} value={this.state.street} /><br/><br/>
-
-        Username:<br/>
-        <input type="text" name="username" onChange={this.handleChange} value={this.state.neighborhood} /><br/><br/>
-
-        Password:<br/>
-        <input type="text" name="password" onChange={this.handleChange} value={this.state.neighborhood} /><br/><br/>
-
-        Phone:<br/>
-        <input type="text" name="phone" onChange={this.handleChange} value={this.state.neighborhood} /><br/><br/>
-
-        Email:<br/>
-        <input type="text" name="email" onChange={this.handleChange} value={this.state.neighborhood} /><br/><br/>
-
-        Birthday:<br/>
-        <input type="text" name="birthday" onChange={this.handleChange} value={this.state.neighborhood} /><br/><br/>
-
-        Gender:<br/>
-        <select name="gender" onChange={this.handleChange}>
-          <option value="female">female</option>
-          <option value="male">male</option>
-          <option value="other">other</option>
-        </select><br/><br/>
-
-        City:<br/>
-        <select name="city" onChange={this.handleChange}>
+          <select name="city" onChange={this.handleChange}>
           <option value="NYC">NYC</option>
-        </select><br/><br/>
+          </select><br/><br/>
 
-        Bio:<br/>
-        <textarea type="text" name="bio" onChange={this.handleChange} value={this.state.neighborhood} /><br/><br/>
+          <input type="text" name="first_name" onChange={this.handleChange}
+          placeholder="First Name" value={this.state.title} />
 
-        <input type="submit" value="Submit" />
-      </form>
+          <input type="text" name="last_name" onChange={this.handleChange}
+          placeholder="Last Name" value={this.state.street} /><br/><br/>
+
+          <input type="text" name="username" onChange={this.handleChange}
+          placeholder="Username" value={this.state.username} />
+
+          <input type="text" name="password" onChange={this.handleChange}
+          placeholder="Password" value={this.state.password} /><br/><br/>
+
+          <input type="text" name="phone" onChange={this.handleChange}
+          placeholder="Phone"
+          value={this.state.phone} />
+
+          <input type="text" name="email" onChange={this.handleChange}
+          placeholder="Email" value={this.state.email} /><br/><br/>
+
+          <input type="text" name="birthday" onChange={this.handleChange}
+          placeholder="Birthday" value={this.state.birthday} /><br/><br/>
+
+
+          <textarea type="text" name="bio" onChange={this.handleChange}
+          placeholder="Bio"
+           value={this.state.neighborhood} /><br/><br/>
+
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
     );
   }
 }

@@ -1,0 +1,59 @@
+ .brainstorm-page {
+   /* background-color: #54a4a6; */
+   width: auto;
+   height: 100%;
+   position: absolute;
+   padding: 2% 7% 2% 7%;
+   font-family: tahoma;
+   color: white;
+   font-size: 16px;
+
+ }
+
+ .brainstorm-page a {
+   text-decoration: none;
+   color: white;
+ }
+
+ .brainstorm-page h3 {
+   text-decoration: none;
+   text-transform: uppercase;
+   font-weight: 800;
+   font-size: 2em;
+   color: #161846;
+   text-align: center;
+ }
+ .brainstorm-page button {
+   text-decoration: none;
+   text-transform: uppercase;
+   font-weight: 800;
+   font-size: 16px;
+   color: #161846;
+   text-align: center;
+   margin: 2%;
+ }
+
+ .idea-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+ }
+
+ .idea-card {
+   position: relative;
+   width: 250px;
+   height: 250px;
+   border-color: black;
+   background-color: #161846;
+   border-radius: 5%;
+   text-align: center;
+   padding: 2%;
+   margin: 5%;
+   /* margin-right: 10px; */
+ }
+
+/* .brainstorm-buttons {
+   display: block;
+   margin-left: auto;
+   margin-right: auto; */
+/* } */

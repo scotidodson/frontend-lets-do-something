@@ -1,34 +1,39 @@
-import { CURRENT_USER, FETCH_USERS
+import { CURRENT_USER, FETCH_USERS, SAVED_IDEAS, UPDATE_USER
  } from './types'
 
-export const fetchCurrentUser = (userId) => dispatch => {
-    fetch('http://localhost:4000/api/v1/users')
-    .then(resp => resp.json())
-    .then(users => {
-    // const current = users.filter(userObj => {
-    //   return userObj.id === userId
-    // })[0]
-    //   dispatch({
-    //     type: CURRENT_USER,
-    //     payload: current
-    // })
-  })
-}
+// export const fetchCurrentUser = (userId) => dispatch => {
+//     fetch('http://localhost:4000/api/v1/users')
+//     .then(resp => resp.json())
+//     .then(users => {
+//     // const current = users.filter(userObj => {
+//     //   return userObj.id === userId
+//     // })[0]
+//     //   dispatch({
+//     //     type: CURRENT_USER,
+//     //     payload: current
+//     // })
+//   })
+// }
 
 export const fetchUsers = () => dispatch => {
     fetch('http://localhost:4000/api/v1/users')
     .then(resp => resp.json())
     .then(allUsers => {
+      const current = allUsers.filter(userObj => {
+        return userObj.id === 1
+      })[0]
       dispatch({
       type: FETCH_USERS,
       payload: allUsers
-    })
-    dispatch({
-      type: CURRENT_USER,
-      payload: allUsers.filter(userObj => {
-        return userObj.id === 1
-      })[0]
-  })
+      })
+      dispatch({
+        type: CURRENT_USER,
+        payload: current
+      })
+      dispatch({
+        type: SAVED_IDEAS,
+        payload: current.user_ideas
+      })
   }
   )
 }
@@ -70,8 +75,9 @@ export const addFriend = (userId, friendId) => dispatch => {
         user_id: friendId,
         friend_id: userId
       })
+    }).then(resp=>{
+      fetchUsers()
     })
-    fetchUsers()
 }
 
 export const removeFriend = (friendship_one, friendship_two) => dispatch => {
@@ -86,4 +92,15 @@ export const removeFriend = (friendship_one, friendship_two) => dispatch => {
       method: 'DELETE'
     })
     fetchUsers()
+}
+
+export const updateUser = (userObj) => dispatch => {
+  dispatch({
+    type: CURRENT_USER,
+    payload: userObj
+  })
+  dispatch({
+    type: SAVED_IDEAS,
+    payload: userObj.user_ideas
+  })
 }

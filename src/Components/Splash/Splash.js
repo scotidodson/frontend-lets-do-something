@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import './Splash.css'
+import arrow from '../../Images/arrow.png'
 
 
 class Splash extends Component {
   render() {
     return (
-      <div>
-        <h1>Let's Do Something </h1>
-        <ul>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/sign-up">Sign Up</Link>
-          </li>
-        </ul>
+      <div className="splash">
+        <div className="splash-logo">
+          <h1>Let's Do Something </h1>
+        </div>
+        <div className="arrow">
+            <Link to="/login">
+              <img src={arrow} alt="arrow to login" className="arrow" />
+            </Link>
+        </div>
       </div>
     );
   }

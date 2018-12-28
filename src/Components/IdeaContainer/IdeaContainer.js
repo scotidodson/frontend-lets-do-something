@@ -10,7 +10,11 @@ import './IdeaContainer.css'
 class IdeaContainer extends Component {
 
   renderIdeaCards = () => {
-    return this.props.allIdeas.map(idea => {
+    const savedIdeaIds = this.props.savedIdeas.map(ideaObj => ideaObj.idea.id)
+    const newIdeas = this.props.allIdeas.filter(ideaObj =>{
+      return !savedIdeaIds.includes(ideaObj.id)
+    })
+    return newIdeas.map(idea => {
       return(<IdeaCard key={idea.id} idea={idea} />)
     })}
 
@@ -34,11 +38,13 @@ class IdeaContainer extends Component {
 
 IdeaContainer.propTypes = {
   fetchIdeas: PropTypes.func.isRequired,
-  allIdeas: PropTypes.array.isRequired
+  allIdeas: PropTypes.array.isRequired,
+  savedIdeas: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({
-  allIdeas: state.ideas.allIdeas
+  allIdeas: state.ideas.allIdeas,
+  savedIdeas: state.ideas.savedIdeas
 })
 
 export default connect(mapStateToProps, { fetchIdeas })(IdeaContainer);

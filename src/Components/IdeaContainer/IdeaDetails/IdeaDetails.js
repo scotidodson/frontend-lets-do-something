@@ -87,6 +87,16 @@ class IdeaDetails extends Component {
     return price
   }
 
+  alreadySaved = () => {
+    const savedIdeaIds = this.props.savedIdeas.map(ideaObj => ideaObj.idea.id)
+    const ideaId = Number(this.props.match.params.ideaId)
+    if (savedIdeaIds.includes(ideaId)) {
+      return true
+    } else  {
+      return false
+    }
+  }
+
 
   render() {
     const idea = this.props.allIdeas.find(idea => {
@@ -119,8 +129,7 @@ class IdeaDetails extends Component {
         <Link to="/saved-ideas">
           <button>Back to my saved ideas</button>
         </Link>
-        <button onClick={this.handleSaveIdea}>Save Idea</button>
-        <button onClick={this.handleRemoveIdea}>Remove Idea</button>
+        <button onClick={this.alreadySaved() ? this.handleRemoveIdea:this.handleSaveIdea}>{this.alreadySaved() ? "Remove Idea":"Save Idea"}</button>
 
       </div>
     );

@@ -5,13 +5,13 @@ import { CURRENT_USER, FETCH_USERS, SAVED_IDEAS, UPDATE_USER
 //     fetch('http://localhost:4000/api/v1/users')
 //     .then(resp => resp.json())
 //     .then(users => {
-//     // const current = users.filter(userObj => {
-//     //   return userObj.id === userId
-//     // })[0]
-//     //   dispatch({
-//     //     type: CURRENT_USER,
-//     //     payload: current
-//     // })
+//     const current = users.filter(userObj => {
+//       return userObj.id === userId
+//     })[0]
+//       dispatch({
+//         type: CURRENT_USER,
+//         payload: current
+//     })
 //   })
 // }
 
@@ -95,6 +95,7 @@ export const removeFriend = (friendship_one, friendship_two) => dispatch => {
 }
 
 export const updateUser = (userObj) => dispatch => {
+  console.log('in update user', userObj);
   dispatch({
     type: CURRENT_USER,
     payload: userObj

@@ -66,7 +66,6 @@ class ContactsContainer extends Component {
 
 ContactsContainer.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
-  urrentUser: PropTypes.func.isRequired,
   allUsers: PropTypes.array.isRequired,
   currentUser: PropTypes.object.isRequired
 }

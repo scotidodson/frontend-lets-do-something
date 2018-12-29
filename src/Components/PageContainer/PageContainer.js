@@ -29,12 +29,18 @@ class PageContainer extends Component {
   componentWillMount() {
       this.props.fetchUsers()
       this.props.fetchIdeas()
+      setInterval(this.updateUserData, 9000)
   }
 
   componentDidMount() {
     if (this.state.currentUserId === 0) {
       window.location.href = "http://localhost:3000/welcome"
     }
+  }
+
+  updateUserData = () => {
+    console.log('fetching users again');
+    this.props.fetchUsers()
   }
 
   render() {
@@ -61,7 +67,6 @@ class PageContainer extends Component {
 
 PageContainer.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
-  fetchCurrentUser: PropTypes.func.isRequired,
   fetchIdeas: PropTypes.func.isRequired,
   fetchSavedIdeas: PropTypes.func.isRequired,
   currentUser: PropTypes.object.isRequired,

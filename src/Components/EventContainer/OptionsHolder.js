@@ -57,7 +57,7 @@ class OptionsHolder extends Component {
           </div>
         )
         break;
-      case 0:
+      case 3:
         return (
           <div>
             <div>

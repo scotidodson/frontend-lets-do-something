@@ -92,74 +92,6 @@ class EventForm extends Component {
     }
   }
 
-  // renderOptions = () => {
-  //   const options = [...this.state.options]
-  //   switch (options.length) {
-  //     case 0:
-  //       return (
-  //         <div>
-  //           <div>
-  //             <p> Select up to 3</p>
-  //           </div>
-  //           <div >
-  //             <p> Select up to 3</p>
-  //           </div>
-  //           <div>
-  //             <p> Select up to 3</p>
-  //           </div>
-  //         </div>
-  //       )
-  //       break;
-  //     case 1:
-  //       return (
-  //         <div>
-  //           <div>
-  //             <p>{options[0].title}</p>
-  //           </div>
-  //           <div >
-  //             <p> Select up to 3</p>
-  //           </div>
-  //           <div>
-  //             <p> Select up to 3</p>
-  //           </div>
-  //         </div>
-  //       )
-  //       break;
-  //     case 2:
-  //       return (
-  //         <div>
-  //           <div>
-  //             <p>{options[0].title}</p>
-  //           </div>
-  //           <div>
-  //             <p>{options[1].title}</p>
-  //           </div>
-  //           <div>
-  //             <p> Select up to 3</p>
-  //           </div>
-  //         </div>
-  //       )
-  //       break;
-  //     case 0:
-  //       return (
-  //         <div>
-  //           <div>
-  //             <p>{options[0].title}</p>
-  //           </div>
-  //           <div>
-  //             <p>{options[1].title}</p>
-  //           </div>
-  //           <div>
-  //             <p>{options[2].title}</p>
-  //           </div>
-  //         </div>
-  //       )
-  //       break;
-  //     default:
-  //
-  //   }
-  // }
-
   renderIdeas = () => {
     const ideas = this.props.savedIdeas.map(ideaObj=> ideaObj.idea )
     const mySaved = ideas.map(idea => { return idea.id })
@@ -177,56 +109,12 @@ class EventForm extends Component {
   }
 
   renderFriends = () => {
-    const friends = [
-      {id: 2,
-        first_name: "Max",
-        last_name: "Petersen",
-        username: "max",
-        password: "password",
-        phone: null,
-        email: "email@gmail.com",
-        birthday: "1997-01-01",
-        gender: "male",
-        default_city: "NYC",
-        bio: "flatiron student",
-        app_member: true,
-        img_url: null
-        },
-        {
-        id: 3,
-        first_name: "Asaf",
-        last_name: "Davidov",
-        username: "asaf",
-        password: "password",
-        phone: null,
-        email: "email@gmail.com",
-        birthday: "1995-01-01",
-        gender: "male",
-        default_city: "NYC",
-        bio: "flatiron student",
-        app_member: true,
-        img_url: null
-        },
-        {
-        id: 4,
-        first_name: "Jordan",
-        last_name: "Farkas",
-        username: "jordan",
-        password: "password",
-        phone: null,
-        email: "email@gmail.com",
-        birthday: "1991-01-01",
-        gender: "male",
-        default_city: "NYC",
-        bio: "flatiron student",
-        app_member: true,
-        img_url: null
-        }]
-      return friends.map(friend =>{
+    const userFriendships = this.props.currentUser.friendships
+      return userFriendships.map(friendship =>{
         return(
           <p>
-            <input type="checkbox" name="guests" data-id={friend.id} onChange={this.handleCheckbox} />
-            {friend.first_name} {friend.last_name}
+            <input type="checkbox" name="guests" data-id={friendship.friend.id} onChange={this.handleCheckbox} />
+            {friendship.friend.first_name} {friendship.friend.last_name}
           </p>
       )
     })
@@ -289,6 +177,8 @@ class EventForm extends Component {
         host: guestObj.host,
         event_id: this.state.event_id
       }
+      console.log(newGuest);
+      this.createNotification(newGuest)
       this.submitGuests(newGuest)
     })
 
@@ -297,6 +187,36 @@ class EventForm extends Component {
       guestStage: true
     })
     this.props.history.push('/events');
+  }
+
+  createNotification = (newGuest) => {
+    if (newGuest.host) {
+      const newNotification = {
+        user_id: newGuest.user_id,
+        event_id: this.state.event_id,
+        seen: false,
+        message: "You created an event. Poll in process."
+      }
+      this.submitNotification(newNotification)
+    } else {
+      const newNotification = {
+        user_id: newGuest.user_id,
+        event_id: this.state.event_id,
+        seen: false,
+        message: "You have been invited to an event - cast your vote on what to do!"
+      }
+      this.submitNotification(newNotification)
+    }
+  }
+
+  submitNotification = (newNotification) => {
+    fetch(`http://localhost:4000/api/v1/notifications`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(newNotification)
+    })
   }
 
   submitGuests = (newGuest) => {

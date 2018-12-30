@@ -33,10 +33,12 @@ class AccountEdit extends Component {
     this.props.redirect()
   }
 
+
   render() {
     return (
       <div>
-        <img src={account} alt="account" height="200px" />
+        {this.state.img_url ? <img src={this.state.img_url} alt="account" height="200px" />:<img src={account} alt="account" height="200px" />}
+
         <div className="sign-up-form">
           <h2>Sign Up</h2>
           <form onSubmit={this.handleSubmit}>

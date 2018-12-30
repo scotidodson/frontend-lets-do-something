@@ -3,6 +3,7 @@ import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { assignUser } from '../../Actions/UserActions.js'
 import account from '../../Images/account.png'
+import avatars from '../../Images/avatars/avatars.js'
 // import  PropTypes from 'prop-types'
 
 class AccountView extends Component {
@@ -12,6 +13,7 @@ class AccountView extends Component {
     return (
       <div>
         <img src={account} alt="account" height="200px" />
+        <img src={avatars.charlie} alt="account" height="200px" />
         <h4>Name: {this.props.currentUser.first_name} {this.props.currentUser.last_name}</h4>
         <p>Username: {this.props.currentUser.username}</p>
         <p>Password: ******* </p>

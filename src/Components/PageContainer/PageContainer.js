@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchUsers } from '../../Actions/UserActions.js'
+import { fetchUsers, fetchCurrentUser } from '../../Actions/UserActions.js'
 import { fetchIdeas, fetchSavedIdeas } from '../../Actions/IdeaActions.js'
 import { Route, Switch } from 'react-router-dom'
 import Navigation from '../Navigation/Navigation.js'
-import Account from '../Account/AccountContainer.js'
+import Account from '../Account/Account.js'
 import ContactsContainer from '../Contacts/ContactsContainer/ContactsContainer.js'
 import IdeaContainer from '../IdeaContainer/IdeaContainer.js'
 import EventContainer from '../EventContainer/EventContainer.js'
@@ -16,32 +16,32 @@ import IdeaDetails from '../IdeaContainer/IdeaDetails/IdeaDetails.js'
 import Home from '../Home/Home.js'
 import Menu from '../Navigation/Menu/Menu.js'
 import NotificationContainer from '../Navigation/NotificationContainer/NotificationContainer.js'
+
+// import NotificationChecker from '../Navigation/NotificationChecker.js'
 import './PageContainer.css';
 
 
 
 
 class PageContainer extends Component {
-  state = {
-    currentUserId: 1
-  }
-
   componentWillMount() {
       this.props.fetchUsers()
       this.props.fetchIdeas()
-      setInterval(this.updateUserData, 9000)
-  }
-
-  componentDidMount() {
-    if (this.state.currentUserId === 0) {
-      window.location.href = "http://localhost:3000/welcome"
-    }
+      if (this.props.userId === 0) {
+        this.props.history.push('/welcome');
+      } else {
+        this.props.fetchCurrentUser(this.props.userId)
+        setInterval(this.updateUserData, 1000)
+      }
   }
 
   updateUserData = () => {
     console.log('fetching users again');
-    this.props.fetchUsers()
+    console.log(this.props.userId);
+    this.props.fetchCurrentUser(this.props.userId)
+    // this.props.fetchCurrentUser(this.props.userId)
   }
+
 
   render() {
     return (
@@ -69,6 +69,7 @@ PageContainer.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
   fetchIdeas: PropTypes.func.isRequired,
   fetchSavedIdeas: PropTypes.func.isRequired,
+  fetchCurrentUser: PropTypes.func.isRequired,
   currentUser: PropTypes.object.isRequired,
   savedIdeas: PropTypes.array.isRequired
 }
@@ -76,7 +77,8 @@ PageContainer.propTypes = {
 const mapStateToProps = state => ({
   allUsers: state.users.allUsers,
   currentUser: state.users.currentUser,
-  savedIdeas: state.ideas.savedIdeas
+  savedIdeas: state.ideas.savedIdeas,
+  userId: state.users.userId
 })
 
-export default connect(mapStateToProps, { fetchUsers, fetchIdeas, fetchSavedIdeas })(PageContainer);
+export default connect(mapStateToProps, { fetchUsers, fetchIdeas, fetchSavedIdeas, fetchCurrentUser })(PageContainer);

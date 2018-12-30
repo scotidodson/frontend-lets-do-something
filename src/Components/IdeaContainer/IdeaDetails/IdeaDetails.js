@@ -18,7 +18,7 @@ class IdeaDetails extends Component {
     const ideaSaved = this.props.allIdeas.find(record =>(record.id === ideaId))
     const saveThisIdea = {
       idea_id: ideaId,
-      user_id: 1,
+      user_id: this.props.userId,
       archive: false,
       experience_count: 0
     }
@@ -151,7 +151,8 @@ const mapStateToProps = state => ({
   allIdeas: state.ideas.allIdeas,
   userIdeas: state.ideas.userIdeas,
   currentUser: state.users.currentUser,
-  savedIdeas: state.ideas.savedIdeas
+  savedIdeas: state.ideas.savedIdeas,
+  userId: state.users.userId
 })
 
 export default connect(mapStateToProps, { updateUser, fetchIdeas, saveIdea, removeIdea, fetchUserIdeas })(IdeaDetails);

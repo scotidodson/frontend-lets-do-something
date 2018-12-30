@@ -20,7 +20,7 @@ class EventForm extends Component {
     winner: '',
     options: [],
     guests: [{
-        user_id: 1,
+        user_id: this.props.userId,
         host: true
       }]
   }
@@ -110,13 +110,13 @@ class EventForm extends Component {
 
   renderFriends = () => {
     const userFriendships = this.props.currentUser.friendships
-      return userFriendships.map(friendship =>{
-        return(
-          <p>
-            <input type="checkbox" name="guests" data-id={friendship.friend.id} onChange={this.handleCheckbox} />
-            {friendship.friend.first_name} {friendship.friend.last_name}
-          </p>
-      )
+    return userFriendships.map(friendship =>{
+      return(
+        <p>
+          <input type="checkbox" name="guests" data-id={friendship.friend.id} onChange={this.handleCheckbox} />
+          {friendship.friend.first_name} {friendship.friend.last_name}
+        </p>
+    )
     })
   }
 
@@ -283,7 +283,9 @@ EventForm.propTypes = {
 const mapStateToProps = state => ({
   allIdeas: state.ideas.allIdeas,
   currentUser: state.users.currentUser,
-  savedIdeas: state.ideas.savedIdeas
+  savedIdeas: state.ideas.savedIdeas,
+  userId: state.users.userId
+
 })
 
 export default connect(mapStateToProps, { createEvent })(EventForm);

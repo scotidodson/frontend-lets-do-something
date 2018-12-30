@@ -11,9 +11,8 @@ import menu from '../../Images/menu.png'
 import './Navigation.scss';
 
 
-
-
 class Navigation extends Component {
+
   checkNotifictions = () => {
     if (this.props.currentUser.notifications && this.props.currentUser.notifications.length > 0) {
       let newAlerts = this.props.currentUser.notifications.filter(alert => alert.seen === false )
@@ -30,6 +29,13 @@ class Navigation extends Component {
     })
     updatedUserObj.notifications = updatedAlerts
     this.props.updateUser(updatedUserObj)
+  }
+
+  updateUserData = () => {
+    console.log('fetching users again');
+    console.log(this.props.userId);
+    this.props.fetchCurrentUser(this.props.userId)
+    // this.props.fetchCurrentUser(this.props.userId)
   }
 
   render() {
@@ -50,7 +56,7 @@ class Navigation extends Component {
                 <li><Link to="/notifications">
                   {this.checkNotifictions() ? <img src={newNotification} onClick={this.handleClick} alt="notifications" height="80px" />:<img src={notification} alt="notifications" height="80px" />}
                 </Link></li>
-                <li><Link to="/account"><img src={account} alt="account" height="80px" /></Link></li>
+                <li><Link to="/account" params={ this.notificationChecker }><img src={account} alt="account" height="80px" /></Link></li>
               </ul>
           </nav>
         </div>

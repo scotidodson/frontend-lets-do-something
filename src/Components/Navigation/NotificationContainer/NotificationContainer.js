@@ -21,8 +21,6 @@ class NotificationContainer extends Component {
   }
 
   updateNotification = (alert) => {
-    // console.log('updating ', alert);
-    // console.log(this.props.currentUser);
     fetch(`http://localhost:4000/api/v1/notifications/${alert.id}`, {
       method: 'PATCH',
       headers: {

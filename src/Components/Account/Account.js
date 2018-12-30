@@ -1,0 +1,73 @@
+import React, { Component } from 'react';
+import  PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { assignUser, deleteUser } from '../../Actions/UserActions.js'
+import AccountEdit from './AccountEdit.js'
+import AccountView from './AccountView.js'
+// import  PropTypes from 'prop-types'
+
+class Account extends Component {
+  state = {
+    edit: false
+  }
+
+  componentWillMount() {
+      console.log(this.props);
+  }
+
+  editAccount = () => {
+    this.setState({ edit: true })
+  }
+
+  logout = () => {
+    this.props.assignUser(0)
+    window.location.href = "http://localhost:3000/"
+  }
+
+  deleteAccount = () => {
+    const deletedUser = this.props.userId
+    fetch('http://localhost:4000/api/v1/friendships')
+      .then(resp => resp.json())
+      .then(allFriendships => {
+        const friendshipsToDelete = allFriendships.filter(friendshipObj => {
+          return friendshipObj.friend_id === deleteUser
+        })
+
+      if (friendshipsToDelete.length > 0) {
+        friendshipsToDelete.forEach(friendship => {
+          fetch(`http://localhost:4000/api/v1/friendships/${friendship.id}`, {
+            method: 'DELETE' })
+        })
+      }
+    })
+
+
+    this.props.deleteUser(deletedUser)
+    alert('Your account has been deleted.')
+    this.props.history.push('/welcome');
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.edit ? <AccountEdit />:<AccountView />}
+        {this.state.edit ? null:<button onClick={this.editAccount}>Edit</button>}
+        <button onClick={this.logout}>Logout</button>
+        <button onClick={this.deleteAccount}>Delete Account</button>
+      </div>
+    );
+  }
+}
+
+Account.propTypes = {
+  currentUser: PropTypes.object.isRequired,
+  assignUser: PropTypes.func.isRequired,
+  deleteUser: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({
+  currentUser: state.users.currentUser,
+  userId: state.users.userId
+})
+
+export default connect(mapStateToProps, { assignUser, deleteUser })(Account);

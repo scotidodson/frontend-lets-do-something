@@ -5,7 +5,6 @@ import { addFriend, removeFriend, fetchUsers } from '../../../Actions/UserAction
 import { updateUser } from '../../../Actions/UserActions.js'
 // import { Route, Link } from 'react-router-dom'
 // import { createBrowserHistory } from 'history';
-import FriendButton from '../FriendButton/FriendButton.js'
 
 
 
@@ -123,7 +122,8 @@ ContactCard.propTypes = {
   addFriend: PropTypes.func.isRequired,
   removeFriend: PropTypes.func.isRequired,
   fetchUsers: PropTypes.func.isRequired,
-  updateUser: PropTypes.func.isRequired
+  updateUser: PropTypes.func.isRequired,
+
 }
 
 const mapStateToProps = state => ({

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createUser } from '../../Actions/UserActions.js'
+import signup from '../../Images/sign_up.png'
 import './SignUp.css'
 // import IdeaCard from '../IdeaCard/IdeaCard.js'
 // import Home from './Home/Home.js'
@@ -32,9 +33,15 @@ class SignUp extends Component {
     this.props.createUser(newUser)
   }
 
+  handleClick = () => {
+    this.props.history.push('/login');
+  }
+
   render() {
     return (
       <div className="sign-up-form">
+        <img src={signup} onClick={this.handleClick} alt="signup toggle" width="200px" />
+
         <h2>Sign Up</h2>
         <form onSubmit={this.handleSubmit}>
 
@@ -43,15 +50,15 @@ class SignUp extends Component {
           </select><br/><br/>
 
           <input type="text" name="first_name" onChange={this.handleChange}
-          placeholder="First Name" value={this.state.title} />
+          placeholder="First Name" value={this.state.first_name} />
 
           <input type="text" name="last_name" onChange={this.handleChange}
-          placeholder="Last Name" value={this.state.street} /><br/><br/>
+          placeholder="Last Name" value={this.state.last_name} /><br/><br/>
 
           <input type="text" name="username" onChange={this.handleChange}
           placeholder="Username" value={this.state.username} />
 
-          <input type="text" name="password" onChange={this.handleChange}
+          <input type="password" name="password" onChange={this.handleChange}
           placeholder="Password" value={this.state.password} /><br/><br/>
 
           <input type="text" name="phone" onChange={this.handleChange}

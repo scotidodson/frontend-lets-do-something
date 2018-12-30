@@ -1,31 +1,13 @@
-import { CURRENT_USER, FETCH_USERS, SAVED_IDEAS, UPDATE_USER
+import { CURRENT_USER, FETCH_USERS, SAVED_IDEAS, UPDATE_USER, USER_ID
  } from './types'
 
-// export const fetchCurrentUser = (userId) => dispatch => {
-//     fetch('http://localhost:4000/api/v1/users')
-//     .then(resp => resp.json())
-//     .then(users => {
-//     const current = users.filter(userObj => {
-//       return userObj.id === userId
-//     })[0]
-//       dispatch({
-//         type: CURRENT_USER,
-//         payload: current
-//     })
-//   })
-// }
-
-export const fetchUsers = () => dispatch => {
+export const fetchCurrentUser = (userId) => dispatch => {
     fetch('http://localhost:4000/api/v1/users')
     .then(resp => resp.json())
-    .then(allUsers => {
-      const current = allUsers.filter(userObj => {
-        return userObj.id === 1
-      })[0]
-      dispatch({
-      type: FETCH_USERS,
-      payload: allUsers
-      })
+    .then(users => {
+    const current = users.filter(userObj => {
+      return userObj.id === userId
+    })[0]
       dispatch({
         type: CURRENT_USER,
         payload: current
@@ -34,9 +16,46 @@ export const fetchUsers = () => dispatch => {
         type: SAVED_IDEAS,
         payload: current.user_ideas
       })
+  })
+}
+
+export const assignUser = (userData) => dispatch => {
+  console.log(userData);
+    dispatch({
+    type: USER_ID,
+    payload: userData
+    })
+}
+
+export const fetchUsers = (userId) => dispatch => {
+    fetch('http://localhost:4000/api/v1/users')
+    .then(resp => resp.json())
+    .then(allUsers => {
+      const current = allUsers.filter(userObj => {
+        return userObj.id === userId
+      })[0]
+      dispatch({
+      type: FETCH_USERS,
+      payload: allUsers
+      })
   }
   )
 }
+
+export const patchUser = (userId, updatedUserObj) => dispatch => {
+    fetch(`http://localhost:4000/api/v1/users/${userId}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({ updatedUserObj })
+    })
+  }
+
+export const deleteUser = (userId) => dispatch => {
+    fetch(`http://localhost:4000/api/v1/users/${userId}`, {
+      method: 'DELETE' })
+  }
 
 export const createUser = (userData) => dispatch => {
     fetch('http://localhost:4000/api/v1/users', {

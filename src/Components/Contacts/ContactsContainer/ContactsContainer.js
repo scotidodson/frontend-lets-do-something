@@ -21,7 +21,7 @@ class ContactsContainer extends Component {
     const friendNumbers = userFriends.map(user=>{return user.id})
 
     return this.props.allUsers.map(user => {
-      if (user.id !== 1 && !friendNumbers.includes(user.id)) {
+      if (user.id !== this.props.userId && !friendNumbers.includes(user.id)) {
         return(<ContactCard key={user.id} user={user} loggedIn={this.props.currentUser} alreadyFriended={false} />)
       } else {
         return null
@@ -72,7 +72,8 @@ ContactsContainer.propTypes = {
 
 const mapStateToProps = state => ({
   allUsers: state.users.allUsers,
-  currentUser: state.users.currentUser
+  currentUser: state.users.currentUser,
+  userId: state.users.userId
 })
 
 export default connect(mapStateToProps, { fetchUsers })(ContactsContainer);

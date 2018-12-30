@@ -1,11 +1,12 @@
-import { CURRENT_USER, FETCH_USERS } from '../../Actions/types'
+import { CURRENT_USER, FETCH_USERS, USER_ID } from '../../Actions/types'
 
 
 const initialState = {
   currentUser: {},
-  allUsers: []
+  allUsers: [],
+  userId: 0
 }
- 
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case CURRENT_USER:
@@ -17,6 +18,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         allUsers: action.payload
+      }
+    case USER_ID:
+      return {
+        ...state,
+        userId: action.payload
       }
     default:
       return state;

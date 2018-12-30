@@ -3,6 +3,7 @@ export const NEW_IDEA = 'NEW_IDEA'
 export const SAVED_IDEAS = 'SAVED_IDEAS'
 export const USER_IDEAS = 'USER_IDEAS'
 export const UPDATE_USER = 'UPDATE_USER'
+export const USER_ID = 'USER_ID'
 
 
 export const CURRENT_USER = 'CURRENT_USER'

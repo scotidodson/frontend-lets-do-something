@@ -12,8 +12,7 @@ class AccountView extends Component {
   render() {
     return (
       <div>
-        <img src={account} alt="account" height="200px" />
-        <img src={avatars.charlie} alt="account" height="200px" />
+        <img src={avatars[this.props.currentUser.img_url]} alt="avatar" height="200px" />
         <h4>Name: {this.props.currentUser.first_name} {this.props.currentUser.last_name}</h4>
         <p>Username: {this.props.currentUser.username}</p>
         <p>Password: ******* </p>

@@ -3,6 +3,7 @@ import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { assignUser, patchUser, fetchCurrentUser } from '../../Actions/UserActions.js'
 import account from '../../Images/account.png'
+import avatars from '../../Images/avatars/avatars.js'
 // import  PropTypes from 'prop-types'
 
 class AccountEdit extends Component {
@@ -33,11 +34,39 @@ class AccountEdit extends Component {
     this.props.redirect()
   }
 
+  handleAvatar = (e) => {
+    console.log(e.target.dataset.id);
+    const avatarKeys = Object.keys(avatars)
+    const lastIndex = avatarKeys.length - 1
+    let current = avatarKeys.indexOf(e.target.dataset.id)
+
+    switch (e.target.name) {
+      case 'next':
+        if (current === lastIndex) {
+          this.setState({ img_url: avatarKeys[0] })
+        } else {
+          this.setState({ img_url: avatarKeys[++current] })
+        }
+        break;
+      case 'back':
+        if (current === 0) {
+          this.setState({ img_url: avatarKeys[lastIndex] })
+        } else {
+          let newIndex = current -= 1
+          this.setState({ img_url: avatarKeys[newIndex] })
+        }
+        break;
+      default:
+    }
+  }
+
 
   render() {
     return (
       <div>
-        {this.state.img_url ? <img src={this.state.img_url} alt="account" height="200px" />:<img src={account} alt="account" height="200px" />}
+        <a onClick={this.handleAvatar} data-id={this.state.img_url} name='back'> ⬅️ </a>
+        <img src={avatars[this.state.img_url]} value={this.state.img_url} alt="account" height="200px" />
+        <a onClick={this.handleAvatar} data-id={this.state.img_url} name='next'> ➡️ </a>
 
         <div className="sign-up-form">
           <h2>Sign Up</h2>

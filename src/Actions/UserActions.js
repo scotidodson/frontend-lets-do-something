@@ -48,7 +48,7 @@ export const patchUser = (userId, updatedUserObj) => dispatch => {
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify({ updatedUserObj })
+      body: JSON.stringify(updatedUserObj)
     })
   }
 

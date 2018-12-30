@@ -31,7 +31,7 @@ class PageContainer extends Component {
         this.props.history.push('/welcome');
       } else {
         this.props.fetchCurrentUser(this.props.userId)
-        setInterval(this.updateUserData, 1000)
+        setInterval(this.updateUserData, 9000)
       }
   }
 

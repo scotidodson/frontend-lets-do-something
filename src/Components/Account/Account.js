@@ -40,17 +40,19 @@ class Account extends Component {
         })
       }
     })
-
-
     this.props.deleteUser(deletedUser)
     alert('Your account has been deleted.')
     this.props.history.push('/welcome');
   }
 
+  handleRedirect = () => {
+    this.setState({ edit: false })
+  }
+
   render() {
     return (
       <div>
-        {this.state.edit ? <AccountEdit />:<AccountView />}
+        {this.state.edit ? <AccountEdit redirect={this.handleRedirect}/>:<AccountView />}
         {this.state.edit ? null:<button onClick={this.editAccount}>Edit</button>}
         <button onClick={this.logout}>Logout</button>
         <button onClick={this.deleteAccount}>Delete Account</button>

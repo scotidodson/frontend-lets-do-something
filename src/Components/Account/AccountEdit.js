@@ -7,6 +7,7 @@ import account from '../../Images/account.png'
 
 class AccountEdit extends Component {
   state = {
+    id: this.props.currentUser.id,
     first_name: this.props.currentUser.first_name,
     last_name: this.props.currentUser.last_name,
     username: this.props.currentUser.username,
@@ -28,7 +29,8 @@ class AccountEdit extends Component {
     e.preventDefault();
     const updatedUser = {...this.state}
     this.props.patchUser(this.props.userId, updatedUser)
-    this.props.fetchCurrentUser()
+    this.props.fetchCurrentUser(this.props.userId)
+    this.props.redirect()
   }
 
   render() {
@@ -75,7 +77,7 @@ class AccountEdit extends Component {
             <label>Bio: </label>
             <textarea type="text" name="bio" onChange={this.handleChange}
             placeholder="Bio"
-             value={this.state.neighborhood} /><br/><br/>
+             value={this.state.bio} /><br/><br/>
 
             <input type="submit" value="Submit" />
           </form>

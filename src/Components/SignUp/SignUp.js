@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { createUser } from '../../Actions/UserActions.js'
+import { createUser, assignUser } from '../../Actions/UserActions.js'
 import avatars from '../../Images/avatars/avatars.js'
 import signup from '../../Images/sign_up.png'
 import './SignUp.css'
@@ -32,6 +32,20 @@ class SignUp extends Component {
     e.preventDefault();
     const newUser = {...this.state}
     this.props.createUser(newUser)
+    fetch('http://localhost:4000/api/v1/users', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(newUser)
+    })
+    .then(resp => resp.json())
+    .then(newUser => {
+      this.props.assignUser(newUser.id)
+      this.props.history.push('/')
+  })
+
+    // alert('Account created. Welcome!')
   }
 
   handleClick = () => {
@@ -59,12 +73,9 @@ class SignUp extends Component {
           let newIndex = current -= 1
           this.setState({ img_url: avatarKeys[newIndex] })
         }
-
         break;
       default:
-
     }
-
   }
 
   render() {
@@ -76,7 +87,7 @@ class SignUp extends Component {
 
         <label>Choose an Avatar</label><br/>
         <a onClick={this.handleAvatar} data-id={this.state.img_url} name='back'> ⬅️ </a>
-        <img src={avatars[this.state.img_url]} value={this.state.img_url} alt="account" height="200px" />
+        <img src={avatars[this.state.img_url]} value={this.state.img_url} alt="avatar" height="200px" />
         <a onClick={this.handleAvatar} data-id={this.state.img_url} name='next'> ➡️ </a>
 
 
@@ -120,10 +131,11 @@ class SignUp extends Component {
 }
 
 SignUp.propTypes = {
-  createUser: PropTypes.func.isRequired
+  createUser: PropTypes.func.isRequired,
+  assignUser: PropTypes.func.isRequired
 }
 
-export default connect(null, { createUser })(SignUp);
+export default connect(null, { createUser, assignUser })(SignUp);
 
 
 // expiration: null,

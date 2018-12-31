@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addFriend, removeFriend, fetchUsers } from '../../../Actions/UserActions.js'
 import { updateUser } from '../../../Actions/UserActions.js'
+import avatars from '../../../Images/avatars/avatars.js'
+
 // import { Route, Link } from 'react-router-dom'
 // import { createBrowserHistory } from 'history';
 
@@ -98,17 +100,19 @@ class ContactCard extends Component {
   render() {
 
     return (
-        <div data-id={this.props.user.id} >
+        <div data-id={this.props.user.id} className="contact-card">
+
+          <img src={avatars[this.props.user.img_url]} value={this.state.img_url} alt="avatar" height="150px" /><br/>
+
+          <h4>{this.props.user.first_name} {this.props.user.last_name} </h4>
+
           {this.props.alreadyFriended ? <button data-id={this.props.user.id} name="removeFriend"
           onClick={this.handleFriendship}> Remove Friend </button> : <button data-id={this.props.user.id} name="addFriend"
           onClick={this.handleFriendship}> Add Friend </button>}
 
-
-          <h4>{this.props.user.first_name} {this.props.user.last_name} </h4>
-          <p>Username: {this.props.user.username} </p>
-          <p>City: {this.props.user.default_city} </p>
-          <p>Bio: {this.props.user.bio} </p>
-
+          {this.props.alreadyFriended ? null: <p>{this.props.user.default_city} </p>}
+          {this.props.alreadyFriended ? null: <p>Username: {this.props.user.username} </p>}
+          {this.props.alreadyFriended ? null: <p>Bio: {this.props.user.bio} </p>}
           <br/>
           <br/>
         </div>

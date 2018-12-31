@@ -65,13 +65,17 @@ export const createUser = (userData) => dispatch => {
       },
       body: JSON.stringify(userData)
     })
-  //   .then(resp => resp.json())
-  //   .then(newUser => {
-  //     dispatch({
-  //     type: NEW_USER,
-  //     payload: newUser
-  //   })}
-  // )
+    .then(resp => resp.json())
+    .then(newUser => {
+      dispatch({
+      type: CURRENT_USER,
+      payload: newUser
+      })
+      dispatch({
+      type: USER_ID,
+      payload: newUser.id
+      })
+  })
 }
 
 export const addFriend = (userId, friendId) => dispatch => {

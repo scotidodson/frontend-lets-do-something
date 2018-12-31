@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { assignUser, deleteUser } from '../../Actions/UserActions.js'
+import { assignUser, deleteUser, fetchCurrentUser } from '../../Actions/UserActions.js'
 import AccountEdit from './AccountEdit.js'
 import AccountView from './AccountView.js'
 // import  PropTypes from 'prop-types'
@@ -9,10 +9,6 @@ import AccountView from './AccountView.js'
 class Account extends Component {
   state = {
     edit: false
-  }
-
-  componentWillMount() {
-      console.log(this.props);
   }
 
   editAccount = () => {
@@ -64,7 +60,8 @@ class Account extends Component {
 Account.propTypes = {
   currentUser: PropTypes.object.isRequired,
   assignUser: PropTypes.func.isRequired,
-  deleteUser: PropTypes.func.isRequired
+  deleteUser: PropTypes.func.isRequired,
+  fetchCurrentUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -72,4 +69,4 @@ const mapStateToProps = state => ({
   userId: state.users.userId
 })
 
-export default connect(mapStateToProps, { assignUser, deleteUser })(Account);
+export default connect(mapStateToProps, { assignUser, deleteUser, fetchCurrentUser })(Account);

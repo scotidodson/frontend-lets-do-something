@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchUsers } from '../../../Actions/UserActions.js'
 import ContactForm from '../ContactForm/ContactForm.js'
 import ContactCard from '../ContactCard/ContactCard.js'
+import './ContactsContainer.css'
 
 class ContactsContainer extends Component {
   state = {
-    showUsers: true,
     showForm: false,
     searchInput: ""
   }
@@ -44,21 +45,21 @@ class ContactsContainer extends Component {
   render() {
     return(
       <div>
-      <h2>Your Contacts</h2>
-      {this.renderFriendCards()}
+        <h2>Your Contacts</h2>
+        <div className="friend-card-container">
+          {this.renderFriendCards()}
+        </div>
 
-      <br/><br/>
-      <h2>Find Friends</h2>
+        <h2>Find Friends</h2>
         <input
-          name="search"
-          onChange={this.handleChange}
-          placeholder="Search users..." />
+        name="search"
+        onChange={this.handleChange}
+        placeholder="Search users..." /><br/>
+        <div className="contact-card-container">
+          {this.state.showForm ? <ContactForm /> : null }
+          {this.renderContactCards()}
+        </div>
 
-        {this.state.showForm ? <ContactForm /> : null }
-
-        <br/><br/>
-        <p>this should be non-friended contacts only</p>
-        {this.renderContactCards()}
       </div>
     )
   }
@@ -77,3 +78,7 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps, { fetchUsers })(ContactsContainer);
+
+// <Link to='/add-contact'>
+//   <h4>Add New Contact</h4>
+// </Link>

@@ -243,18 +243,19 @@ class EventForm extends Component {
     return (
       <div>
         <form onSubmit={this.handleDateSubmit} style={this.state.dateStage ? {} : { display: 'none' }}>
+          <h1>WHEN</h1>
           <br/>
             <h4>Let's do something on:
             <input type="date" name="date" onChange={this.handleChange}
                value={this.state.date}
                min="2018-01-01" max="2020-12-31" />
-            at
-            <input name="time" onChange={this.handleChange} /> </h4>
+              at
+            <input type="time" name="time" onChange={this.handleChange} /> </h4>
             <input type="submit" value="Submit" />
         </form>
 
         <div style={this.state.ideaStage ? {} : { display: 'none' }}>
-            <h4>ideas</h4>
+            <h1>WHAT</h1>
             <OptionsHolder selectedOptions={this.state.options} />
           <form onSubmit={this.handleOptionSubmit} >
               {this.state.options.length < 3 ? this.renderIdeas():<p>Great - time to invite guests!</p>}
@@ -263,7 +264,7 @@ class EventForm extends Component {
         </div>
 
         <form onSubmit={this.handleGuestSubmit} style={this.state.guestStage ? {} : { display: 'none' }}>
-          <h4>invite</h4>
+          <h1>WHO</h1>
           {this.renderFriends()}
           <input type="submit" value="Submit" />
 

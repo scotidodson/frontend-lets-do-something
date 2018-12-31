@@ -7,8 +7,10 @@ import { Route, Switch } from 'react-router-dom'
 import Navigation from '../Navigation/Navigation.js'
 import Account from '../Account/Account.js'
 import ContactsContainer from '../Contacts/ContactsContainer/ContactsContainer.js'
+import ContactForm from '../Contacts/ContactForm/ContactForm.js'
 import IdeaContainer from '../IdeaContainer/IdeaContainer.js'
 import EventContainer from '../EventContainer/EventContainer.js'
+import EventDetails from '../EventContainer/EventDetails.js'
 import IdeaForm from '../IdeaContainer/IdeaForm/IdeaForm.js'
 import IdeaBoard from '../IdeaContainer/IdeaBoard/IdeaBoard.js'
 import EventForm from '../EventContainer/EventForm/EventForm.js'
@@ -31,7 +33,7 @@ class PageContainer extends Component {
         this.props.history.push('/welcome');
       } else {
         this.props.fetchCurrentUser(this.props.userId)
-        setInterval(this.updateUserData, 9000)
+        // setInterval(this.updateUserData, 2000)
       }
   }
 
@@ -54,11 +56,13 @@ class PageContainer extends Component {
           <Route path='/host' component={EventForm} />
           <Route path='/notifications' component={NotificationContainer} />
           <Route path='/contacts' component={ContactsContainer} />
-          <Route path='/events' component={EventContainer} />
+          <Route exact path='/events' component={EventContainer} />
           <Route path='/menu' component={Menu} />
           <Route path={`/ideas/:ideaId`} component={IdeaDetails} />
+          <Route path={`/events/:eventId`} component={EventDetails} />
           <Route exact path='/' component={Home}/>
           <Route exact path='/account' component={Account}/>
+          <Route exact path='/add-contact' component={ContactForm}/>
         </Switch>
       </div>
     );

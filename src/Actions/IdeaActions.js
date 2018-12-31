@@ -5,7 +5,6 @@ export const fetchIdeas = () => dispatch => {
     fetch('http://localhost:4000/api/v1/ideas')
     .then(resp => resp.json())
     .then(ideas => {
-      console.log(ideas)
       dispatch({
       type: FETCH_IDEAS,
       payload: ideas

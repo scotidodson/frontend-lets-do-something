@@ -19,6 +19,7 @@ class EventContainer extends Component {
     if (events && events.length > 0) {
       return events.map(event => {
         console.log(event);
+        debugger
         return (
           <div className="event-card" key={event.id} data-id={event.id} onClick={this.handleClick}>
             {event.winner ? <h4 data-id={event.id}>{event.winner}</h4>:<h4 data-id={event.id}>Poll in Process</h4>}

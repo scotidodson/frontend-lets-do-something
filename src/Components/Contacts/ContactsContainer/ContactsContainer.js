@@ -10,7 +10,8 @@ import './ContactsContainer.css'
 class ContactsContainer extends Component {
   state = {
     showForm: false,
-    searchInput: ""
+    searchInput: "",
+    hasFriends: this.props.currentUser.friendships.length
   }
 
   handleChange = (e) => {
@@ -32,7 +33,11 @@ class ContactsContainer extends Component {
 
   renderFriendCards = () => {
     const userFriends = this.findUserFriends()
-    return userFriends.map(user => { return(<ContactCard key={user.id} user={user} loggedIn={this.props.currentUser} alreadyFriended={true} /> ) })
+    if (userFriends.length > 0) {
+      return userFriends.map(user => { return(<ContactCard key={user.id} user={user} loggedIn={this.props.currentUser} alreadyFriended={true} /> ) })
+    } else {
+      return <h4>You haven't added any friends yet.</h4>
+    }
   }
 
   findUserFriends = () => {
@@ -45,12 +50,12 @@ class ContactsContainer extends Component {
   render() {
     return(
       <div>
-        <h2>Your Contacts</h2>
-        <div className="friend-card-container">
+        <h3>Your Contacts</h3>
+        <div className="friend-card-container" >
           {this.renderFriendCards()}
         </div>
 
-        <h2>Find Friends</h2>
+        <h3>Find Friends</h3>
         <input
         name="search"
         onChange={this.handleChange}

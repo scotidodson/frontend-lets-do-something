@@ -13,9 +13,13 @@ class EventForm extends Component {
     ideaStage: false,
     guestStage: false,
     event_id: 0,
-    date: "",
+    year: 2019,
+    month: 1,
+    day: 3,
+    hour: 7,
+    minute: 30,
+    am: false,
     past: false,
-    time: "",
     rating: '',
     winner: '',
     options: [],
@@ -123,9 +127,13 @@ class EventForm extends Component {
   handleDateSubmit = (e) => {
     e.preventDefault();
     const newEvent = {
-      date: this.state.date,
+      year: this.state.year,
+      month: this.state.month,
+      day: this.state.day,
+      hour: this.state.hour,
+      minute: this.state.minute,
+      am: this.state.am,
       past: this.state.past,
-      time: this.state.time,
       rating: this.state.rating,
       winner: this.state.winner
     }
@@ -239,6 +247,13 @@ class EventForm extends Component {
     })
   }
 
+  renderDayDropdown = () => {
+    const arr = [...Array(32).keys()].slice(1,32)
+    return arr.map(x => {
+      return <option key={x} value={x}>{x}</option>
+    })
+  }
+
   render() {
     return (
       <div>
@@ -246,11 +261,50 @@ class EventForm extends Component {
           <h1>WHEN</h1>
           <br/>
             <h4>Let's do something on:
-            <input type="date" name="date" onChange={this.handleChange}
-               value={this.state.date}
-               min="2018-01-01" max="2020-12-31" />
-              at
-            <input type="time" name="time" onChange={this.handleChange} /> </h4>
+              <select type="month" name="month" onChange={this.handleChange} value={this.state.month}>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+
+              <select type="month" name="month" onChange={this.handleChange} value={this.state.month}>
+                {this.renderDayDropdown()}
+              </select>
+              {' at '}
+            <select type="hour" name="hour" onChange={this.handleChange} value={this.state.hour}>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+
+            <select type="minute" name="minute" onChange={this.handleChange} value={this.state.minute}>
+              <option value="0">00</option>
+              <option value="30">30</option>
+            </select>
+
+            <select type="am" name="am" onChange={this.handleChange} value={this.state.am}>
+              <option value="true">am</option>
+              <option value="false">pm</option>
+            </select></h4>
+
             <input type="submit" value="Submit" />
         </form>
 

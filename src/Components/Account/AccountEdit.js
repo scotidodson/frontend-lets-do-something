@@ -31,7 +31,6 @@ class AccountEdit extends Component {
     const updatedUser = {...this.state}
     this.props.patchUser(this.props.userId, updatedUser)
     this.props.fetchCurrentUser(this.props.userId)
-    this.props.redirect()
   }
 
   handleAvatar = (e) => {

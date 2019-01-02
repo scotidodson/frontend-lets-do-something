@@ -24,36 +24,36 @@ class EventDetails extends Component {
     const thisGuest = guests.find(g => { return g.user.id === this.props.userId  })
     const userIsHost = thisGuest.host
 
-    // switch (userIsHost) {
-      // case true:
-      //   if (thisEvent.winner) {
-      //     return this.renderWinner(thisEvent)
-      //   } else {
-      //     return this.renderActivePoll(thisEvent)
-      //   }
-      //
-      //   break;
-      // case false:
-        // if (thisGuest.rsvp === "yes") {
-        //   if (thisEvent.winner) {
-        //     return this.renderWinner(thisEvent)
-        //   } else {
-        //     return this.renderActivePoll(thisEvent)
-        //   }
-        // } else if (thisGuest.rsvp === "no") {
-        //   return this.renderSaidNo(thisEvent)
-        //
-        // } else {
-        //   if (thisEvent.winner) {
-        //     return this.renderRsvpChangePage(thisEvent)
-        //   } else {
+    switch (userIsHost) {
+      case true:
+        if (thisEvent.winner) {
+          return this.renderWinner(thisEvent)
+        } else {
+          return this.renderActivePoll(thisEvent)
+        }
+
+        break;
+      case false:
+        if (thisGuest.rsvp === "yes") {
+          if (thisEvent.winner) {
+            return this.renderWinner(thisEvent)
+          } else {
+            return this.renderActivePoll(thisEvent)
+          }
+        } else if (thisGuest.rsvp === "no") {
+          return this.renderSaidNo(thisEvent)
+
+        } else {
+          if (thisEvent.winner) {
+            return this.renderRsvpChangePage(thisEvent)
+          } else {
             return this.renderVotePage(thisEvent)
-    //       }
-    //     }
-    //     break;
-    //   default:
-    //     return <h4>Hmm... this event has been cancelled.</h4>
-    // }
+          }
+        }
+        break;
+      default:
+        return <h4>Hmm... this event has been cancelled.</h4>
+    }
   }
 
   renderWinner = (thisEvent) => {
@@ -214,15 +214,14 @@ class EventDetails extends Component {
     const options = thisEvent.options
     console.log(options);
     return options.map(opt => {
-      return <OptionCard key={opt.id} option={opt} idea={opt.idea} votingOptions={votingOptions}/>
+      return <OptionCard key={opt.id} thisEvent={thisEvent} option={opt} idea={opt.idea} votingOptions={votingOptions}/>
     })
 
   }
 
   renderVotePage = (thisEvent) => {
     const eventGuests = thisEvent.guests
-    console.log(eventGuests);
-    console.log(thisEvent);
+    const thisGuest = eventGuests.find(g => { return g.user.id === this.props.userId  })
     const host = thisEvent.guests.find(guest => { return guest.host === true }).user
     let month
     switch (thisEvent.month) {
@@ -271,7 +270,9 @@ class EventDetails extends Component {
           <h2>Poll in Process</h2>
           <h3>{month} {thisEvent.day} at {thisEvent.hour}:{thisEvent.minute} {thisEvent.am ? "am":"pm"}</h3>
           <div>
-            <h4>Options</h4>
+            <h4>Can't make it?</h4>
+            <button id={thisEvent.id} onClick={this.handleRsvpNo}>Not this time... </button>
+            <h4>If you can - what's your preference?</h4>
             {this.renderOptionCards(thisEvent, true)}
           </div>
           <div>
@@ -284,6 +285,30 @@ class EventDetails extends Component {
         </div>
       </div>
     )
+  }
+
+  handleRsvpNo = (e) => {
+    const thisEvent = this.props.allEvents.find(event => {
+      return event.id === Number(this.props.match.params.eventId)
+    })
+    const eventGuests = thisEvent.guests
+    const thisGuest = eventGuests.find(g => { return g.user.id === this.props.userId  })
+
+
+    const updatedGuest = {
+      id: thisGuest.id,
+      rsvp: "no"
+    }
+
+    fetch(`http://localhost:4000/api/v1/guests/${thisGuest.id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(updatedGuest)
+    })
+    alert('Thanks!')
+    this.props.history.push('/')
   }
 
   renderRsvpChangePage = (thisEvent) => {

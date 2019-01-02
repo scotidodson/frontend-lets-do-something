@@ -37,10 +37,19 @@ class OptionCard extends Component {
   castVote = (e) => {
     const optId = this.props.option.id
     const option = this.props.option
+    const thisEvent = this.props.thisEvent
+    const eventGuests = thisEvent.guests
+    const thisGuest = eventGuests.find(g => { return g.user.id === this.props.userId  })
+
     const updatedOption = {
       ...option,
       votes: ++option.votes
     }
+    const updatedGuest = {
+      id: thisGuest.id,
+      rsvp: "yes"
+    }
+
     fetch(`http://localhost:4000/api/v1/options/${optId}`, {
       method: 'PATCH',
       headers: {
@@ -48,10 +57,21 @@ class OptionCard extends Component {
       },
       body: JSON.stringify(updatedOption)
     })
+
     this.setState({
       votingOptions: false,
       option: updatedOption
     })
+
+
+    fetch(`http://localhost:4000/api/v1/guests/${thisGuest.id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(updatedGuest)
+    })
+
   }
 
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom'
 import OptionsHolder from '../OptionsHolder.js'
 import { connect } from 'react-redux';
-import { createEvent } from '../../../Actions/EventActions.js'
+import { createEvent, fetchEvents } from '../../../Actions/EventActions.js'
 
 
 class EventForm extends Component {
@@ -23,14 +23,15 @@ class EventForm extends Component {
     rating: '',
     winner: '',
     options: [],
-    guests: [{
-        user_id: this.props.userId,
+    guests: [
+      { user_id: this.props.userId,
         host: true
-      }]
+      }
+    ]
   }
 
   handleChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({ [e.target.name]: e.target.value })
   }
 
@@ -46,7 +47,6 @@ class EventForm extends Component {
       default:
         return
     }
-    setTimeout(()=> {console.log(this.state);}, 300)
   }
 
   ideaChecked = (e, targetId) => {
@@ -78,7 +78,7 @@ class EventForm extends Component {
       this.setState((currentState) => {
       return {
         guests: [
-          ...this.state.guests,
+          ...currentState.guests,
           {user_id: targetId, host: false}
         ]
       }
@@ -101,8 +101,8 @@ class EventForm extends Component {
     const mySaved = ideas.map(idea => { return idea.id })
     const suggestions = this.props.allIdeas.filter(idea=> {  return !mySaved.includes(idea.id) })
 
-    console.log('ideas', ideas);
-    console.log('suggestions', suggestions);
+    // console.log('ideas', ideas);
+    // console.log('suggestions', suggestions);
     return ideas.map(idea =>{
       return(
           <p>
@@ -117,7 +117,7 @@ class EventForm extends Component {
     return userFriendships.map(friendship =>{
       return(
         <p>
-          <input type="checkbox" name="guests" data-id={friendship.friend.id} onChange={this.handleCheckbox} />
+          <input key={friendship.id} type="checkbox" name="guests" data-id={friendship.friend.id} onChange={this.handleCheckbox} />
           {friendship.friend.first_name} {friendship.friend.last_name}
         </p>
     )
@@ -178,21 +178,21 @@ class EventForm extends Component {
   handleGuestSubmit = (e) => {
     e.preventDefault();
     const newGuests = [...this.state.guests]
+    const thisEventId = this.state.event_id
+    this.prepareGuestObjs(newGuests, thisEventId)
+  }
 
+  prepareGuestObjs = (newGuests, thisEventId) => {
     newGuests.forEach(guestObj=> {
+      console.log('is it a boolean?', guestObj.host);
       const newGuest = {
         user_id: guestObj.user_id,
         host: guestObj.host,
-        event_id: this.state.event_id
+        event_id: thisEventId
       }
-      console.log(newGuest);
+      console.log('newGuest', newGuest);
       this.createNotification(newGuest)
       this.submitGuests(newGuest)
-    })
-
-    this.setState({
-      ideaStage: false,
-      guestStage: true
     })
     this.props.history.push('/events');
   }
@@ -235,6 +235,7 @@ class EventForm extends Component {
       },
       body: JSON.stringify(newGuest)
     })
+    this.startPoll()
   }
 
   submitOptions = (newOptions) => {
@@ -245,6 +246,65 @@ class EventForm extends Component {
       },
       body: JSON.stringify(newOptions)
     })
+  }
+
+  startPoll = () => {
+    console.log('poll started');
+    // setTimeout(this.endPoll(), 10800000)
+    setTimeout(this.endPoll(), 5000)
+  }
+
+  endPoll = () => {
+    console.log('calculating results');
+    const eventId = this.state.event_id
+    fetch('http://localhost:4000/api/v1/events')
+    .then(resp => resp.json())
+    .then(events => {
+      const thisEvent = events.find(e => { return e.id === eventId })
+      console.log('thisEvent', thisEvent);
+
+      if (!thisEvent.winner) {
+        // calculate winner
+        const options = thisEvent.options
+        console.log('options', options);
+        const count = options.length
+        console.log('count', count);
+
+        let votes = []
+
+        const results = options.map(option => {
+          votes.push(option.votes)
+          return { [option.votes]: option.idea_id }
+        })
+        console.log('results', results);
+        console.log('votes', votes);
+
+        let sortedVotes = votes.sort().reverse()
+        console.log('sortedVotes', sortedVotes);
+
+        // check for tie?
+        // const winningIdea = results[sortedVotes[0]]
+        const winningIdea = 1
+        thisEvent.winner = winningIdea
+        console.log('winningIdea', winningIdea);
+        console.log('thisEvent with winner', thisEvent);
+
+        this.addWinnerToEvent(thisEvent)
+      } else {
+        return null
+      }
+    })
+  }
+
+  addWinnerToEvent = (thisEvent) => {
+    fetch(`http://localhost:4000/api/v1/events/${thisEvent.id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(thisEvent)
+    })
+    this.props.fetchEvents()
   }
 
   renderDayDropdown = () => {
@@ -276,7 +336,7 @@ class EventForm extends Component {
                 <option value="12">December</option>
               </select>
 
-              <select type="month" name="month" onChange={this.handleChange} value={this.state.month}>
+              <select type="day" name="day" onChange={this.handleChange} value={this.state.day}>
                 {this.renderDayDropdown()}
               </select>
               {' at '}
@@ -332,15 +392,17 @@ EventForm.propTypes = {
   createEvent: PropTypes.func.isRequired,
   allIdeas: PropTypes.array.isRequired,
   currentUser: PropTypes.object.isRequired,
-  savedIdeas: PropTypes.array.isRequired
+  savedIdeas: PropTypes.array.isRequired,
+  fetchEvents: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
   allIdeas: state.ideas.allIdeas,
   currentUser: state.users.currentUser,
   savedIdeas: state.ideas.savedIdeas,
-  userId: state.users.userId
+  userId: state.users.userId,
+  allEvents: state.events.allEvents
 
 })
 
-export default connect(mapStateToProps, { createEvent })(EventForm);
+export default connect(mapStateToProps, { createEvent, fetchEvents })(EventForm);

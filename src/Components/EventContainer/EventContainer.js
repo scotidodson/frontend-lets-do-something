@@ -17,14 +17,13 @@ class EventContainer extends Component {
     //   return(<EventCard key={event.id} event={event} />)
     // })
     if (events && events.length > 0) {
-      return events.map(event => {
-        console.log(event);
-        debugger
+      return events.map(thisEvent => {
+        // console.log(thisEvent);
         return (
-          <div className="event-card" key={event.id} data-id={event.id} onClick={this.handleClick}>
-            {event.winner ? <h4 data-id={event.id}>{event.winner}</h4>:<h4 data-id={event.id}>Poll in Process</h4>}
-            <p data-id={event.id}> {event.date}</p>
-            <p data-id={event.id}>{event.time}</p>
+          <div className="event-card" key={thisEvent.id} data-id={thisEvent.id} onClick={this.handleClick}>
+            {thisEvent.winner ? <h4 data-id={thisEvent.id}>{thisEvent.winner}</h4>:<h4 data-id={thisEvent.id}>Poll in Process</h4>}
+            <p data-id={thisEvent.id}> {thisEvent.date}</p>
+            <p data-id={thisEvent.id}>{thisEvent.time}</p>
           </div>
         )
       })

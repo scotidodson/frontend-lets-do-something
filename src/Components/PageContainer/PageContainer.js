@@ -3,6 +3,7 @@ import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchUsers, fetchCurrentUser } from '../../Actions/UserActions.js'
 import { fetchIdeas, fetchSavedIdeas } from '../../Actions/IdeaActions.js'
+import { fetchEvents } from '../../Actions/EventActions.js'
 import { Route, Switch } from 'react-router-dom'
 import Navigation from '../Navigation/Navigation.js'
 import Account from '../Account/Account.js'
@@ -29,6 +30,7 @@ class PageContainer extends Component {
   componentWillMount() {
       this.props.fetchUsers()
       this.props.fetchIdeas()
+      this.props.fetchEvents()
       if (this.props.userId === 0) {
         this.props.history.push('/welcome');
       } else {
@@ -85,4 +87,4 @@ const mapStateToProps = state => ({
   userId: state.users.userId
 })
 
-export default connect(mapStateToProps, { fetchUsers, fetchIdeas, fetchSavedIdeas, fetchCurrentUser })(PageContainer);
+export default connect(mapStateToProps, { fetchUsers, fetchIdeas, fetchSavedIdeas, fetchCurrentUser, fetchEvents })(PageContainer);

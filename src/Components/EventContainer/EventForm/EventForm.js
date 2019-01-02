@@ -25,7 +25,8 @@ class EventForm extends Component {
     options: [],
     guests: [
       { user_id: this.props.userId,
-        host: true
+        host: true,
+        rsvp: "yes"
       }
     ]
   }
@@ -305,6 +306,64 @@ class EventForm extends Component {
       body: JSON.stringify(thisEvent)
     })
     this.props.fetchEvents()
+    const eventGuests = [...this.state.guests]
+    const winningIdea = this.props.allIdeas.find(idea => { return idea.id === thisEvent.winner })
+    const host = thisEvent.guests.find(guest => { return guest.host === true }).user
+    let month
+    switch (thisEvent.month) {
+        case 1:
+          month = 'Jan.'
+        break;
+        case 2:
+          month = 'Feb.'
+        break;
+        case 3:
+          month = 'Mar.'
+        break;
+        case 4:
+          month = 'Apr.'
+        break;
+        case 5:
+          month = 'May'
+        break;
+        case 6:
+          month = 'June'
+        break;
+        case 7:
+          month = 'July'
+        break;
+        case 8:
+          month = 'Aug.'
+        break;
+        case 9:
+          month = 'Sept.'
+        break;
+        case 10:
+          month = 'Oct.'
+        break;
+        case 11:
+          month = 'Nov.'
+        break;
+        case 12:
+          month = 'Dec.'
+        break;
+        default:
+
+      }
+
+    // console.log('winning idea', winningIdea);
+    // console.log('host is', host);
+
+    eventGuests.map(guestObj => {
+      const customMsg = guestObj.host ? `Your poll ended -- ${winningIdea.title} won!`:`${host.first_name}'s poll ended -- Get ready for ${winningIdea.title} on ${month} ${thisEvent.day} at ${thisEvent.hour}:${thisEvent.minute} ${thisEvent.am ? 'am':'pm'}.`
+      const newNotification = {
+        user_id: guestObj.user_id,
+        event_id: thisEvent.id,
+        seen: false,
+        message: customMsg
+      }
+      this.submitNotification(newNotification)
+    })
   }
 
   renderDayDropdown = () => {

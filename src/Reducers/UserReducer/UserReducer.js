@@ -4,7 +4,7 @@ import { CURRENT_USER, FETCH_USERS, USER_ID } from '../../Actions/types'
 const initialState = {
   currentUser: {},
   allUsers: [],
-  userId: 1
+  userId: 5
 }
 
 export default function(state = initialState, action) {

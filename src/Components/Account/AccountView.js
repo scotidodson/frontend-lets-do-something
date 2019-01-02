@@ -13,6 +13,8 @@ class AccountView extends Component {
 
 
   render() {
+    console.log(avatars);
+    console.log(avatars[this.props.currentUser.img_url]);
     return (
       <div>
         <img className="avatar" src={avatars[this.props.currentUser.img_url]} alt="avatar" height="200px" />

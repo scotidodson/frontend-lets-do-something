@@ -62,7 +62,6 @@ class IdeaDetails extends Component {
 
     updatedUserObj.user_ideas = [ ...ideasToKeep ]
     this.props.updateUser(updatedUserObj)
-
     this.props.history.push('/saved-ideas');
   }
 
@@ -97,6 +96,10 @@ class IdeaDetails extends Component {
     }
   }
 
+  handleBack = () => {
+    this.props.history.goBack()
+  }
+
 
   render() {
     const idea = this.props.allIdeas.find(idea => {
@@ -123,12 +126,7 @@ class IdeaDetails extends Component {
         <p>Details: {idea.details}</p>
 
         <br/><br/>
-        <Link to="/brainstorm">
-          <button>Back to all ideas</button>
-        </Link>
-        <Link to="/saved-ideas">
-          <button>Back to my saved ideas</button>
-        </Link>
+        <button onClick={this.handleBack}>Back</button>
         <button onClick={this.alreadySaved() ? this.handleRemoveIdea:this.handleSaveIdea}>{this.alreadySaved() ? "Remove Idea":"Save Idea"}</button>
 
       </div>

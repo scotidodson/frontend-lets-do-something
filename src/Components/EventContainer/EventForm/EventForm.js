@@ -367,7 +367,7 @@ class EventForm extends Component {
   }
 
   renderDayDropdown = () => {
-    const arr = [...Array(32).keys()].slice(1,32)
+    const arr = [...Array(32).keys()].slice(3,32)
     return arr.map(x => {
       return <option key={x} value={x}>{x}</option>
     })

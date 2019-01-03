@@ -54,6 +54,7 @@ class ContactsContainer extends Component {
   render() {
     return(
       <div className="contact-page">
+        <div className="contact-and-friend-holder">
         <div>
           <h3>Your Contacts</h3>
         </div>
@@ -70,6 +71,7 @@ class ContactsContainer extends Component {
             {this.state.showForm ? <ContactForm /> : null }
             {this.renderContactCards()}
           </div>
+        </div>
         </div>
 
       </div>

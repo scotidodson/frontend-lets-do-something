@@ -110,9 +110,9 @@ class ContactCard extends Component {
           onClick={this.handleFriendship}> Remove Friend </button> : <button data-id={this.props.user.id} name="addFriend"
           onClick={this.handleFriendship}> Add Friend </button>}
 
+          {this.props.alreadyFriended ? null: <p>@{this.props.user.username}</p>}
           {this.props.alreadyFriended ? null: <p>{this.props.user.default_city} </p>}
-          {this.props.alreadyFriended ? null: <p>Username: {this.props.user.username} </p>}
-          {this.props.alreadyFriended ? null: <p>Bio: {this.props.user.bio} </p>}
+          {this.props.alreadyFriended ? null: <p>{this.props.user.bio} </p>}
           <br/>
           <br/>
         </div>

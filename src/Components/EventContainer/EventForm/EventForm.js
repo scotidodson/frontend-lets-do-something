@@ -103,8 +103,8 @@ class EventForm extends Component {
     const suggestions = this.props.allIdeas.filter(idea=> {  return !mySaved.includes(idea.id) })
     return ideas.map(idea =>{
       return(
-          <p>
-            <input key={idea.id} type="checkbox" name="idea" data-id={idea.id} onChange={this.handleCheckbox} />
+          <p key={idea.id}>
+            <input type="checkbox" name="idea" data-id={idea.id} onChange={this.handleCheckbox} />
             {idea.title}
           </p>)
     })
@@ -250,7 +250,16 @@ class EventForm extends Component {
   startPoll = () => {
     console.log('poll started');
     // setTimeout(this.pollReminder(), 300000)
-    setTimeout(this.endPoll, 10000)
+    const eventId = this.state.event_id
+    setTimeout(
+      () => {
+        fetch('http://localhost:4000/api/v1/events')
+        .then(resp => resp.json())
+        .then(events => {
+          const thisEvent = events.find(e => { return e.id === eventId })
+          this.endPoll(thisEvent)
+        })
+      }, 5000)
   }
 
   pollReminder = () => {
@@ -263,13 +272,8 @@ class EventForm extends Component {
     // this.submitNotification(newNotification)
   }
 
-  endPoll = () => {
+  endPoll = (thisEvent) => {
     console.log('calculating results');
-    const eventId = this.state.event_id
-    fetch('http://localhost:4000/api/v1/events')
-    .then(resp => resp.json())
-    .then(events => {
-      const thisEvent = events.find(e => { return e.id === eventId })
       console.log('thisEvent', thisEvent);
       if (!thisEvent.winner) {
         let votes = []
@@ -288,11 +292,9 @@ class EventForm extends Component {
         updatedEvent.winner = winningIdeaId
         console.log('thisEvent with winner', updatedEvent);
         this.addWinnerToEvent(updatedEvent)
-
       } else {
         return null
       }
-    })
   }
 
   addWinnerToEvent = (thisEvent) => {
@@ -455,8 +457,7 @@ EventForm.propTypes = {
   allEvents: PropTypes.array.isRequired,
   currentUser: PropTypes.object.isRequired,
   savedIdeas: PropTypes.array.isRequired,
-  fetchEvents: PropTypes.func.isRequired,
-  currentUser: PropTypes.array.isRequired
+  fetchEvents: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

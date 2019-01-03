@@ -30,12 +30,12 @@ class PageContainer extends Component {
   componentWillMount() {
       this.props.fetchUsers()
       this.props.fetchIdeas()
-      this.props.fetchEvents()
+      // this.props.fetchEvents()
       if (this.props.userId === 0) {
         this.props.history.push('/login');
       } else {
         this.props.fetchCurrentUser(this.props.userId)
-        setInterval(this.updateUserData, 5000)
+        // setInterval(this.updateUserData, 10000)
       }
   }
 

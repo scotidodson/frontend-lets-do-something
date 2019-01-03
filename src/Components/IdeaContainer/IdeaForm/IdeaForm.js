@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { createIdea } from '../../../Actions/IdeaActions.js'
+import { createIdea, fetchIdeas } from '../../../Actions/IdeaActions.js'
 import './IdeaForm.css'
 // import IdeaCard from '../IdeaCard/IdeaCard.js'
 // import Home from './Home/Home.js'
@@ -40,6 +40,7 @@ class IdeaForm extends Component {
     e.preventDefault();
     const newIdea = {...this.state}
     this.props.createIdea(newIdea)
+    this.props.fetchIdeas()
     this.props.history.push('/brainstorm');
   }
 
@@ -116,9 +117,10 @@ class IdeaForm extends Component {
 }
 
 IdeaForm.propTypes = {
-  createIdea: PropTypes.func.isRequired
+  createIdea: PropTypes.func.isRequired,
+  fetchIdeas: PropTypes.func.isRequired
 }
-export default connect(null, { createIdea })(IdeaForm);
+export default connect(null, { createIdea, fetchIdeas })(IdeaForm);
 
 
 // expiration: null,

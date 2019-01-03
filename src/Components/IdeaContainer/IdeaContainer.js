@@ -8,6 +8,9 @@ import './IdeaContainer.css'
 
 
 class IdeaContainer extends Component {
+  componentWillMount() {
+    this.props.fetchIdeas()
+  }
 
   renderIdeaCards = () => {
     const savedIdeaIds = this.props.savedIdeas.map(ideaObj => ideaObj.idea.id)

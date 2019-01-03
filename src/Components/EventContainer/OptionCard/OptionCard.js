@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
-// import '../IdeaCard.css'
+import '../../IdeaContainer/IdeaContainer.css'
 import { connect } from 'react-redux';
 import { saveIdea, removeIdea } from '../../../Actions/IdeaActions.js'
 import { updateUser } from '../../../Actions/UserActions.js'
@@ -21,18 +21,18 @@ class OptionCard extends Component {
     }
   }
 
-  renderVoting = () => {
-    return <button id={this.state.option.id} onClick={this.castVote}>Pick This!</button>
-  }
+  // renderVoting = () => {
+  //   return <button id={this.state.option.id} onClick={this.castVote}>Pick This!</button>
+  // }
 
-  renderCurrentVotes = () => {
-    const votes = this.state.option.votes
-    if (votes) {
-      return <h4>Current Votes: {votes}</h4>
-    } else {
-      return <h4>Current Votes: 0</h4>
-    }
-  }
+  // renderCurrentVotes = () => {
+  //   const votes = this.state.option.votes
+  //   if (votes) {
+  //     return <h4>Current Votes: {votes}</h4>
+  //   } else {
+  //     return <h4>Current Votes: 0</h4>
+  //   }
+  // }
 
   castVote = (e) => {
     const optId = this.props.option.id
@@ -40,7 +40,6 @@ class OptionCard extends Component {
     const thisEvent = this.props.thisEvent
     const eventGuests = thisEvent.guests
     const thisGuest = eventGuests.find(g => { return g.user.id === this.props.userId  })
-
     const updatedOption = {
       ...option,
       votes: ++option.votes
@@ -50,7 +49,6 @@ class OptionCard extends Component {
       rsvp: "yes",
       voted: true
     }
-
     fetch(`http://localhost:4000/api/v1/options/${optId}`, {
       method: 'PATCH',
       headers: {
@@ -58,13 +56,6 @@ class OptionCard extends Component {
       },
       body: JSON.stringify(updatedOption)
     })
-
-    this.setState({
-      votingOptions: false,
-      option: updatedOption
-    })
-
-
     fetch(`http://localhost:4000/api/v1/guests/${thisGuest.id}`, {
       method: 'PATCH',
       headers: {
@@ -72,7 +63,7 @@ class OptionCard extends Component {
       },
       body: JSON.stringify(updatedGuest)
     })
-
+    this.props.redirect()
   }
 
 
@@ -80,10 +71,9 @@ class OptionCard extends Component {
 
     return (
         <div className="idea-card" data-id={this.props.idea.id} >
-          {this.state.votingOptions ? this.renderVoting():null}
+          {this.state.votingOptions ? <button id={this.state.option.id} onClick={this.castVote}>✓</button>:null}
           <Link to={`/ideas/${this.props.idea.id}`}>
-          <h4>-- {this.props.idea.title} --</h4>
-          {this.renderCurrentVotes()}
+          <h4>{this.props.idea.title}</h4>
           </Link>
         </div>
 

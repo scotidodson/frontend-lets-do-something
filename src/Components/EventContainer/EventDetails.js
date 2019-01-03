@@ -49,7 +49,7 @@ class EventDetails extends Component {
             // return this.renderRsvpChangePage(thisEvent)
             return this.renderWinner(thisEvent)
           } else {
-            return this.renderActivePoll(thisEvent)
+            return this.renderVotePage(thisEvent)
           }
         }
         break;
@@ -202,10 +202,12 @@ class EventDetails extends Component {
       }
 
     return(
-      <div>
-        <div>
-          <h2>Poll in Process</h2>
+      <div className="idea-details-page">
+        <div >
+          <div>
+          <h3>Poll in Process</h3>
           <h3>{month} {thisEvent.day} at {thisEvent.hour}:{thisEvent.minute} {thisEvent.am ? "am":"pm"}</h3>
+          </div>
           <div>
             <h4>Options</h4>
             {this.renderOptionCards(thisEvent, false)}
@@ -342,9 +344,13 @@ class EventDetails extends Component {
     const options = thisEvent.options
     console.log(options);
     return options.map(opt => {
-      return <OptionCard key={opt.id} thisEvent={thisEvent} option={opt} idea={opt.idea} votingOptions={votingOptions}/>
+      return <OptionCard key={opt.id} thisEvent={thisEvent} option={opt} redirect={this.redirect} idea={opt.idea} votingOptions={votingOptions}/>
     })
 
+  }
+
+  redirect = (thisEvent) => {
+    this.props.history.push('/events')
   }
 
 

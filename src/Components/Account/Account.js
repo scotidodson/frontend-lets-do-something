@@ -54,7 +54,7 @@ class Account extends Component {
         <div>
           {this.state.edit ? <AccountEdit redirect={this.handleRedirect}/>:<AccountView />}
         </div>
-        <div>
+        <div className="teal-button">
         {this.state.edit ? null:<button onClick={this.editAccount}>Edit</button>}
           <button onClick={this.logout}>Logout</button>
           <button onClick={this.deleteAccount}>Delete Account</button>

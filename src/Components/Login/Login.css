@@ -2,7 +2,7 @@
   width: 100vw;
   display: block;
   font-family: futura;
-  color: black;
+  color: #161846;
   font-weight: 800;
   position: relative;
   margin-top: 2%;
@@ -38,7 +38,7 @@
   /* margin-left: auto;
   margin-right: auto; */
   font-family: futura;
-  color: black;
+  color: #161846;
   /* font-size: 3em; */
   font-weight: 800;
   position: absolute;
@@ -69,4 +69,17 @@
   font-size: 12px;
   text-align: center;
   font-family: futura;
+}
+
+.teal-welcome-button {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 16px;
+  color: #161846;
+  border-color:#54a4a6;
+  background-color: #54a4a6;
+  text-align: center;
+  margin-top: 2%;
+  width: 200px;
 }

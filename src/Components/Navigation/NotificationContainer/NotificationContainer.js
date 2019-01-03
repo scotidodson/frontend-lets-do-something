@@ -46,8 +46,8 @@ class NotificationContainer extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.currentUser ? this.renderNotifications():null}
+      <div className="notification-page">
+        {this.renderNotifications()}
       </div>
     );
   }

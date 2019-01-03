@@ -54,13 +54,17 @@ class Login extends Component {
       <img src={login} onClick={this.handleClick} alt="Log In" width="220px" /><br/>
         <div className="login-form">
           <form onSubmit={this.handleSubmit} >
+            <br/>
+            <br/>
             Username:<br/>
             <input type="text" name="username" value={this.state.username} onChange={this.handleInput}/>
+            <br/>
+            <br/>
             <br/>
             Password:<br/>
             <input type="password" name="password" value={this.state.password} onChange={this.handleInput}/>
             <br/><br/>
-            <input type="submit" value="Submit"/>
+            <input className="teal-welcome-button" type="submit" value="Submit"/>
           </form>
         </div>
       </div>

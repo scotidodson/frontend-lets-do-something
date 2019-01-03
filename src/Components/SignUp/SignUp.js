@@ -126,7 +126,7 @@ class SignUp extends Component {
             placeholder="Bio"
              value={this.state.neighborhood} /><br/><br/>
 
-            <input type="submit" value="Submit" />
+            <input className="teal-welcome-button" type="submit" value="Submit" />
           </form>
         </div>
       </div>

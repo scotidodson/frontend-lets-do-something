@@ -21,6 +21,8 @@ export const fetchEvents = () => dispatch => {
   )
 }
 
+
+
 // export const fetch = () => dispatch => {
 //     fetch('http://localhost:4000/api/v1/users')
 //     .then(resp => resp.json())

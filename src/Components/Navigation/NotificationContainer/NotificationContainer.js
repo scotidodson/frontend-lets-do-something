@@ -21,7 +21,7 @@ class NotificationContainer extends Component {
       return notifications.map(alert => {
         this.updateNotification(alert)
         return(
-            <div key={alert.id}>
+            <div className="notification-border" key={alert.id}>
               <Link to={`/events/${alert.event_id}`} >
               <p>{alert.message}</p>
               </Link>
@@ -61,7 +61,7 @@ NotificationContainer.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.users.currentUser,
+  currentUser: state.users.currentUser
 
 })
 

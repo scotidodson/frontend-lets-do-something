@@ -16,6 +16,7 @@ class EventDetails extends Component {
   }
 
   renderEvent = () => {
+    // debugger
     const thisEvent = this.props.allEvents.find(event => {
       return event.id === Number(this.props.match.params.eventId)
     })
@@ -45,9 +46,10 @@ class EventDetails extends Component {
 
         } else {
           if (thisEvent.winner) {
-            return this.renderRsvpChangePage(thisEvent)
+            // return this.renderRsvpChangePage(thisEvent)
+            return this.renderWinner(thisEvent)
           } else {
-            return this.renderVotePage(thisEvent)
+            return this.renderActivePoll(thisEvent)
           }
         }
         break;
@@ -129,7 +131,6 @@ class EventDetails extends Component {
             <p>{cost}</p>
             <p>{winningIdea.neighborhood}</p>
             <p>{winningIdea.street}</p>
-            <br/>
             <p>{winningIdea.city}, {winningIdea.state} {winningIdea.zip}</p>
             <p>{winningIdea.details}</p>
             <br/>
@@ -146,7 +147,7 @@ class EventDetails extends Component {
     return eventGuests.map(guest => {
       console.log('guest',guest);
       return(
-        <p>{guest.host ? "(HOST) ":null}{guest.user.first_name} {guest.user.last_name}: {guest.rsvp ? guest.rsvp.toUpperCase() : "No Response"}</p>
+        <p>{guest.user.first_name} {guest.user.last_name}: {guest.host ? "(HOST) ": guest.rsvp ? guest.rsvp.toUpperCase() : "No Response"}</p>
       )
     })
   }
@@ -214,12 +215,127 @@ class EventDetails extends Component {
             {this.renderGuests(thisEvent)}
           </div>
           <div style={host.id === this.props.userId ? {} : { display: 'none' }}>
-            <h4>put a cancel button here</h4>
+            <button data-eventId={thisEvent.id} onClick={this.endPoll}>END POLL</button>
           </div>
         </div>
       </div>
     )
+  }
 
+  endPoll = (e) => {
+    const eventId = Number(e.target.dataset.eventid)
+    const thisEvent = this.props.allEvents.find(e => { return e.id === eventId })
+    // debugger
+    this.calculateResults(thisEvent)
+  }
+
+  calculateResults = (thisEvent) => {
+    console.log('calculating results');
+      console.log('thisEvent', thisEvent);
+      if (!thisEvent.winner) {
+        let votes = []
+        const options = thisEvent.options
+        const count = options.length
+        const results = options.map(option => {
+          votes.push(option.votes)
+          return { votes: option.votes,
+                   idea: option.idea_id }
+        })
+        const sortedVotes = votes.sort().reverse()
+        const winningVoteCount = sortedVotes[0]
+        const winningResult = results.find(result => { return result.votes === winningVoteCount })
+        const winningIdeaId = winningResult.idea
+        let updatedEvent = {...thisEvent}
+        updatedEvent.winner = winningIdeaId
+        console.log('thisEvent with winner', updatedEvent);
+        this.endOfPollAlert(updatedEvent)
+      } else {
+        return null
+      }
+  }
+
+  addWinnerToEvent = (updatedEvent) => {
+    fetch(`http://localhost:4000/api/v1/events/${updatedEvent.id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(updatedEvent)
+    })
+    this.props.history.push('/')
+  }
+
+  endOfPollAlert = (thisEvent) => {
+    const eventGuests = thisEvent.guests
+    const winningIdea = this.props.allIdeas.find(idea => { return idea.id === thisEvent.winner })
+    const host = eventGuests.find(guest => { return guest.host === true }).user
+    let month
+    switch (thisEvent.month) {
+        case 1:
+          month = 'Jan.'
+        break;
+        case 2:
+          month = 'Feb.'
+        break;
+        case 3:
+          month = 'Mar.'
+        break;
+        case 4:
+          month = 'Apr.'
+        break;
+        case 5:
+          month = 'May'
+        break;
+        case 6:
+          month = 'June'
+        break;
+        case 7:
+          month = 'July'
+        break;
+        case 8:
+          month = 'Aug.'
+        break;
+        case 9:
+          month = 'Sept.'
+        break;
+        case 10:
+          month = 'Oct.'
+        break;
+        case 11:
+          month = 'Nov.'
+        break;
+        case 12:
+          month = 'Dec.'
+        break;
+        default:
+
+      }
+
+    // console.log('winning idea', winningIdea);
+    // console.log('host is', host);
+    // debugger
+    eventGuests.map(guestObj => {
+      const customMsg = guestObj.host ? `Your poll ended -- ${winningIdea.title} won!`:`${host.first_name}'s poll ended -- Get ready for ${winningIdea.title} on ${month} ${thisEvent.day} at ${thisEvent.hour}:${thisEvent.minute} ${thisEvent.am ? 'am':'pm'}.`
+      const newAlert = {
+        user_id: guestObj.user.id,
+        event_id: thisEvent.id,
+        seen: false,
+        message: customMsg
+      }
+      this.submitNotification(newAlert)
+    })
+    this.addWinnerToEvent(thisEvent)
+  }
+
+  submitNotification = (newNotification) => {
+    console.log('submitting alert:', newNotification);
+    fetch(`http://localhost:4000/api/v1/notifications`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(newNotification)
+    })
   }
 
   renderOptionCards = (thisEvent, votingOptions) => {
@@ -230,6 +346,8 @@ class EventDetails extends Component {
     })
 
   }
+
+
 
   renderVotePage = (thisEvent) => {
     const eventGuests = thisEvent.guests
@@ -277,7 +395,7 @@ class EventDetails extends Component {
       }
 
     return(
-      <div>
+      <div className="event-container">
         <div>
           <h2>Poll in Process</h2>
           <h3>{month} {thisEvent.day} at {thisEvent.hour}:{thisEvent.minute} {thisEvent.am ? "am":"pm"}</h3>

@@ -14,6 +14,13 @@
   margin-top: 1%;
 }
 
+.notification-border {
+  border-top-style: solid;
+  border-top-width: thick;
+  width: 100%;
+  max-width: 500px;
+}
+
 .notification-page p {
   text-decoration: none;
   text-transform: uppercase;
@@ -22,8 +29,7 @@
   color: #161846;
   text-align: center;
   align-items: center;
-  border-top-style: solid;
-  border-top-width: thick;
+
   padding-top: 3%;
   padding-bottom: 5%;
 

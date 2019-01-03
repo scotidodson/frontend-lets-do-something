@@ -25,7 +25,7 @@ class Navigation extends Component {
 
   handleClick = () => {
     let updatedUserObj = {...this.props.currentUser}
-    const updatedAlerts = this.props.currentUser.notifications.map(alert => {
+    const updatedAlerts = updatedUserObj.notifications.map(alert => {
       return { ...alert, seen: true }
     })
     updatedUserObj.notifications = updatedAlerts
@@ -58,7 +58,7 @@ class Navigation extends Component {
                   {this.checkNotifications() ? <img src={newNotification} onClick={this.handleClick} alt="notifications" height="80px" />:<img src={notification} alt="notifications" height="80px" />}
                 </Link></li>
 
-                <li><Link to="/account" params={ this.notificationChecker }><img src={account} alt="account" height="80px" /></Link></li>
+                <li><Link to="/account" ><img src={account} alt="account" height="80px" /></Link></li>
               </ul>
           </nav>
         </div>

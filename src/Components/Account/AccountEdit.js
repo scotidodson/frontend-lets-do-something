@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { assignUser, patchUser, fetchCurrentUser } from '../../Actions/UserActions.js'
 import account from '../../Images/account.png'
 import avatars from '../../Images/avatars/avatars.js'
+import './Account.css'
+
 // import  PropTypes from 'prop-types'
 
 class AccountEdit extends Component {
@@ -64,8 +66,10 @@ class AccountEdit extends Component {
   render() {
     return (
       <div>
-        <a onClick={this.handleAvatar} data-id={this.state.img_url} name='back'> ⬅️ </a>
+
         <img src={avatars[this.state.img_url]} value={this.state.img_url} alt="account" height="200px" />
+        <br/>
+        <a onClick={this.handleAvatar} data-id={this.state.img_url} name='back'> ⬅️ </a>
         <a onClick={this.handleAvatar} data-id={this.state.img_url} name='next'> ➡️ </a>
 
         <div className="sign-up-form">

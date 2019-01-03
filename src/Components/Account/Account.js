@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { assignUser, deleteUser, fetchCurrentUser } from '../../Actions/UserActions.js'
 import AccountEdit from './AccountEdit.js'
 import AccountView from './AccountView.js'
+import './Account.css'
 // import  PropTypes from 'prop-types'
 
 class Account extends Component {
@@ -49,7 +50,7 @@ class Account extends Component {
 
   render() {
     return (
-      <div>
+      <div className="account-page">
         {this.state.edit ? <AccountEdit redirect={this.handleRedirect}/>:<AccountView />}
         {this.state.edit ? null:<button onClick={this.editAccount}>Edit</button>}
         <button onClick={this.logout}>Logout</button>

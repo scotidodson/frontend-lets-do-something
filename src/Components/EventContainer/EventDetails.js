@@ -205,12 +205,14 @@ class EventDetails extends Component {
       <div className="idea-details-page">
         <div >
           <div>
-          <h3>Poll in Process</h3>
-          <h3>{month} {thisEvent.day} at {thisEvent.hour}:{thisEvent.minute} {thisEvent.am ? "am":"pm"}</h3>
+          <h3>Poll in Process<br/>
+          {month} {thisEvent.day} at {thisEvent.hour}:{thisEvent.minute} {thisEvent.am ? "am":"pm"}</h3>
+          <br/>
           </div>
           <div>
             <h4>Options</h4>
             {this.renderOptionCards(thisEvent, false)}
+            <br/>
           </div>
           <div>
             <h4>Guests</h4>
@@ -403,20 +405,20 @@ class EventDetails extends Component {
     return(
       <div className="event-container">
         <div>
-          <h2>Poll in Process</h2>
-          <h3>{month} {thisEvent.day} at {thisEvent.hour}:{thisEvent.minute} {thisEvent.am ? "am":"pm"}</h3>
+          <h3>Poll in Process<br/>
+          {month} {thisEvent.day} at {thisEvent.hour}:{thisEvent.minute} {thisEvent.am ? "am":"pm"}</h3>
+          <br/>
           <div>
             <h4>Can't make it?</h4>
             <button id={thisEvent.id} onClick={this.handleRsvpNo}>Not this time... </button>
             <h4>If you can - what's your preference?</h4>
             {this.renderOptionCards(thisEvent, true)}
+            <br/>
           </div>
           <div>
             <h4>Guests</h4>
             {this.renderGuests(thisEvent)}
-          </div>
-          <div style={host.id === this.props.userId ? {} : { display: 'none' }}>
-            <h4>put a cancel button here</h4>
+            <br/>
           </div>
         </div>
       </div>

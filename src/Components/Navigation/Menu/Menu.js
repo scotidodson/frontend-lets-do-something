@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import './Menu.css'
 
 
 
 class Menu extends Component {
   render() {
     return (
-      <div>
-        <li><Link to="/events">EVENTS</Link></li>
-        <li><Link to="/contacts">CONTACTS</Link></li>
-        <li><Link to="/saved-ideas">SAVED IDEAS</Link></li>
+      <div className="menu-page">
+
+        <div className="menu-div">
+          <h3><Link to="/events">EVENTS</Link></h3>
+        </div>
+        <div className="menu-div">
+          <h3><Link to="/contacts">CONTACTS</Link></h3>
+        </div>
+        <div className="menu-div">
+          <h3><Link to="/saved-ideas">SAVED IDEAS</Link></h3>
+        </div>
       </div>
     );
   }

@@ -14,6 +14,10 @@ class ContactsContainer extends Component {
     hasFriends: this.props.currentUser.friendships.length
   }
 
+  componentWillMount = () => {
+
+  }
+
   handleChange = (e) => {
       this.setState({ searchInput: e.target.value })
     }
@@ -56,10 +60,6 @@ class ContactsContainer extends Component {
         </div>
 
         <h3>Find Friends</h3>
-        <input
-        name="search"
-        onChange={this.handleChange}
-        placeholder="Search users..." /><br/>
         <div className="contact-card-container">
           {this.state.showForm ? <ContactForm /> : null }
           {this.renderContactCards()}
@@ -87,3 +87,8 @@ export default connect(mapStateToProps, { fetchUsers })(ContactsContainer);
 // <Link to='/add-contact'>
 //   <h4>Add New Contact</h4>
 // </Link>
+
+// <input
+// name="search"
+// onChange={this.handleChange}
+// placeholder="Search users..." /><br/>

@@ -9,6 +9,7 @@ class Menu extends Component {
       <div>
         <li><Link to="/events">EVENTS</Link></li>
         <li><Link to="/contacts">CONTACTS</Link></li>
+        <li><Link to="/saved-ideas">SAVED IDEAS</Link></li>
       </div>
     );
   }

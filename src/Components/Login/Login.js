@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchUsers, assignUser, fetchCurrentUser } from '../../Actions/UserActions.js'
+import { fetchUsers, fetchCurrentUser, assignUser } from '../../Actions/UserActions.js'
+import { fetchIdeas } from '../../Actions/IdeaActions.js'
+import { fetchEvents } from '../../Actions/EventActions.js'
 import login from '../../Images/log_in.png'
+import logo from '../../Images/lds_logo.png'
+
 import './Login.css'
 
 
@@ -19,6 +23,8 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+    this.props.fetchIdeas()
+    this.props.fetchEvents()
     const user = this.props.allUsers.find(userObj => userObj.username.toLowerCase() === this.state.username.toLowerCase())
     if (user) {
       if (user.password === this.state.password) {
@@ -43,23 +49,29 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="login-form">
-        <img src={login} onClick={this.handleClick} alt="login toggle" width="200px" />
-        <form onSubmit={this.handleSubmit} >
-          Username:<br/>
-          <input type="text" name="username" value={this.state.username} onChange={this.handleInput}/>
-          <br/>
-          Password:<br/>
-          <input type="password" name="password" value={this.state.password} onChange={this.handleInput}/>
-          <br/><br/>
-          <input type="submit" value="Submit"/>
-        </form>
+      <div className="login-page">
+      <img src={logo} alt="Let's Do Something" className="welcome-logo" />
+      <img src={login} onClick={this.handleClick} alt="Log In" width="220px" />
+        <div className="login-form">
+          <form onSubmit={this.handleSubmit} >
+            Username:<br/>
+            <input type="text" name="username" value={this.state.username} onChange={this.handleInput}/>
+            <br/>
+            Password:<br/>
+            <input type="password" name="password" value={this.state.password} onChange={this.handleInput}/>
+            <br/><br/>
+            <input type="submit" value="Submit"/>
+          </form>
+        </div>
       </div>
     );
   }
 }
 
 Login.propTypes = {
+  fetchUsers: PropTypes.func.isRequired,
+  fetchIdeas: PropTypes.func.isRequired,
+  fetchEvents: PropTypes.func.isRequired,
   fetchUsers: PropTypes.func.isRequired,
   assignUser: PropTypes.func.isRequired,
   fetchCurrentUser: PropTypes.func.isRequired
@@ -70,4 +82,4 @@ const mapStateToProps = state => ({
   currentUser: state.users.currentUser
 })
 
-export default connect(mapStateToProps, { fetchUsers, assignUser, fetchCurrentUser })(Login);
+export default connect(mapStateToProps, { fetchUsers, assignUser, fetchCurrentUser, fetchIdeas, fetchEvents })(Login);

@@ -28,9 +28,10 @@ import './PageContainer.css';
 
 class PageContainer extends Component {
   componentWillMount() {
-      this.props.fetchUsers()
-      this.props.fetchIdeas()
-      // this.props.fetchEvents()
+    this.props.fetchIdeas()
+    this.props.fetchEvents()
+    this.props.fetchUsers()
+
       if (this.props.userId === 0) {
         this.props.history.push('/login');
       } else {

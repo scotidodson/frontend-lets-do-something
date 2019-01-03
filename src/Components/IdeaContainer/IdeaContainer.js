@@ -21,15 +21,19 @@ class IdeaContainer extends Component {
   render() {
     return (
       <div className="brainstorm-page">
-        <div className="brainstorm-buttons">
-        <Link to="/new-idea"><button>Add New Idea</button></Link>
-        <Link to="/saved-ideas"><button>View Saved Ideas</button></Link>
-        </div>
+      <div>
+        <h3>Add to your NYC Bucket List</h3>
+        <br/>
+        <br/>
+      </div>
 
-        <h3>All Ideas</h3>
-        <div className="idea-container">
-          {this.renderIdeaCards()}
+        <div className="brainstorm-buttons">
+          <Link to="/new-idea"><button>Add New Idea</button></Link>
+          <Link to="/saved-ideas"><button>Saved Ideas</button></Link>
         </div>
+          <div className="idea-container">
+            {this.renderIdeaCards()}
+          </div>
       </div>
 
     );

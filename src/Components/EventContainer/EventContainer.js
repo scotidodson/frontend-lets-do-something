@@ -5,7 +5,9 @@ import EventCard from './EventCard.js'
 import EventDetails from './EventDetails.js'
 import { connect } from 'react-redux';
 import { fetchEvents } from '../../Actions/EventActions.js'
-import './EventContainer.css'
+import '../IdeaContainer/IdeaContainer.css'
+// import './EventContainer.css'
+
 
 
 class EventContainer extends Component {
@@ -19,11 +21,60 @@ class EventContainer extends Component {
     if (events && events.length > 0) {
       return events.map(thisEvent => {
         // console.log(thisEvent);
+
+        let month
+        switch (thisEvent.month) {
+            case 1:
+              month = 'Jan.'
+            break;
+            case 2:
+              month = 'Feb.'
+            break;
+            case 3:
+              month = 'Mar.'
+            break;
+            case 4:
+              month = 'Apr.'
+            break;
+            case 5:
+              month = 'May'
+            break;
+            case 6:
+              month = 'June'
+            break;
+            case 7:
+              month = 'July'
+            break;
+            case 8:
+              month = 'Aug.'
+            break;
+            case 9:
+              month = 'Sept.'
+            break;
+            case 10:
+              month = 'Oct.'
+            break;
+            case 11:
+              month = 'Nov.'
+            break;
+            case 12:
+              month = 'Dec.'
+            break;
+            default:
+          }
+
+        let thisIdea
+        if (thisEvent.winner) {
+          thisIdea = this.props.allIdeas.find(idea => {return idea.id === thisEvent.winner})
+
+        }
+
         return (
-          <div className="event-card" key={thisEvent.id} data-id={thisEvent.id} onClick={this.handleClick}>
-            {thisEvent.winner ? <h4 data-id={thisEvent.id}>{thisEvent.winner}</h4>:<h4 data-id={thisEvent.id}>Poll in Process</h4>}
-            <p data-id={thisEvent.id}> {thisEvent.date}</p>
-            <p data-id={thisEvent.id}>{thisEvent.time}</p>
+          <div className="idea-card" key={thisEvent.id} data-id={thisEvent.id} onClick={this.handleClick}>
+            {thisEvent.winner ? <h4 data-id={thisEvent.id}>{thisIdea.title}</h4>:<h4 data-id={thisEvent.id}>TBD</h4>}
+
+            <h4 data-id={thisEvent.id}>{month} {thisEvent.day}</h4>
+            <h4 data-id={thisEvent.id}>{thisEvent.hour}:{thisEvent.minute} {thisEvent.am ? "am":"pm"}</h4>
           </div>
         )
       })
@@ -39,11 +90,17 @@ class EventContainer extends Component {
 
   render() {
     return (
+      <div className="brainstorm-page">
       <div>
-        <h4>My Events</h4>
-        <div className="event-card-container">
-          {this.renderEvents()}
-        </div>
+        <h3>Events</h3>
+        <br/>
+        <br/>
+      </div>
+
+
+          <div className="idea-container">
+            {this.renderEvents()}
+          </div>
       </div>
 
     );
@@ -55,7 +112,13 @@ EventContainer.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.users.currentUser
+  currentUser: state.users.currentUser,
+  allIdeas: state.ideas.allIdeas
 })
 
 export default connect(mapStateToProps)(EventContainer);
+
+// <div className="brainstorm-buttons">
+  // <Link to="/new-idea"><button>Add New Idea</button></Link>
+  // <Link to="/saved-ideas"><button>Saved Ideas</button></Link>
+// </div>

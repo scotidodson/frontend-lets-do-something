@@ -11,7 +11,7 @@ class IdeaBoard extends Component {
   renderSavedIdeaCards = () => {
     if (this.props.savedIdeas.length === 0) {
       return(
-        <h3>You don't have anything saved yet!</h3>
+        <h4>You don't have anything saved yet!</h4>
       )
     } else {
       return this.props.savedIdeas.map(ideaObj => {
@@ -22,13 +22,21 @@ class IdeaBoard extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Saved Ideas</h3>
-        {this.renderSavedIdeaCards()}
-        <p><Link to="/new-idea">Add New Idea</Link></p>
-        <p><Link to="/brainstorm">Back to Brainstorming</Link></p>
-      </div>
+      <div className="brainstorm-page">
+        <div>
+          <h3>Your NYC Bucket List</h3>
+          <br/>
+          <br/>
+        </div>
 
+        <div className="brainstorm-buttons">
+          <Link to="/new-idea"><button>Add New Idea</button></Link>
+          <Link to="/brainstorm"><button>Brainstorm</button></Link>
+        </div>
+          <div className="idea-container">
+            {this.renderSavedIdeaCards()}
+          </div>
+      </div>
     );
   }
 }

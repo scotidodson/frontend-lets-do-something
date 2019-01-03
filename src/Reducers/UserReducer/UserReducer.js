@@ -13,7 +13,7 @@ seen: true
         user_ideas: [ ]
   },
   allUsers: [],
-  userId: 0
+  userId: 1
 }
 
 export default function(state = initialState, action) {

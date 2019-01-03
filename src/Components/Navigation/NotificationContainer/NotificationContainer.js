@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { fetchCurrentUser } from '../../../Actions/UserActions.js'
 import { fetchEvents } from '../../../Actions/EventActions.js'
 import { fetchIdeas } from '../../../Actions/IdeaActions.js'
-
+import './NotificationContainer.css'
 // import { BrowserRouter, Route, Link, Switch} from 'react-router-dom'
 
 

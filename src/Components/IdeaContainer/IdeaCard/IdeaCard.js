@@ -75,9 +75,11 @@ class IdeaCard extends Component {
 
     return (
         <div className="idea-card" data-id={this.props.idea.id} >
-          <button onClick={this.alreadySaved() ? this.handleRemoveIdea:this.handleSaveIdea}>{this.alreadySaved() ? "Remove Idea":"Save Idea"}</button>
+          <button onClick={this.alreadySaved() ? this.handleRemoveIdea:this.handleSaveIdea}>{this.alreadySaved() ? "x":"+"}</button>
           <Link to={`/ideas/${this.props.idea.id}`}>
-          <h4>-- {this.props.idea.title} --</h4>
+          <br/>
+          <br/>
+          <h4>{this.props.idea.title}</h4>
           </Link>
         </div>
 

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { createUser, assignUser } from '../../Actions/UserActions.js'
 import avatars from '../../Images/avatars/avatars.js'
 import signup from '../../Images/sign_up.png'
+import logo from '../../Images/lds_logo.png'
 import './SignUp.css'
 // import IdeaCard from '../IdeaCard/IdeaCard.js'
 // import Home from './Home/Home.js'
@@ -80,52 +81,56 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div className="sign-up-form">
-        <img src={signup} onClick={this.handleClick} alt="signup toggle" width="200px" />
+      <div className="sign-up-page">
 
-        <h2>Sign Up</h2>
-
-        <label>Choose an Avatar</label><br/>
-        <a onClick={this.handleAvatar} data-id={this.state.img_url} name='back'> ⬅️ </a>
-        <img src={avatars[this.state.img_url]} value={this.state.img_url} alt="avatar" height="200px" />
-        <a onClick={this.handleAvatar} data-id={this.state.img_url} name='next'> ➡️ </a>
+          <img src={logo} alt="Let's Do Something" className="welcome-logo" />
+          <img src={signup} className="toggle" onClick={this.handleClick} alt="Sign Up" width="220px" height="auto" />
 
 
-        <form onSubmit={this.handleSubmit}>
+        <div className="sign-up-form">
+          <img src={avatars[this.state.img_url]} value={this.state.img_url} alt="avatar" width="auto" height="200px" /><br/>
+          <label>Choose an Avatar</label><br/>
+          <a onClick={this.handleAvatar} data-id={this.state.img_url} name='back'> ⬅️ </a>
+          <a onClick={this.handleAvatar} data-id={this.state.img_url} name='next'> ➡️ </a>
 
-          <select name="city" onChange={this.handleChange}>
-          <option value="NYC">NYC</option>
-          </select><br/><br/>
 
-          <input type="text" name="first_name" onChange={this.handleChange}
-          placeholder="First Name" value={this.state.first_name} />
+          <form onSubmit={this.handleSubmit}>
 
-          <input type="text" name="last_name" onChange={this.handleChange}
-          placeholder="Last Name" value={this.state.last_name} /><br/><br/>
+            <select name="city" onChange={this.handleChange}>
+            <option value="NYC">NYC</option>
+            </select><br/><br/>
 
-          <input type="text" name="username" onChange={this.handleChange}
-          placeholder="Username" value={this.state.username} />
+            <input type="text" name="first_name" onChange={this.handleChange}
+            placeholder="First Name" value={this.state.first_name} />
 
-          <input type="password" name="password" onChange={this.handleChange}
-          placeholder="Password" value={this.state.password} /><br/><br/>
+            <input type="text" name="last_name" onChange={this.handleChange}
+            placeholder="Last Name" value={this.state.last_name} /><br/><br/>
 
-          <input type="text" name="phone" onChange={this.handleChange}
-          placeholder="Phone"
-          value={this.state.phone} />
+            <input type="text" name="username" onChange={this.handleChange}
+            placeholder="Username" value={this.state.username} />
 
-          <input type="text" name="email" onChange={this.handleChange}
-          placeholder="Email" value={this.state.email} /><br/><br/>
+            <input type="password" name="password" onChange={this.handleChange}
+            placeholder="Password" value={this.state.password} /><br/><br/>
 
-          <input type="text" name="birthday" onChange={this.handleChange}
-          placeholder="Birthday" value={this.state.birthday} /><br/><br/>
+            <input type="text" name="phone" onChange={this.handleChange}
+            placeholder="Phone"
+            value={this.state.phone} />
 
-          <textarea type="text" name="bio" onChange={this.handleChange}
-          placeholder="Bio"
-           value={this.state.neighborhood} /><br/><br/>
+            <input type="text" name="email" onChange={this.handleChange}
+            placeholder="Email" value={this.state.email} /><br/><br/>
 
-          <input type="submit" value="Submit" />
-        </form>
+            <input type="text" name="birthday" onChange={this.handleChange}
+            placeholder="Birthday" value={this.state.birthday} /><br/><br/>
+
+            <textarea type="text" name="bio" onChange={this.handleChange}
+            placeholder="Bio"
+             value={this.state.neighborhood} /><br/><br/>
+
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
       </div>
+
     );
   }
 }

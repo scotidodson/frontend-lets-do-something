@@ -31,6 +31,7 @@ class AccountEdit extends Component {
     const updatedUser = {...this.state}
     this.props.patchUser(this.props.userId, updatedUser)
     this.props.fetchCurrentUser(this.props.userId)
+    this.props.redirect()
   }
 
   handleAvatar = (e) => {
@@ -68,7 +69,6 @@ class AccountEdit extends Component {
         <a onClick={this.handleAvatar} data-id={this.state.img_url} name='next'> ➡️ </a>
 
         <div className="sign-up-form">
-          <h2>Sign Up</h2>
           <form onSubmit={this.handleSubmit}>
 
             <label>Name: </label>

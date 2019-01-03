@@ -2,9 +2,18 @@ import { CURRENT_USER, FETCH_USERS, USER_ID } from '../../Actions/types'
 
 
 const initialState = {
-  currentUser: {},
+  currentUser: {
+        friendships: [ ],
+        notifications: [{
+event_id: 1,
+message: "No notifications!",
+seen: true
+}],
+        events: [ ],
+        user_ideas: [ ]
+  },
   allUsers: [],
-  userId: 1
+  userId: 0
 }
 
 export default function(state = initialState, action) {

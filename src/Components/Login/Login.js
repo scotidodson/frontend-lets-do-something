@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchUsers, assignUser } from '../../Actions/UserActions.js'
+import { fetchUsers, assignUser, fetchCurrentUser } from '../../Actions/UserActions.js'
 import login from '../../Images/log_in.png'
 import './Login.css'
 
@@ -12,7 +12,7 @@ class Login extends Component {
     password: ''
   }
 
-  componentWillMount = () => {
+  componentWillMount() {
     this.props.fetchUsers()
     // window.clearInterval(NOTIFICATION_CHECKER)
   }
@@ -23,6 +23,7 @@ class Login extends Component {
     if (user) {
       if (user.password === this.state.password) {
         this.props.assignUser(user.id)
+        this.props.fetchCurrentUser(user.id)
         this.props.history.push('/');
       } else {
         alert("Incorrect password. Try again.")
@@ -60,11 +61,13 @@ class Login extends Component {
 
 Login.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
-  assignUser: PropTypes.func.isRequired
+  assignUser: PropTypes.func.isRequired,
+  fetchCurrentUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
-  allUsers: state.users.allUsers
+  allUsers: state.users.allUsers,
+  currentUser: state.users.currentUser
 })
 
-export default connect(mapStateToProps, { fetchUsers, assignUser })(Login);
+export default connect(mapStateToProps, { fetchUsers, assignUser, fetchCurrentUser })(Login);

@@ -47,7 +47,8 @@ class OptionCard extends Component {
     }
     const updatedGuest = {
       id: thisGuest.id,
-      rsvp: "yes"
+      rsvp: "yes",
+      voted: true
     }
 
     fetch(`http://localhost:4000/api/v1/options/${optId}`, {

@@ -101,9 +101,6 @@ class EventForm extends Component {
     const ideas = this.props.savedIdeas.map(ideaObj=> ideaObj.idea )
     const mySaved = ideas.map(idea => { return idea.id })
     const suggestions = this.props.allIdeas.filter(idea=> {  return !mySaved.includes(idea.id) })
-
-    // console.log('ideas', ideas);
-    // console.log('suggestions', suggestions);
     return ideas.map(idea =>{
       return(
           <p>
@@ -115,14 +112,14 @@ class EventForm extends Component {
 
   renderFriends = () => {
     const userFriendships = this.props.currentUser.friendships
-    return userFriendships.map(friendship =>{
-      return(
-        <p>
+      return userFriendships.map(friendship =>{
+        return(
+          <p>
           <input key={friendship.id} type="checkbox" name="guests" data-id={friendship.friend.id} onChange={this.handleCheckbox} />
           {friendship.friend.first_name} {friendship.friend.last_name}
-        </p>
-    )
-    })
+          </p>
+        )
+      })
   }
 
   handleDateSubmit = (e) => {
@@ -165,7 +162,8 @@ class EventForm extends Component {
     newOptions.forEach(optObj=> {
       const newOption = {
         idea_id: optObj.id,
-        event_id: this.state.event_id
+        event_id: this.state.event_id,
+        votes: 0
       }
       this.submitOptions(newOption)
     })
@@ -189,6 +187,7 @@ class EventForm extends Component {
       const newGuest = {
         user_id: guestObj.user_id,
         host: guestObj.host,
+        rsvp: guestObj.rsvp,
         event_id: thisEventId
       }
       console.log('newGuest', newGuest);
@@ -251,8 +250,18 @@ class EventForm extends Component {
 
   startPoll = () => {
     console.log('poll started');
-    // setTimeout(this.endPoll(), 10800000)
-    setTimeout(this.endPoll(), 5000)
+    // setTimeout(this.pollReminder(), 300000)
+    setTimeout(this.endPoll, 200000)
+  }
+
+  pollReminder = () => {
+    // const newNotification = {
+    //   user_id: guestObj.user_id,
+    //   event_id: thisEvent.id,
+    //   seen: false,
+    //   message: customMsg
+    // }
+    // this.submitNotification(newNotification)
   }
 
   endPoll = () => {
@@ -285,6 +294,7 @@ class EventForm extends Component {
 
         // check for tie?
         // const winningIdea = results[sortedVotes[0]]
+
         const winningIdea = 1
         thisEvent.winner = winningIdea
         console.log('winningIdea', winningIdea);
@@ -306,7 +316,8 @@ class EventForm extends Component {
       body: JSON.stringify(thisEvent)
     })
     this.props.fetchEvents()
-    const eventGuests = [...this.state.guests]
+    const eventGuests = thisEvent.guests
+
     const winningIdea = this.props.allIdeas.find(idea => { return idea.id === thisEvent.winner })
     const host = thisEvent.guests.find(guest => { return guest.host === true }).user
     let month
@@ -438,7 +449,7 @@ class EventForm extends Component {
 
         <form onSubmit={this.handleGuestSubmit} style={this.state.guestStage ? {} : { display: 'none' }}>
           <h1>WHO</h1>
-          {this.renderFriends()}
+          {this.state.guestStage ? this.renderFriends():null}
           <input type="submit" value="Submit" />
 
         </form>
@@ -450,9 +461,11 @@ class EventForm extends Component {
 EventForm.propTypes = {
   createEvent: PropTypes.func.isRequired,
   allIdeas: PropTypes.array.isRequired,
+  allEvents: PropTypes.array.isRequired,
   currentUser: PropTypes.object.isRequired,
   savedIdeas: PropTypes.array.isRequired,
-  fetchEvents: PropTypes.func.isRequired
+  fetchEvents: PropTypes.func.isRequired,
+  currentUser: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({

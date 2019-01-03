@@ -10,7 +10,6 @@ import OptionCard from './OptionCard/OptionCard.js'
 
 class EventDetails extends Component {
   componentWillMount() {
-    this.props.fetchCurrentUser(this.props.userId)
     this.props.fetchIdeas()
     this.props.fetchEvents()
   }
@@ -134,7 +133,7 @@ class EventDetails extends Component {
     return eventGuests.map(guest => {
       console.log('guest',guest);
       return(
-        <p>{guest.host ? "(HOST) ":null}{guest.user.first_name} {guest.user.last_name}: {guest.user.rsvp ? guest.user.rsvp:"No Response"}</p>
+        <p>{guest.host ? "(HOST) ":null}{guest.user.first_name} {guest.user.last_name}: {guest.user.rsvp ? guest.user.rsvp : "No Response"}</p>
       )
     })
   }
@@ -297,7 +296,8 @@ class EventDetails extends Component {
 
     const updatedGuest = {
       id: thisGuest.id,
-      rsvp: "no"
+      rsvp: "no",
+      voted: true
     }
 
     fetch(`http://localhost:4000/api/v1/guests/${thisGuest.id}`, {
@@ -334,7 +334,9 @@ EventDetails.propTypes = {
   currentUser: PropTypes.object.isRequired,
   fetchCurrentUser: PropTypes.func.isRequired,
   fetchIdeas: PropTypes.func.isRequired,
-  fetchEvents: PropTypes.func.isRequired
+  fetchEvents: PropTypes.func.isRequired,
+  allEvents: PropTypes.array.isRequired,
+  allIdeas: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({

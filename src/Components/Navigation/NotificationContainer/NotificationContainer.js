@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import  PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { fetchCurrentUser } from '../../../Actions/UserActions.js'
+import { fetchEvents } from '../../../Actions/EventActions.js'
+import { fetchIdeas } from '../../../Actions/IdeaActions.js'
+
 // import { BrowserRouter, Route, Link, Switch} from 'react-router-dom'
 
 
@@ -9,7 +13,8 @@ import { connect } from 'react-redux'
 class NotificationContainer extends Component {
 
   renderNotifications = () => {
-      const notifications = (this.props.currentUser.notifications).sort(function (a, b) {
+    const alerts = [...this.props.currentUser.notifications]
+      const notifications = alerts.sort(function (a, b) {
         return b.id - a.id;
       })
     // this.updateUserNotifications()
@@ -17,11 +22,11 @@ class NotificationContainer extends Component {
       return notifications.map(alert => {
         this.updateNotification(alert)
         return(
-          <Link to={`/events/${alert.event_id}`}>
             <div key={alert.id}>
+              <Link to={`/events/${alert.event_id}`} >
               <p>{alert.message}</p>
+              </Link>
             </div>
-          </Link>
         )
       })
     } else {
@@ -50,11 +55,15 @@ class NotificationContainer extends Component {
 }
 
 NotificationContainer.propTypes = {
-  currentUser: PropTypes.object.isRequired
+  currentUser: PropTypes.object.isRequired,
+  fetchCurrentUser: PropTypes.func.isRequired,
+  fetchIdeas: PropTypes.func.isRequired,
+  fetchEvents: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.users.currentUser
+  currentUser: state.users.currentUser,
+
 })
 
-export default connect(mapStateToProps)(NotificationContainer);
+export default connect(mapStateToProps, { fetchIdeas, fetchCurrentUser, fetchEvents })(NotificationContainer);

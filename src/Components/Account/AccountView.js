@@ -7,14 +7,12 @@ import avatars from '../../Images/avatars/avatars.js'
 import  './Account.css'
 
 class AccountView extends Component {
-  // componentWillMount() {
-  //   this.props.fetchCurrentUser(this.props.userId)
-  // }
+  componentWillMount() {
+    this.props.fetchCurrentUser(this.props.userId)
+  }
 
 
   render() {
-    console.log(avatars);
-    console.log(avatars[this.props.currentUser.img_url]);
     return (
       <div>
         <img className="avatar" src={avatars[this.props.currentUser.img_url]} alt="avatar" height="200px" />

@@ -32,10 +32,10 @@ class PageContainer extends Component {
       this.props.fetchIdeas()
       this.props.fetchEvents()
       if (this.props.userId === 0) {
-        this.props.history.push('/welcome');
+        this.props.history.push('/login');
       } else {
         this.props.fetchCurrentUser(this.props.userId)
-        // setInterval(this.updateUserData, 2000)
+        setInterval(this.updateUserData, 2000)
       }
   }
 

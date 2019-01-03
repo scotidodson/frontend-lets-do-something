@@ -114,8 +114,8 @@ class EventForm extends Component {
     const userFriendships = this.props.currentUser.friendships
       return userFriendships.map(friendship =>{
         return(
-          <p>
-          <input key={friendship.id} type="checkbox" name="guests" data-id={friendship.friend.id} onChange={this.handleCheckbox} />
+          <p key={friendship.id}>
+          <input  type="checkbox" name="guests" data-id={friendship.friend.id} onChange={this.handleCheckbox} />
           {friendship.friend.first_name} {friendship.friend.last_name}
           </p>
         )

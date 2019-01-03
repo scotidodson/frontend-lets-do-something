@@ -11,7 +11,6 @@ import { fetchIdeas } from '../../../Actions/IdeaActions.js'
 
 
 class NotificationContainer extends Component {
-
   renderNotifications = () => {
     const alerts = [...this.props.currentUser.notifications]
       const notifications = alerts.sort(function (a, b) {
@@ -48,7 +47,7 @@ class NotificationContainer extends Component {
   render() {
     return (
       <div>
-        {this.renderNotifications()}
+        {this.props.currentUser ? this.renderNotifications():null}
       </div>
     );
   }

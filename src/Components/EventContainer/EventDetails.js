@@ -133,7 +133,7 @@ class EventDetails extends Component {
     return eventGuests.map(guest => {
       console.log('guest',guest);
       return(
-        <p>{guest.host ? "(HOST) ":null}{guest.user.first_name} {guest.user.last_name}: {guest.user.rsvp ? guest.user.rsvp : "No Response"}</p>
+        <p>{guest.host ? "(HOST) ":null}{guest.user.first_name} {guest.user.last_name}: {guest.rsvp ? guest.rsvp.toUpperCase() : "No Response"}</p>
       )
     })
   }
@@ -336,7 +336,8 @@ EventDetails.propTypes = {
   fetchIdeas: PropTypes.func.isRequired,
   fetchEvents: PropTypes.func.isRequired,
   allEvents: PropTypes.array.isRequired,
-  allIdeas: PropTypes.array.isRequired
+  allIdeas: PropTypes.array.isRequired,
+  userId: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({

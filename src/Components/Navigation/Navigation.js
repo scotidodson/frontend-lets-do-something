@@ -12,16 +12,11 @@ import './Navigation.scss';
 
 
 class Navigation extends Component {
-  // componentWillMount() {
-  //   this.props.fetchCurrentUser(this.props.userId)
-  // }
-
-
 
   checkNotifications = () => {
-    const alerts = [...this.props.currentUser.notifications]
-    if (alerts.notifications && alerts.notifications.length > 0) {
-      let newAlerts = alerts.notifications.filter(alert => alert.seen === false )
+    let alerts = [...this.props.currentUser.notifications]
+    if (this.props.currentUser.notifications && this.props.currentUser.notifications.length > 0) {
+      let newAlerts = alerts.filter(alert => alert.seen === false )
       return newAlerts.length > 0 ? true:false
     } else {
       return false

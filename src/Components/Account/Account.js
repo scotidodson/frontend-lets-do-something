@@ -17,8 +17,8 @@ class Account extends Component {
 
   logout = () => {
     this.props.assignUser(0)
-    // window.location.href = "http://localhost:3000/"
-    this.props.history.push('/login');
+    window.location.href = "http://localhost:3000/"
+    // this.props.history.push('/login');
   }
 
   deleteAccount = () => {

@@ -10,7 +10,6 @@ export const createEvent = (eventData) => dispatch => {
   })
 }
 
-
 export const fetchEvents = () => dispatch => {
     fetch('http://localhost:4000/api/v1/events')
     .then(resp => resp.json())

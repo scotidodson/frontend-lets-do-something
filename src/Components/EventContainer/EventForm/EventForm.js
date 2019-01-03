@@ -183,14 +183,12 @@ class EventForm extends Component {
 
   prepareGuestObjs = (newGuests, thisEventId) => {
     newGuests.forEach(guestObj=> {
-      console.log('is it a boolean?', guestObj.host);
       const newGuest = {
         user_id: guestObj.user_id,
         host: guestObj.host,
         rsvp: guestObj.rsvp,
         event_id: thisEventId
       }
-      console.log('newGuest', newGuest);
       this.createNotification(newGuest)
       this.submitGuests(newGuest)
     })
@@ -218,6 +216,7 @@ class EventForm extends Component {
   }
 
   submitNotification = (newNotification) => {
+    console.log('submitting alert:', newNotification);
     fetch(`http://localhost:4000/api/v1/notifications`, {
       method: 'POST',
       headers: {
@@ -251,7 +250,7 @@ class EventForm extends Component {
   startPoll = () => {
     console.log('poll started');
     // setTimeout(this.pollReminder(), 300000)
-    setTimeout(this.endPoll, 200000)
+    setTimeout(this.endPoll, 10000)
   }
 
   pollReminder = () => {
@@ -272,35 +271,24 @@ class EventForm extends Component {
     .then(events => {
       const thisEvent = events.find(e => { return e.id === eventId })
       console.log('thisEvent', thisEvent);
-
       if (!thisEvent.winner) {
-        // calculate winner
-        const options = thisEvent.options
-        console.log('options', options);
-        const count = options.length
-        console.log('count', count);
-
         let votes = []
-
+        const options = thisEvent.options
+        const count = options.length
         const results = options.map(option => {
           votes.push(option.votes)
-          return { [option.votes]: option.idea_id }
+          return { votes: option.votes,
+                   idea: option.idea_id }
         })
-        console.log('results', results);
-        console.log('votes', votes);
+        const sortedVotes = votes.sort().reverse()
+        const winningVoteCount = sortedVotes[0]
+        const winningResult = results.find(result => { return result.votes === winningVoteCount })
+        const winningIdeaId = winningResult.idea
+        let updatedEvent = {...thisEvent}
+        updatedEvent.winner = winningIdeaId
+        console.log('thisEvent with winner', updatedEvent);
+        this.addWinnerToEvent(updatedEvent)
 
-        let sortedVotes = votes.sort().reverse()
-        console.log('sortedVotes', sortedVotes);
-
-        // check for tie?
-        // const winningIdea = results[sortedVotes[0]]
-
-        const winningIdea = 1
-        thisEvent.winner = winningIdea
-        console.log('winningIdea', winningIdea);
-        console.log('thisEvent with winner', thisEvent);
-
-        this.addWinnerToEvent(thisEvent)
       } else {
         return null
       }
@@ -314,12 +302,15 @@ class EventForm extends Component {
         'content-type': 'application/json'
       },
       body: JSON.stringify(thisEvent)
+    }).then(resp => {
+      this.endOfPollAlert(thisEvent)
     })
-    this.props.fetchEvents()
-    const eventGuests = thisEvent.guests
+  }
 
+  endOfPollAlert = (thisEvent) => {
+    const eventGuests = thisEvent.guests
     const winningIdea = this.props.allIdeas.find(idea => { return idea.id === thisEvent.winner })
-    const host = thisEvent.guests.find(guest => { return guest.host === true }).user
+    const host = eventGuests.find(guest => { return guest.host === true }).user
     let month
     switch (thisEvent.month) {
         case 1:
@@ -364,16 +355,16 @@ class EventForm extends Component {
 
     // console.log('winning idea', winningIdea);
     // console.log('host is', host);
-
+    // debugger
     eventGuests.map(guestObj => {
       const customMsg = guestObj.host ? `Your poll ended -- ${winningIdea.title} won!`:`${host.first_name}'s poll ended -- Get ready for ${winningIdea.title} on ${month} ${thisEvent.day} at ${thisEvent.hour}:${thisEvent.minute} ${thisEvent.am ? 'am':'pm'}.`
-      const newNotification = {
-        user_id: guestObj.user_id,
+      const newAlert = {
+        user_id: guestObj.user.id,
         event_id: thisEvent.id,
         seen: false,
         message: customMsg
       }
-      this.submitNotification(newNotification)
+      this.submitNotification(newAlert)
     })
   }
 

@@ -2,8 +2,7 @@ import { ALL_EVENTS } from '../../Actions/types'
 
 
 const initialState = {
-  allEvents: [],
-  currentEvent: {}
+  allEvents: []
 }
 
 export default function(state = initialState, action) {

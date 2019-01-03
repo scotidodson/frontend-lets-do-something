@@ -1,5 +1,21 @@
-.event-form div {
-  width: 100vw;
+.options-holder {
+  /* width: 100vw; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  font-family: futura;
+  color: #54a4a6;
+  font-weight: 800;
+  position: relative;
+  margin-top: 2%;
+  text-align: center;
+  /* overflow: auto; */
+  height: 200px;
+
+}
+.event-form {
+  /* width: 100vw; */
   display: block;
   font-family: futura;
   color: #161846;
@@ -8,7 +24,8 @@
   margin-top: 2%;
   text-align: center;
   overflow: auto;
-  height: 400px;
+  height: 500px;
+  width: 100%
 
 }
 
@@ -22,35 +39,22 @@
   padding: 0;
 }
 
-.toggle img {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  position: absolute;
-  top: 10%;
-  /* vertical-align: middle; */
-}
-
-.event-page {
-  /* width: 100%; */
-  margin-left: 25%;
-  height: 100vh;
+.event-form-page {
+  /* margin-left: 35%; */
+  width: 100%;
   display: block;
-  /* margin-left: auto;
-  margin-right: auto; */
   font-family: futura;
   color: #161846;
-  /* font-size: 3em; */
   font-weight: 800;
-  position: absolute;
+  position: fixed;
   text-align: center;
   padding: 2%;
   overflow: auto;
-  height: 100%;
 }
 
 .event-form input {
-  min-height: 30px;
-  font-size: 12px;
+  min-height: 40px;
+  font-size: 14px;
   text-align: center;
   font-family: futura;
   margin-left: 5px;
@@ -58,15 +62,30 @@
 }
 
 .event-form select {
-  min-height: 30px;
-  font-size: 12px;
+  min-height: 40px;
+  font-size: 14px;
   text-align: center;
   font-family: futura;
 }
 
 .event-form textarea {
-  min-height: 30px;
-  font-size: 12px;
+  min-height: 40px;
+  font-size: 14px;
   text-align: center;
   font-family: futura;
+}
+
+.event-teal-button input[type=submit] {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 16px;
+  color: #161846;
+  border-color:#54a4a6;
+  background-color: #54a4a6;
+  text-align: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin: 5px;
+  width: 200px;
 }

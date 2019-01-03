@@ -15,15 +15,9 @@ class OptionsHolder extends Component {
       case 0:
         return (
           <div>
-            <div>
-              <p> Select up to 3</p>
-            </div>
-            <div >
-              <p> Select up to 3</p>
-            </div>
-            <div>
-              <p> Select up to 3</p>
-            </div>
+              <p> _____________________</p>
+              <p> _____________________</p>
+              <p> _____________________</p>
           </div>
         )
         break;
@@ -34,10 +28,10 @@ class OptionsHolder extends Component {
               <p>{options[0].title}</p>
             </div>
             <div >
-              <p> Select up to 3</p>
+              <p> _____________________</p>
             </div>
             <div>
-              <p> Select up to 3</p>
+              <p> _____________________</p>
             </div>
           </div>
         )
@@ -52,7 +46,7 @@ class OptionsHolder extends Component {
               <p>{options[1].title}</p>
             </div>
             <div>
-              <p> Select up to 3</p>
+              <p> _____________________</p>
             </div>
           </div>
         )

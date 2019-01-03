@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import OptionsHolder from '../OptionsHolder.js'
 import { connect } from 'react-redux';
 import { createEvent, fetchEvents } from '../../../Actions/EventActions.js'
-import './EventForm.js'
+import './EventForm.css'
 
 
 class EventForm extends Component {
@@ -384,7 +384,7 @@ class EventForm extends Component {
           <form onSubmit={this.handleDateSubmit} >
             <h1>WHEN</h1>
             <br/>
-              <h4>Let's do something on:
+              <h4>{"Let's do something on:  "}
                 <select type="month" name="month" onChange={this.handleChange} value={this.state.month}>
                   <option value="1">January</option>
                   <option value="2">February</option>
@@ -427,19 +427,23 @@ class EventForm extends Component {
               <select type="am" name="am" onChange={this.handleChange} value={this.state.am}>
                 <option value="true">am</option>
                 <option value="false">pm</option>
-              </select></h4>
+              </select></h4><br/><br/>
 
-              <input type="submit" value="Submit" />
+              <input className="event-teal-button" type="submit" value="Submit" />
           </form>
           </div>
 
-          <div className="event-form"style={this.state.ideaStage ? {} : { display: 'none' }}>
+          <div className="event-form" style={this.state.ideaStage ? {} : { display: 'none' }}>
               <h1>WHAT</h1>
-              <OptionsHolder selectedOptions={this.state.options} />
+                <div className="options-holder">
+                <OptionsHolder selectedOptions={this.state.options} />
+                </div>
+              <div>
             <form onSubmit={this.handleOptionSubmit} >
                 {this.state.options.length < 3 ? this.renderIdeas():<p>Great - time to invite guests!</p>}
                 <input type="submit" value="Submit" />
             </form>
+          </div>
           </div>
           <div className="event-form" style={this.state.guestStage ? {} : { display: 'none' }}>
           <form onSubmit={this.handleGuestSubmit} >

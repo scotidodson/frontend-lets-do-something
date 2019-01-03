@@ -8,7 +8,7 @@
   font-family: tahoma;
   color: black;
   font-weight: 800;
-  position: relative;
+  position: fixed;
   margin-top: 2%;
   text-align: center;
   overflow: auto;

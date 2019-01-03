@@ -50,8 +50,8 @@ class Login extends Component {
   render() {
     return (
       <div className="login-page">
-      <img src={logo} alt="Let's Do Something" className="welcome-logo" />
-      <img src={login} onClick={this.handleClick} alt="Log In" width="220px" />
+      <img src={logo} alt="Let's Do Something" className="welcome-logo" /><br/>
+      <img src={login} onClick={this.handleClick} alt="Log In" width="220px" /><br/>
         <div className="login-form">
           <form onSubmit={this.handleSubmit} >
             Username:<br/>

@@ -31,7 +31,8 @@ header::after {
   max-height:125px;
   height: auto;
   width: auto;
-  padding: 2% 5% 2% 5%;
+  padding: 2% 7% 5% 0%;
+  flex-shrink: 2;
 }
 
 #account {

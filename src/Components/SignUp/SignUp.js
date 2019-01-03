@@ -83,7 +83,7 @@ class SignUp extends Component {
     return (
       <div className="sign-up-page">
 
-          <img src={logo} alt="Let's Do Something" className="welcome-logo" />
+          <img src={logo} alt="Let's Do Something" className="welcome-logo" /><br/>
           <img src={signup} className="toggle" onClick={this.handleClick} alt="Sign Up" width="220px" height="auto" />
 
 

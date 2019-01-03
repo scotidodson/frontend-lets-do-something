@@ -31,7 +31,8 @@
 }
 
 .login-page {
-  width: 100%;
+  /* width: 100%; */
+  margin-left: 25%;
   height: 100vh;
   display: block;
   /* margin-left: auto;
@@ -40,7 +41,7 @@
   color: black;
   /* font-size: 3em; */
   font-weight: 800;
-  position: fixed;
+  position: absolute;
   text-align: center;
   padding: 2%;
   overflow: auto;

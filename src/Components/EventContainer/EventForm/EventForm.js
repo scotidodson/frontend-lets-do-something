@@ -262,15 +262,15 @@ class EventForm extends Component {
       }, 5000)
   }
 
-  pollReminder = () => {
-    // const newNotification = {
-    //   user_id: guestObj.user_id,
-    //   event_id: thisEvent.id,
-    //   seen: false,
-    //   message: customMsg
-    // }
-    // this.submitNotification(newNotification)
-  }
+  // pollReminder = () => {
+  //   // const newNotification = {
+  //   //   user_id: guestObj.user_id,
+  //   //   event_id: thisEvent.id,
+  //   //   seen: false,
+  //   //   message: customMsg
+  //   // }
+  //   // this.submitNotification(newNotification)
+  // }
 
   endPoll = (thisEvent) => {
     console.log('calculating results');
@@ -291,21 +291,19 @@ class EventForm extends Component {
         let updatedEvent = {...thisEvent}
         updatedEvent.winner = winningIdeaId
         console.log('thisEvent with winner', updatedEvent);
-        this.addWinnerToEvent(updatedEvent)
+        this.endOfPollAlert(updatedEvent)
       } else {
         return null
       }
   }
 
-  addWinnerToEvent = (thisEvent) => {
-    fetch(`http://localhost:4000/api/v1/events/${thisEvent.id}`, {
+  addWinnerToEvent = (updatedEvent) => {
+    fetch(`http://localhost:4000/api/v1/events/${updatedEvent.id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify(thisEvent)
-    }).then(resp => {
-      this.endOfPollAlert(thisEvent)
+      body: JSON.stringify(updatedEvent)
     })
   }
 
@@ -368,6 +366,7 @@ class EventForm extends Component {
       }
       this.submitNotification(newAlert)
     })
+    this.addWinnerToEvent(thisEvent)
   }
 
   renderDayDropdown = () => {

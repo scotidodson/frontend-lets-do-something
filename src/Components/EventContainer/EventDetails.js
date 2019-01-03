@@ -6,6 +6,7 @@ import { fetchCurrentUser } from '../../Actions/UserActions.js'
 import { fetchIdeas } from '../../Actions/IdeaActions.js'
 import { fetchEvents } from '../../Actions/EventActions.js'
 import OptionCard from './OptionCard/OptionCard.js'
+import './EventDetails.css'
 
 
 class EventDetails extends Component {
@@ -101,29 +102,41 @@ class EventDetails extends Component {
         break;
         default:
       }
+      let cost
+      switch (winningIdea.price_range) {
+        case 0:
+          cost = 'FREE'
+          break;
+        case 1:
+          cost = '$'
+          break;
+        case 2:
+          cost = '$$'
+          break;
+        case 3:
+          cost = '$$$'
+          break;
+        default:
+
+      }
 
     return(
-      <div>
-        <div>
-          <h2>{winningIdea.title}</h2>
-          <h3>{month} {thisEvent.day} at {thisEvent.hour}:{thisEvent.minute} {thisEvent.am ? "am":"pm"}</h3>
-          <div>
-            <h4>Details</h4>
-            <p>{winningIdea.price_range}</p>
+      <div className="event-container">
+        <div >
+          <h3>{winningIdea.title}
+          <br/>
+          {month} {thisEvent.day} at {thisEvent.hour}:{thisEvent.minute} {thisEvent.am ? "am":"pm"}</h3>
+            <p>{cost}</p>
             <p>{winningIdea.neighborhood}</p>
             <p>{winningIdea.street}</p>
+            <br/>
             <p>{winningIdea.city}, {winningIdea.state} {winningIdea.zip}</p>
-            <p>{winningIdea.duration}</p>
             <p>{winningIdea.details}</p>
-          </div>
-          <div>
+            <br/>
             <h4>Guests</h4>
             {this.renderGuests(thisEvent)}
           </div>
-          <div style={host.id === this.props.userId ? {} : { display: 'none' }}>
-            <h4>put a cancel button here</h4>
-          </div>
-        </div>
+
       </div>
     )
   }
@@ -323,7 +336,7 @@ class EventDetails extends Component {
 
 
     return (
-      <div>
+      <div className="event-details-page">
         {this.renderEvent()}
       </div>
     );

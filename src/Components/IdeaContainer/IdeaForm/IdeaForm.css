@@ -1,0 +1,77 @@
+.idea div {
+  /* width: 100vw; */
+  display: block;
+  font-family: futura;
+  color: black;
+  font-weight: 800;
+  position: fixed;
+  margin-top: 2%;
+  text-align: center;
+  overflow: auto;
+  height: 400px;
+
+}
+
+.idea-page form {
+  padding-bottom: 2%;
+  padding-top: 2%;
+  padding-left: 50%;
+  overflow: auto;
+}
+
+.idea-page h1,h2,h3,h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.toggle img {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  position: absolute;
+  top: 10%;
+  /* vertical-align: middle; */
+}
+
+.idea-page {
+  /* width: 100%; */
+  margin-left: 23%;
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  /* margin-left: auto;
+  margin-right: auto; */
+  font-family: futura;
+  color: black;
+  /* font-size: 3em; */
+  font-weight: 800;
+  position: fixed;
+  text-align: center;
+  padding: 2%;
+  overflow: auto;
+  align-content: flex-start;
+  align-items: center;
+  /* height: 100%; */
+}
+
+.idea input {
+  min-height: 30px;
+  font-size: 12px;
+  text-align: center;
+  font-family: futura;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.idea select {
+  min-height: 30px;
+  font-size: 12px;
+  text-align: center;
+  font-family: futura;
+}
+
+.idea textarea {
+  min-height: 30px;
+  font-size: 12px;
+  text-align: center;
+  font-family: futura;
+}

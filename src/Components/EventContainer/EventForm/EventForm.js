@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import OptionsHolder from '../OptionsHolder.js'
 import { connect } from 'react-redux';
 import { createEvent, fetchEvents } from '../../../Actions/EventActions.js'
+import './EventForm.js'
 
 
 class EventForm extends Component {
@@ -378,73 +379,76 @@ class EventForm extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleDateSubmit} style={this.state.dateStage ? {} : { display: 'none' }}>
-          <h1>WHEN</h1>
-          <br/>
-            <h4>Let's do something on:
-              <select type="month" name="month" onChange={this.handleChange} value={this.state.month}>
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
+      <div className="event-form-page">
+          <div className="event-form" style={this.state.dateStage ? {} : { display: 'none' }}>
+          <form onSubmit={this.handleDateSubmit} >
+            <h1>WHEN</h1>
+            <br/>
+              <h4>Let's do something on:
+                <select type="month" name="month" onChange={this.handleChange} value={this.state.month}>
+                  <option value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <option value="5">May</option>
+                  <option value="6">June</option>
+                  <option value="7">July</option>
+                  <option value="8">August</option>
+                  <option value="9">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+
+                <select type="day" name="day" onChange={this.handleChange} value={this.state.day}>
+                  {this.renderDayDropdown()}
+                </select>
+                {' at '}
+              <select type="hour" name="hour" onChange={this.handleChange} value={this.state.hour}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
               </select>
 
-              <select type="day" name="day" onChange={this.handleChange} value={this.state.day}>
-                {this.renderDayDropdown()}
+              <select type="minute" name="minute" onChange={this.handleChange} value={this.state.minute}>
+                <option value="0">00</option>
+                <option value="30">30</option>
               </select>
-              {' at '}
-            <select type="hour" name="hour" onChange={this.handleChange} value={this.state.hour}>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-            </select>
 
-            <select type="minute" name="minute" onChange={this.handleChange} value={this.state.minute}>
-              <option value="0">00</option>
-              <option value="30">30</option>
-            </select>
+              <select type="am" name="am" onChange={this.handleChange} value={this.state.am}>
+                <option value="true">am</option>
+                <option value="false">pm</option>
+              </select></h4>
 
-            <select type="am" name="am" onChange={this.handleChange} value={this.state.am}>
-              <option value="true">am</option>
-              <option value="false">pm</option>
-            </select></h4>
-
-            <input type="submit" value="Submit" />
-        </form>
-
-        <div style={this.state.ideaStage ? {} : { display: 'none' }}>
-            <h1>WHAT</h1>
-            <OptionsHolder selectedOptions={this.state.options} />
-          <form onSubmit={this.handleOptionSubmit} >
-              {this.state.options.length < 3 ? this.renderIdeas():<p>Great - time to invite guests!</p>}
               <input type="submit" value="Submit" />
           </form>
-        </div>
+          </div>
 
-        <form onSubmit={this.handleGuestSubmit} style={this.state.guestStage ? {} : { display: 'none' }}>
-          <h1>WHO</h1>
-          {this.state.guestStage ? this.renderFriends():null}
-          <input type="submit" value="Submit" />
+          <div className="event-form"style={this.state.ideaStage ? {} : { display: 'none' }}>
+              <h1>WHAT</h1>
+              <OptionsHolder selectedOptions={this.state.options} />
+            <form onSubmit={this.handleOptionSubmit} >
+                {this.state.options.length < 3 ? this.renderIdeas():<p>Great - time to invite guests!</p>}
+                <input type="submit" value="Submit" />
+            </form>
+          </div>
+          <div className="event-form" style={this.state.guestStage ? {} : { display: 'none' }}>
+          <form onSubmit={this.handleGuestSubmit} >
+            <h1>WHO</h1>
+            {this.state.guestStage ? this.renderFriends():null}
+            <input type="submit" value="Submit" />
 
-        </form>
+          </form>
+          </div>
       </div>
     );
   }

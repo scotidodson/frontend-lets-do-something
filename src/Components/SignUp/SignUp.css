@@ -1,7 +1,7 @@
 .sign-up-form div {
   width: 100%;
   display: block;
-  font-family: tahoma;
+  font-family: futura;
   color: black;
   font-weight: 800;
   position: relative;
@@ -36,7 +36,7 @@
   display: block;
   /* margin-left: auto;
   margin-right: auto; */
-  font-family: tahoma;
+  font-family: futura;
   color: black;
   /* font-size: 3em; */
   font-weight: 800;
@@ -51,7 +51,7 @@
   min-height: 30px;
   font-size: 12px;
   text-align: center;
-  font-family: tahoma;
+  font-family: futura;
   margin-left: 5px;
   margin-right: 5px;
 }
@@ -60,12 +60,12 @@
   min-height: 30px;
   font-size: 12px;
   text-align: center;
-  font-family: tahoma;
+  font-family: futura;
 }
 
 .sign-up-form textarea {
   min-height: 30px;
   font-size: 12px;
   text-align: center;
-  font-family: tahoma;
+  font-family: futura;
 }

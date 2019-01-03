@@ -25,3 +25,30 @@
   margin: 5px;
   text-align: center;
 }
+
+.contact-page {
+  font-family: futura;
+  color: #161846;
+  font-weight: 800;
+  position: absolute;
+  text-align: center;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.contact-page h3 {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 2em;
+  color: #161846;
+  text-align: center;
+  align-items: center;
+  border-top-style: solid;
+  border-top-width: thick;
+}

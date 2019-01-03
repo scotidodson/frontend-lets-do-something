@@ -5,7 +5,7 @@
 .sign-up-form div {
   width: 100vw;
   display: block;
-  font-family: tahoma;
+  font-family: futura;
   color: black;
   font-weight: 800;
   position: fixed;
@@ -33,27 +33,32 @@
 }
 
 .account-page {
-  width: 100%;
-  height: 100vh;
-  display: block;
+  /* display: block; */
   /* margin-left: auto;
   margin-right: auto; */
-  font-family: tahoma;
+  font-family: futura;
   color: black;
   /* font-size: 3em; */
   font-weight: 800;
   position: absolute;
   text-align: center;
-  padding: 2%;
+  /* padding: 2%; */
+  /* padding-left: 43%; */
   overflow: auto;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: auto;
 }
 
 .sign-up-form input {
   min-height: 30px;
   font-size: 12px;
   text-align: center;
-  font-family: tahoma;
+  font-family: futura;
   margin-left: 5px;
   margin-right: 5px;
 }
@@ -62,12 +67,12 @@
   min-height: 30px;
   font-size: 12px;
   text-align: center;
-  font-family: tahoma;
+  font-family: futura;
 }
 
 .sign-up-form textarea {
   min-height: 30px;
   font-size: 12px;
   text-align: center;
-  font-family: tahoma;
+  font-family: futura;
 }

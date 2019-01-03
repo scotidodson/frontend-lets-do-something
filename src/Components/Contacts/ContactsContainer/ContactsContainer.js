@@ -53,16 +53,23 @@ class ContactsContainer extends Component {
 
   render() {
     return(
-      <div>
-        <h3>Your Contacts</h3>
-        <div className="friend-card-container" >
-          {this.renderFriendCards()}
+      <div className="contact-page">
+        <div>
+          <h3>Your Contacts</h3>
         </div>
-
-        <h3>Find Friends</h3>
-        <div className="contact-card-container">
-          {this.state.showForm ? <ContactForm /> : null }
-          {this.renderContactCards()}
+        <div>
+          <div className="friend-card-container" >
+            {this.renderFriendCards()}
+          </div>
+        </div>
+        <div>
+          <h3>Find Friends</h3>
+        </div>
+        <div>
+          <div className="contact-card-container">
+            {this.state.showForm ? <ContactForm /> : null }
+            {this.renderContactCards()}
+          </div>
         </div>
 
       </div>

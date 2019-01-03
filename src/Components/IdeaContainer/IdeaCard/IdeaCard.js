@@ -5,6 +5,7 @@ import '../IdeaContainer.css'
 import { connect } from 'react-redux';
 import { saveIdea, removeIdea } from '../../../Actions/IdeaActions.js'
 import { updateUser } from '../../../Actions/UserActions.js'
+import './IdeaCard.css'
 
 // import { createBrowserHistory } from 'history';
 // import IdeaDetails from '../IdeaDetails/IdeaDetails.js'

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { saveIdea, fetchIdeas, removeIdea, fetchUserIdeas } from '../../../Actions/IdeaActions.js'
 import { updateUser } from '../../../Actions/UserActions.js'
+import './IdeaDetails.css'
 
 
 class IdeaDetails extends Component {
@@ -108,27 +109,34 @@ class IdeaDetails extends Component {
 
 
     return (
-      <div>
-        <h4>-- {idea.title} --</h4>
-        <p>Location: {idea.street} {idea.city} {idea.state} {idea.zip}</p>
-        <p>Neighborhood: {idea.neighborhood}</p>
-        <p>Category: {idea.category}</p>
-        <p>Price Range: {this.checkPrice(idea)}</p>
-        <p>Good For:
-          {idea.winter ? " Winter" : null}
-          {idea.spring ? " Spring" : null}
-          {idea.summer ? " Summer" : null}
-          {idea.fall ? " Fall" : null}</p>
-        <p>Duration: {idea.duration}</p>
-        <p>Category: {idea.category}</p>
-        { idea.expiration ? <p>Have to go by: {idea.expiration.date}</p> : null }
-        { idea.website.length > 0  ? <p>Website: {idea.website}</p> : null }
-        <p>Details: {idea.details}</p>
+      <div className="idea-details-page">
+        <div className="idea-container">
+          <div>
+            <h3> {idea.title} </h3>
+          </div>
+          <div>
+            <p>Location: {idea.street} {idea.city} {idea.state} {idea.zip}</p>
+            <p>Neighborhood: {idea.neighborhood}</p>
+            <p>Category: {idea.category}</p>
+            <p>Price Range: {this.checkPrice(idea)}</p>
+            <p>Good For:
+              {idea.winter ? " Winter" : null}
+              {idea.spring ? " Spring" : null}
+              {idea.summer ? " Summer" : null}
+              {idea.fall ? " Fall" : null}</p>
+            <p>Duration: {idea.duration}</p>
+            <p>Category: {idea.category}</p>
+            { idea.expiration ? <p>Have to go by: {idea.expiration.date}</p> : null }
+            { idea.website.length > 0  ? <p>Website: {idea.website}</p> : null }
+            <p>Details: {idea.details}</p>
 
-        <br/><br/>
-        <button onClick={this.handleBack}>Back</button>
-        <button onClick={this.alreadySaved() ? this.handleRemoveIdea:this.handleSaveIdea}>{this.alreadySaved() ? "Remove Idea":"Save Idea"}</button>
-
+            <br/><br/>
+            <div className="teal-button">
+              <button className="teal-button" onClick={this.handleBack}>Back</button>
+              <button className="teal-button" onClick={this.alreadySaved() ? this.handleRemoveIdea:this.handleSaveIdea}>{this.alreadySaved() ? "Remove Idea":"Save Idea"}</button>
+            </div>
+        </div>
+        </div>
       </div>
     );
   }

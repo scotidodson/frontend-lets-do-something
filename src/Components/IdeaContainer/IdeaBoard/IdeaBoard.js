@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import IdeaCard from '../IdeaCard/IdeaCard.js'
 
+
 import { connect } from 'react-redux';
 
 

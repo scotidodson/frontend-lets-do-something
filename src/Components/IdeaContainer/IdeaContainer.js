@@ -27,13 +27,13 @@ class IdeaContainer extends Component {
         <br/>
       </div>
 
-        <div className="brainstorm-buttons">
-          <Link to="/new-idea"><button>Add New Idea</button></Link>
-          <Link to="/saved-ideas"><button>Saved Ideas</button></Link>
+      <div className="brainstorm-buttons">
+        <Link to="/new-idea"><button>Add New Idea</button></Link>
+        <Link to="/saved-ideas"><button>Saved Ideas</button></Link>
+      </div>
+        <div className="idea-container">
+          {this.renderIdeaCards()}
         </div>
-          <div className="idea-container">
-            {this.renderIdeaCards()}
-          </div>
       </div>
 
     );

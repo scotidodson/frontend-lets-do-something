@@ -1,0 +1,118 @@
+.idea-details-page div {
+/* background: red; */
+margin-right: 100px;
+}
+
+.idea-details-page {
+ /* background-color: #54a4a6; */
+ width: auto;
+ height: 100%;
+ position: fixed;
+ overflow: auto;
+ padding: 2% 7% 2% 7%;
+ font-family: futura;
+ color: #54a4a6;
+ font-size: 16px;
+ display: flex;
+ flex-direction: column;
+ /* justify-content: center; */
+ align-content: flex-start;
+ align-items: center;
+}
+
+.idea-details-page a {
+ text-decoration: none;
+ color: #54a4a6;
+}
+
+.idea-details-page h3 {
+ text-decoration: none;
+ text-transform: uppercase;
+ font-weight: 800;
+ font-size: 2em;
+ color: #161846;
+ text-align: center;
+ align-items: center;
+ border-top-style: solid;
+ border-top-width: thick;
+}
+.idea-details-buttons div {
+ text-decoration: none;
+ text-transform: uppercase;
+ font-weight: 800;
+ font-size: 15px;
+ color: #161846;
+ text-align: center;
+ margin: 5px;
+ position: relative;
+}
+
+.idea-details-buttons button {
+ text-decoration: none;
+ text-transform: uppercase;
+ font-weight: 800;
+ font-size: 16px;
+ color: #161846;
+ border-color:#54a4a6;
+ background-color: #54a4a6;
+ text-align: center;
+ padding-top: 5%;
+ padding-bottom: 5%;
+ margin: 5px;
+ width: 200px;
+}
+
+.idea-details-card button {
+ text-decoration: none;
+ text-transform: uppercase;
+ font-weight: 800;
+ font-size: 12px;
+ color: #161846;
+ text-align: center;
+ background: #dd7a00;
+ border-color:#dd7a00;
+ margin: 2%;
+ border-radius: 20%
+}
+
+.idea-container {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ align-items: stretch;
+ /* overflow: auto; */
+ padding-left: 5%;
+ width: 80%;
+}
+
+.idea-card {
+ position: relative;
+ width: 180px;
+ height: 100px;
+ font-size: 15px;
+ border-color: #161846;
+ background-color: #161846;
+ border-radius: 5%;
+ text-align: center;
+ margin-top: 2%;
+ margin-right: 2px;
+ margin-left: 2px;
+ padding: 1%;
+
+ /* margin-right: 10px; */
+}
+
+.teal-button button {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 16px;
+  color: #161846;
+  border-color:#54a4a6;
+  background-color: #54a4a6;
+  text-align: center;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  margin: 5px;
+  width: 200px;
+}

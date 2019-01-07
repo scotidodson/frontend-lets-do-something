@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import store from '../store.js'
-import './App.css';
-
-import Splash from './Splash/Splash.js'
-import Login from './Login/Login.js'
-import SignUp from './SignUp/SignUp.js'
-import PageContainer from './PageContainer/PageContainer.js'
+import Splash from './Splash.js'
+import Login from './Login.js'
+import SignUp from './SignUp.js'
+import PageContainer from './PageContainer.js'
 
 class App extends Component {
   render() {

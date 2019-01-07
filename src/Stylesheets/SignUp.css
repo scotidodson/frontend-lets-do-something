@@ -1,0 +1,71 @@
+.sign-up-form div {
+  width: 100%;
+  display: block;
+  font-family: futura;
+  color: #161846;
+  font-weight: 800;
+  position: relative;
+  margin-top: 2%;
+  text-align: center;
+  overflow: auto;
+  height: 400px;
+  margin-bottom: 2%;
+
+}
+
+
+.sign-up-page form {
+  padding-bottom: 2%;
+  padding-top: 2%;
+}
+
+.sign-up-page h1,h2,h3,h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.toggle img {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.sign-up-page {
+  /* width: 100%; */
+  margin-left: 20%;
+  height: 100vh;
+  display: block;
+  /* margin-left: auto;
+  margin-right: auto; */
+  font-family: futura;
+  color: #161846;
+  /* font-size: 3em; */
+  font-weight: 800;
+  position: absolute;
+  text-align: center;
+  padding: 2%;
+  /* overflow: auto; */
+  height: 100%;
+}
+
+.sign-up-form input {
+  min-height: 30px;
+  font-size: 12px;
+  text-align: center;
+  font-family: futura;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.sign-up-form select {
+  min-height: 30px;
+  font-size: 12px;
+  text-align: center;
+  font-family: futura;
+}
+
+.sign-up-form textarea {
+  min-height: 30px;
+  font-size: 12px;
+  text-align: center;
+  font-family: futura;
+}

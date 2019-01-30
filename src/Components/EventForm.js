@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom'
 import OptionsHolder from './OptionsHolder.js'
 import { connect } from 'react-redux';
 import { createEvent, fetchEvents } from '../Actions/EventActions.js'
@@ -235,8 +234,6 @@ class EventForm extends Component {
       },
       body: JSON.stringify(newGuest)
     })
-    // this.startPoll()
-    console.log('poll started');
     this.props.fetchEvents()
   }
 
@@ -251,117 +248,8 @@ class EventForm extends Component {
   }
 
   startPoll = () => {
-    console.log('poll started');
-    // setTimeout(this.pollReminder(), 300000)
     const eventId = this.state.event_id
   }
-
-  // pollReminder = () => {
-  //   // const newNotification = {
-  //   //   user_id: guestObj.user_id,
-  //   //   event_id: thisEvent.id,
-  //   //   seen: false,
-  //   //   message: customMsg
-  //   // }
-  //   // this.submitNotification(newNotification)
-  // }
-
-  endPoll = (thisEvent) => {
-    // console.log('calculating results');
-    //   console.log('thisEvent', thisEvent);
-    //   if (!thisEvent.winner) {
-    //     let votes = []
-    //     const options = thisEvent.options
-    //     const count = options.length
-    //     const results = options.map(option => {
-    //       votes.push(option.votes)
-    //       return { votes: option.votes,
-    //                idea: option.idea_id }
-    //     })
-    //     const sortedVotes = votes.sort().reverse()
-    //     const winningVoteCount = sortedVotes[0]
-    //     const winningResult = results.find(result => { return result.votes === winningVoteCount })
-    //     const winningIdeaId = winningResult.idea
-    //     let updatedEvent = {...thisEvent}
-    //     updatedEvent.winner = winningIdeaId
-    //     console.log('thisEvent with winner', updatedEvent);
-    //     this.endOfPollAlert(updatedEvent)
-    //   } else {
-    //     return null
-    //   }
-  }
-
-  // addWinnerToEvent = (updatedEvent) => {
-  //   fetch(`http://localhost:4000/api/v1/events/${updatedEvent.id}`, {
-  //     method: 'PATCH',
-  //     headers: {
-  //       'content-type': 'application/json'
-  //     },
-  //     body: JSON.stringify(updatedEvent)
-  //   })
-  // }
-  //
-  // endOfPollAlert = (thisEvent) => {
-  //   const eventGuests = thisEvent.guests
-  //   const winningIdea = this.props.allIdeas.find(idea => { return idea.id === thisEvent.winner })
-  //   const host = eventGuests.find(guest => { return guest.host === true }).user
-  //   let month
-  //   switch (thisEvent.month) {
-  //       case 1:
-  //         month = 'Jan.'
-  //       break;
-  //       case 2:
-  //         month = 'Feb.'
-  //       break;
-  //       case 3:
-  //         month = 'Mar.'
-  //       break;
-  //       case 4:
-  //         month = 'Apr.'
-  //       break;
-  //       case 5:
-  //         month = 'May'
-  //       break;
-  //       case 6:
-  //         month = 'June'
-  //       break;
-  //       case 7:
-  //         month = 'July'
-  //       break;
-  //       case 8:
-  //         month = 'Aug.'
-  //       break;
-  //       case 9:
-  //         month = 'Sept.'
-  //       break;
-  //       case 10:
-  //         month = 'Oct.'
-  //       break;
-  //       case 11:
-  //         month = 'Nov.'
-  //       break;
-  //       case 12:
-  //         month = 'Dec.'
-  //       break;
-  //       default:
-  //
-  //     }
-  //
-  //   // console.log('winning idea', winningIdea);
-  //   // console.log('host is', host);
-  //   // debugger
-  //   eventGuests.map(guestObj => {
-  //     const customMsg = guestObj.host ? `Your poll ended -- ${winningIdea.title} won!`:`${host.first_name}'s poll ended -- Get ready for ${winningIdea.title} on ${month} ${thisEvent.day} at ${thisEvent.hour}:${thisEvent.minute} ${thisEvent.am ? 'am':'pm'}.`
-  //     const newAlert = {
-  //       user_id: guestObj.user.id,
-  //       event_id: thisEvent.id,
-  //       seen: false,
-  //       message: customMsg
-  //     }
-  //     this.submitNotification(newAlert)
-  //   })
-  //   this.addWinnerToEvent(thisEvent)
-  // }
 
   renderDayDropdown = () => {
     const arr = [...Array(32).keys()].slice(3,32)

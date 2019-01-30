@@ -5,19 +5,19 @@ import { fetchUsers, fetchCurrentUser } from '../Actions/UserActions.js'
 import { fetchIdeas, fetchSavedIdeas } from '../Actions/IdeaActions.js'
 import { fetchEvents } from '../Actions/EventActions.js'
 import { Route, Switch } from 'react-router-dom'
-import Navigation from './Navigation.js'
 import Account from './Account.js'
 import ContactsContainer from './ContactsContainer.js'
 import ContactForm from './ContactForm.js'
-import IdeaContainer from './IdeaContainer.js'
 import EventContainer from './EventContainer.js'
 import EventDetails from './EventDetails.js'
-import IdeaForm from './IdeaForm.js'
-import IdeaBoard from './IdeaBoard.js'
 import EventForm from './EventForm.js'
-import IdeaDetails from './IdeaDetails.js'
 import Home from './Home.js'
+import IdeaBoard from './IdeaBoard.js'
+import IdeaContainer from './IdeaContainer.js'
+import IdeaDetails from './IdeaDetails.js'
+import IdeaForm from './IdeaForm.js'
 import Menu from './Menu.js'
+import Navigation from './Navigation.js'
 import NotificationContainer from './NotificationContainer.js'
 
 import '../Stylesheets/PageContainer.css';
@@ -35,7 +35,7 @@ class PageContainer extends Component {
         this.props.history.push('/login');
       } else {
         this.props.fetchCurrentUser(this.props.userId)
-        setInterval(this.updateUserData, 2000)
+        setInterval(this.updateUserData, 5000)
       }
   }
 

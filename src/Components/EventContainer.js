@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom'
 import EventCard from './EventCard.js'
 import EventDetails from './EventDetails.js'
 import { connect } from 'react-redux';
 import { fetchEvents } from '../Actions/EventActions.js'
 import '../Stylesheets/IdeaContainer.css'
-// import './EventContainer.css'
 
 
 

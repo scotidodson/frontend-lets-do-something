@@ -106,7 +106,6 @@ export const addFriend = (userId, friendId) => dispatch => {
 export const removeFriend = (friendship_one, friendship_two) => dispatch => {
   console.log('f 1 id', friendship_one);
   console.log('f 2 id', friendship_two);
-    // const userId = friendship_one.user_id
     fetch(`http://localhost:4000/api/v1/friendships/${friendship_one}`, {
       method: 'DELETE'
     })

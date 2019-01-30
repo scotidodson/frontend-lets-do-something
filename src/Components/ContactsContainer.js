@@ -3,8 +3,8 @@ import  PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchUsers } from '../Actions/UserActions.js'
-import ContactForm from './ContactForm.js'
 import ContactCard from './ContactCard.js'
+import ContactForm from './ContactForm.js'
 import '../Stylesheets/ContactsContainer.css'
 
 class ContactsContainer extends Component {

@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-// import { Route, Link } from 'react-router-dom'
-// import { createBrowserHistory } from 'history';
-// import EventDetails from './EventDetails.js'
-
-
 
 class EventCard extends Component {
   render() {
@@ -17,6 +12,3 @@ class EventCard extends Component {
 }
 
 export default EventCard;
-
-//<Link to={`/ideas/${this.props.idea.id}`}>
-// </Link>

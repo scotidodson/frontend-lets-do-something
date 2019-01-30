@@ -6,8 +6,6 @@ import account from '../Images/account.png'
 import avatars from '../Images/avatars/avatars.js'
 import '../Stylesheets/Account.css'
 
-// import  PropTypes from 'prop-types'
-
 class AccountEdit extends Component {
   state = {
     id: this.props.currentUser.id,

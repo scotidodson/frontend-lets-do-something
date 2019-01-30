@@ -12,13 +12,9 @@ class EventContainer extends Component {
 
   renderEvents = () => {
     const events = this.props.currentUser.events
-    console.log(events);
-    // return this.props.allEvents.map(event => {
-    //   return(<EventCard key={event.id} event={event} />)
-    // })
+
     if (events && events.length > 0) {
       return events.map(thisEvent => {
-        // console.log(thisEvent);
 
         let month
         switch (thisEvent.month) {
@@ -64,7 +60,6 @@ class EventContainer extends Component {
         let thisIdea
         if (thisEvent.winner) {
           thisIdea = this.props.allIdeas.find(idea => {return idea.id === thisEvent.winner})
-
         }
 
         return (
@@ -73,8 +68,7 @@ class EventContainer extends Component {
 
             <h4 data-id={thisEvent.id}>{month} {thisEvent.day}</h4>
             <h4 data-id={thisEvent.id}>{thisEvent.hour}:{thisEvent.minute} {thisEvent.am ? "am":"pm"}</h4>
-          </div>
-        )
+          </div>)
       })
     } else {
       return <h4>You don't have any events yet!</h4>
@@ -94,8 +88,6 @@ class EventContainer extends Component {
         <br/>
         <br/>
       </div>
-
-
           <div className="idea-container">
             {this.renderEvents()}
           </div>
@@ -115,8 +107,3 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(EventContainer);
-
-// <div className="brainstorm-buttons">
-  // <Link to="/new-idea"><button>Add New Idea</button></Link>
-  // <Link to="/saved-ideas"><button>Saved Ideas</button></Link>
-// </div>

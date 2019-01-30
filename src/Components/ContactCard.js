@@ -5,11 +5,6 @@ import { addFriend, removeFriend, fetchUsers } from '../Actions/UserActions.js'
 import { updateUser } from '../Actions/UserActions.js'
 import avatars from '../Images/avatars/avatars.js'
 
-// import { Route, Link } from 'react-router-dom'
-// import { createBrowserHistory } from 'history';
-
-
-
 class ContactCard extends Component {
   constructor(props) {
     super()
@@ -30,18 +25,11 @@ class ContactCard extends Component {
     if (e.target.name === "removeFriend") {
       const friendship_one = user.friendships.filter(friendshipObj => {
         return friendshipObj.friend.id === friend.id })[0]
-
       const friendObj = allUserData.filter(user=>{ return user.id === friendId })[0]
-
       const friendship_two = friendObj.friendships.filter(friendshipObj => { return friendshipObj.friend.id === user.id })[0]
-
-      // console.log(user.friendships);
-      // console.log(friendObj.friendships);
-      // console.log(friendship_one, friendship_two);
 
       this.props.removeFriend(friendship_one.id, friendship_two.id)
       this.removeFriend(friendship_one.id)
-
     } else {
       this.addFriend(userId, friendId, friend)
     }
@@ -52,15 +40,12 @@ class ContactCard extends Component {
     const updatedFriendships = updatedUserObj.friendships.filter(friendship=>{
       return friendship.id !== friendshipId
     })
-
     updatedUserObj.friendships = [ ...updatedFriendships ]
     this.props.updateUser(updatedUserObj)
-
   }
 
   addFriend = (userId, friendId, friend) => {
     let updatedUserObj = {...this.props.currentUser}
-
     updatedUserObj.friendships = [
       ...updatedUserObj.friendships,
       {
@@ -80,8 +65,6 @@ class ContactCard extends Component {
       })
     })
 
-
-
     fetch('http://localhost:4000/api/v1/friendships', {
       method: 'POST',
       headers: {
@@ -92,8 +75,6 @@ class ContactCard extends Component {
         friend_id: userId
       })
     })
-    // this.props.history.push('/contacts');
-
   }
 
 
@@ -101,11 +82,9 @@ class ContactCard extends Component {
 
     return (
         <div data-id={this.props.user.id} className="contact-card">
-
           <img src={avatars[this.props.user.img_url]} value={this.state.img_url} alt="avatar" height="150px" /><br/>
-
           <h4>{this.props.user.first_name} {this.props.user.last_name} </h4>
-
+          
           {this.props.alreadyFriended ? <button data-id={this.props.user.id} name="removeFriend"
           onClick={this.handleFriendship}> Remove Friend </button> : <button data-id={this.props.user.id} name="addFriend"
           onClick={this.handleFriendship}> Add Friend </button>}

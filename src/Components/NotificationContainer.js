@@ -6,9 +6,6 @@ import { fetchCurrentUser } from '../Actions/UserActions.js'
 import { fetchEvents } from '../Actions/EventActions.js'
 import { fetchIdeas } from '../Actions/IdeaActions.js'
 import '../Stylesheets/NotificationContainer.css'
-// import { BrowserRouter, Route, Link, Switch} from 'react-router-dom'
-
-
 
 class NotificationContainer extends Component {
   renderNotifications = () => {
@@ -16,7 +13,6 @@ class NotificationContainer extends Component {
       const notifications = alerts.sort(function (a, b) {
         return b.id - a.id;
       })
-    // this.updateUserNotifications()
     if (notifications && notifications.length > 0) {
       return notifications.map(alert => {
         this.updateNotification(alert)

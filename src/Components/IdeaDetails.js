@@ -8,10 +8,6 @@ import '../Stylesheets/IdeaDetails.css'
 
 
 class IdeaDetails extends Component {
-  //
-  // componentWillMount() {
-  //   this.props.fetchUserIdeas()
-  // }
 
   handleSaveIdea = () => {
     console.log('saving this one');
@@ -45,7 +41,6 @@ class IdeaDetails extends Component {
       })
 
     this.props.history.push('/saved-ideas');
-    // window.location.href = "http://localhost:3000/brainstorm"
   }
 
   handleRemoveIdea = () => {
@@ -101,12 +96,10 @@ class IdeaDetails extends Component {
     this.props.history.goBack()
   }
 
-
   render() {
     const idea = this.props.allIdeas.find(idea => {
       return idea.id === Number(this.props.match.params.ideaId)
     })
-
 
     return (
       <div className="idea-details-page">

@@ -3,12 +3,9 @@ import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createUser, assignUser } from '../Actions/UserActions.js'
 import avatars from '../Images/avatars/avatars.js'
-import signup from '../Images/sign_up.png'
 import logo from '../Images/lds_logo.png'
+import signup from '../Images/sign_up.png'
 import '../Stylesheets/SignUp.css'
-// import IdeaCard from '../IdeaCard/IdeaCard.js'
-// import Home from './Home/Home.js'
-
 
 class SignUp extends Component {
   state = {
@@ -141,7 +138,3 @@ SignUp.propTypes = {
 }
 
 export default connect(null, { createUser, assignUser })(SignUp);
-
-
-// expiration: null,
-// expiration_date: null,

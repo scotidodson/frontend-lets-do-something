@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
-import IdeaCard from './IdeaCard.js'
-
-
 import { connect } from 'react-redux';
-
+import IdeaCard from './IdeaCard.js'
 
 class IdeaBoard extends Component {
 

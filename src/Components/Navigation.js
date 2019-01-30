@@ -3,11 +3,11 @@ import  PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { updateUser, fetchCurrentUser } from '../Actions/UserActions.js'
-import logo from '../Images/lds_logo.png'
-import notification from '../Images/notification.png'
-import newNotification from '../Images/new_notification.png'
 import account from '../Images/account.png'
+import logo from '../Images/lds_logo.png'
 import menu from '../Images/menu.png'
+import newNotification from '../Images/new_notification.png'
+import notification from '../Images/notification.png'
 import '../Stylesheets/Navigation.scss';
 
 
@@ -36,7 +36,6 @@ class Navigation extends Component {
     console.log('fetching users again');
     console.log(this.props.userId);
     this.props.fetchCurrentUser(this.props.userId)
-    // this.props.fetchCurrentUser(this.props.userId)
   }
 
   render() {

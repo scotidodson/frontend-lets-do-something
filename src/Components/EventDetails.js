@@ -16,7 +16,6 @@ class EventDetails extends Component {
   }
 
   renderEvent = () => {
-    // debugger
     const thisEvent = this.props.allEvents.find(event => {
       return event.id === Number(this.props.match.params.eventId)
     })
@@ -46,7 +45,6 @@ class EventDetails extends Component {
 
         } else {
           if (thisEvent.winner) {
-            // return this.renderRsvpChangePage(thisEvent)
             return this.renderWinner(thisEvent)
           } else {
             return this.renderVotePage(thisEvent)
@@ -153,9 +151,6 @@ class EventDetails extends Component {
   }
 
   renderActivePoll = (thisEvent) => {
-    // current results poll happening
-    // include cancel button for host
-
     const eventGuests = thisEvent.guests
     console.log(eventGuests);
     console.log(thisEvent);
@@ -229,7 +224,6 @@ class EventDetails extends Component {
   endPoll = (e) => {
     const eventId = Number(e.target.dataset.eventid)
     const thisEvent = this.props.allEvents.find(e => { return e.id === eventId })
-    // debugger
     this.calculateResults(thisEvent)
   }
 
@@ -315,9 +309,6 @@ class EventDetails extends Component {
 
       }
 
-    // console.log('winning idea', winningIdea);
-    // console.log('host is', host);
-    // debugger
     eventGuests.map(guestObj => {
       const customMsg = guestObj.host ? `Your poll ended -- ${winningIdea.title} won!`:`${host.first_name}'s poll ended -- Get ready for ${winningIdea.title} on ${month} ${thisEvent.day} at ${thisEvent.hour}:${thisEvent.minute} ${thisEvent.am ? 'am':'pm'}.`
       const newAlert = {

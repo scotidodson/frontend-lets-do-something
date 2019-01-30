@@ -6,7 +6,6 @@ import { fetchIdeas } from '../Actions/IdeaActions.js'
 import { fetchEvents } from '../Actions/EventActions.js'
 import login from '../Images/log_in.png'
 import logo from '../Images/lds_logo.png'
-
 import '../Stylesheets/Login.css'
 
 
@@ -18,7 +17,6 @@ class Login extends Component {
 
   componentWillMount() {
     this.props.fetchUsers()
-    // window.clearInterval(NOTIFICATION_CHECKER)
   }
 
   handleSubmit = (e) => {

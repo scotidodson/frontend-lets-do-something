@@ -6,11 +6,6 @@ import { connect } from 'react-redux';
 import { saveIdea, removeIdea } from '../Actions/IdeaActions.js'
 import { updateUser } from '../Actions/UserActions.js'
 
-// import { createBrowserHistory } from 'history';
-// import IdeaDetails from '../IdeaDetails/IdeaDetails.js'
-
-
-
 class OptionCard extends Component {
 
   constructor(props) {
@@ -20,19 +15,6 @@ class OptionCard extends Component {
       option: props.idea
     }
   }
-
-  // renderVoting = () => {
-  //   return <button id={this.state.option.id} onClick={this.castVote}>Pick This!</button>
-  // }
-
-  // renderCurrentVotes = () => {
-  //   const votes = this.state.option.votes
-  //   if (votes) {
-  //     return <h4>Current Votes: {votes}</h4>
-  //   } else {
-  //     return <h4>Current Votes: 0</h4>
-  //   }
-  // }
 
   castVote = (e) => {
     const optId = this.props.option.id
@@ -65,7 +47,6 @@ class OptionCard extends Component {
     })
     this.props.redirect()
   }
-
 
   render() {
 

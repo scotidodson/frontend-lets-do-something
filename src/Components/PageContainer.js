@@ -19,7 +19,6 @@ import IdeaForm from './IdeaForm.js'
 import Menu from './Menu.js'
 import Navigation from './Navigation.js'
 import NotificationContainer from './NotificationContainer.js'
-
 import '../Stylesheets/PageContainer.css';
 
 

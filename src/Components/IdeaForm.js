@@ -3,9 +3,6 @@ import  PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createIdea, fetchIdeas } from '../Actions/IdeaActions.js'
 import '../Stylesheets/IdeaForm.css'
-// import IdeaCard from '../IdeaCard/IdeaCard.js'
-// import Home from './Home/Home.js'
-
 
 class IdeaForm extends Component {
   state = {

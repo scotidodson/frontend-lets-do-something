@@ -5,15 +5,15 @@ const initialState = {
   currentUser: {
         friendships: [ ],
         notifications: [{
-event_id: 1,
-message: "No notifications!",
-seen: true
-}],
+    event_id: 1,
+    message: "No notifications!",
+    seen: true
+    }],
         events: [ ],
         user_ideas: [ ]
-  },
-  allUsers: [],
-  userId: 0
+    },
+    allUsers: [],
+    userId: 0
 }
 
 export default function(state = initialState, action) {

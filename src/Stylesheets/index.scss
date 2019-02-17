@@ -178,17 +178,6 @@ body {
   align-items: center;
   width: 100%;
   height: auto;
-  margin-top: 3%;
-
-  h3 {
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 800;
-    font-size: 2em;
-    color: #161846;
-    text-align: center;
-    align-items: center;
-  }
 
   a {
     text-decoration: none;
@@ -203,6 +192,10 @@ body {
     margin: 0 0 10px 0;
     height: auto;
     cursor: pointer;
+
+    h3 {
+      font-size: 50px;
+    }
   }
 
   .menu-div {
@@ -215,6 +208,16 @@ body {
     width: 90%;
     margin: 0 0 10px 0;
     height: auto;
+
+    h3 {
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 800;
+      font-size: 2em;
+      color: #161846;
+      text-align: center;
+      align-items: center;
+    }
   }
 }
 
@@ -265,6 +268,21 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 0 5px;
+
+
+  .back {
+    float: right;
+    display: flex;
+    justify-content: flex-end;
+    width: 90%;
+    margin: 0 0 10px 0;
+    height: auto;
+    cursor: pointer;
+
+    h3 {
+      font-size: 50px;
+    }
+  }
 
   p {
     text-decoration: none;

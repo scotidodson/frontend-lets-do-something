@@ -40,9 +40,16 @@ class NotificationContainer extends Component {
     })
   }
 
+  handleBack = () => {
+    this.props.history.goBack()
+  }
+
   render() {
     return (
       <div className="notification-page">
+        <div className="back">
+          <h3 onClick={this.handleBack}>&times;</h3>
+        </div>
         {this.renderNotifications()}
       </div>
     );

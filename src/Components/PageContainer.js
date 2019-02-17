@@ -19,10 +19,7 @@ import IdeaForm from './IdeaForm.js'
 import Menu from './Menu.js'
 import Navigation from './Navigation.js'
 import NotificationContainer from './NotificationContainer.js'
-import '../Stylesheets/PageContainer.css';
-
-
-
+import '../Stylesheets/index.scss'
 
 class PageContainer extends Component {
   componentWillMount() {
@@ -50,19 +47,19 @@ class PageContainer extends Component {
       <div className="page" >
         <Navigation />
         <Switch>
-          <Route path='/brainstorm' component={IdeaContainer} />
-          <Route path='/new-idea' component={IdeaForm} />
-          <Route path='/saved-ideas' component={IdeaBoard} />
-          <Route path='/host' component={EventForm} />
-          <Route path='/notifications' component={NotificationContainer} />
-          <Route path='/contacts' component={ContactsContainer} />
-          <Route exact path='/events' component={EventContainer} />
-          <Route path='/menu' component={Menu} />
-          <Route path={`/ideas/:ideaId`} component={IdeaDetails} />
-          <Route path={`/events/:eventId`} component={EventDetails} />
-          <Route exact path='/' component={Home}/>
           <Route exact path='/account' component={Account}/>
+          <Route path='/contacts' component={ContactsContainer} />
           <Route exact path='/add-contact' component={ContactForm}/>
+          <Route exact path='/events' component={EventContainer} />
+          <Route path={`/events/:eventId`} component={EventDetails} />
+          <Route path='/host' component={EventForm} />
+          <Route exact path='/' component={Home}/>
+          <Route path='/saved-ideas' component={IdeaBoard} />
+          <Route path='/brainstorm' component={IdeaContainer} />
+          <Route path={`/ideas/:ideaId`} component={IdeaDetails} />
+          <Route path='/new-idea' component={IdeaForm} />
+          <Route path='/menu' component={Menu} />
+          <Route path='/notifications' component={NotificationContainer} />
         </Switch>
       </div>
     );

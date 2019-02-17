@@ -350,28 +350,15 @@ body {
 // HOST FORM
 .event-form-page {
   width: 100%;
-  display: block;
-  font-family: futura;
+  font-family: $futura;
   color: $navy;
   font-weight: 800;
-  position: fixed;
   text-align: center;
   padding: 2%;
   overflow: auto;
 
 
   .event-form {
-    display: block;
-    font-family: futura;
-    color: $navy;
-    font-weight: 800;
-    position: relative;
-    margin-top: 2%;
-    text-align: center;
-    overflow: auto;
-    height: 500px;
-    width: 100%;
-
     input {
       min-height: 40px;
       font-size: 1em;
@@ -423,14 +410,9 @@ body {
   }
 
   .options-holder {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
     font-family: $futura;
     color: $teal;
     font-weight: 800;
-    position: fixed;
     margin-top: 2%;
     text-align: center;
     height: 200px;
@@ -441,6 +423,11 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
+
+  }
+
+  .idea-list {
+    text-align: left;
   }
 
   .select-ideas {

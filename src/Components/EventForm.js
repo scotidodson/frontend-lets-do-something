@@ -260,56 +260,56 @@ class EventForm extends Component {
     return (
       <div className="event-form-page">
           <div className="event-form" style={this.state.dateStage ? {} : { display: 'none' }}>
-          <form onSubmit={this.handleDateSubmit} >
-            <h1>WHEN</h1>
-            <br/>
-              <h4>{"Let's do something on:  "}
-                <select type="month" name="month" onChange={this.handleChange} value={this.state.month}>
-                  <option value="1">January</option>
-                  <option value="2">February</option>
-                  <option value="3">March</option>
-                  <option value="4">April</option>
-                  <option value="5">May</option>
-                  <option value="6">June</option>
-                  <option value="7">July</option>
-                  <option value="8">August</option>
-                  <option value="9">September</option>
-                  <option value="10">October</option>
-                  <option value="11">November</option>
-                  <option value="12">December</option>
+            <form onSubmit={this.handleDateSubmit} >
+              <h1>WHEN</h1>
+              <br/>
+                <h4>{"Let's do something on:  "}
+                  <select type="month" name="month" onChange={this.handleChange} value={this.state.month}>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                  </select>
+
+                  <select type="day" name="day" onChange={this.handleChange} value={this.state.day}>
+                    {this.renderDayDropdown()}
+                  </select>
+                  {' at '}
+                <select type="hour" name="hour" onChange={this.handleChange} value={this.state.hour}>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
                 </select>
 
-                <select type="day" name="day" onChange={this.handleChange} value={this.state.day}>
-                  {this.renderDayDropdown()}
+                <select type="minute" name="minute" onChange={this.handleChange} value={this.state.minute}>
+                  <option value="0">00</option>
+                  <option value="30">30</option>
                 </select>
-                {' at '}
-              <select type="hour" name="hour" onChange={this.handleChange} value={this.state.hour}>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-              </select>
 
-              <select type="minute" name="minute" onChange={this.handleChange} value={this.state.minute}>
-                <option value="0">00</option>
-                <option value="30">30</option>
-              </select>
+                <select type="am" name="am" onChange={this.handleChange} value={this.state.am}>
+                  <option value="true">am</option>
+                  <option value="false">pm</option>
+                </select></h4><br/><br/>
 
-              <select type="am" name="am" onChange={this.handleChange} value={this.state.am}>
-                <option value="true">am</option>
-                <option value="false">pm</option>
-              </select></h4><br/><br/>
-
-              <input className="event-teal-button" type="submit" value="Submit" />
-          </form>
+                <input className="event-teal-button" type="submit" value="Submit" />
+            </form>
           </div>
 
           <div className="event-form" style={this.state.ideaStage ? {} : { display: 'none' }}>
@@ -331,7 +331,7 @@ class EventForm extends Component {
             <input type="submit" value="Submit" />
 
           </form>
-          </div>
+        </div>
       </div>
     );
   }

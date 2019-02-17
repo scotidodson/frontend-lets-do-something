@@ -195,6 +195,16 @@ body {
     color: #161846;
   }
 
+  .back {
+    float: right;
+    display: flex;
+    justify-content: flex-end;
+    width: 90%;
+    margin: 0 0 10px 0;
+    height: auto;
+    cursor: pointer;
+  }
+
   .menu-div {
     background: $teal;
     min-height: 150px;

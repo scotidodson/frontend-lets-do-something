@@ -40,28 +40,22 @@ class Navigation extends Component {
 
   render() {
     return (
-      <header className="navigation-bar">
-        <div className="container" >
-          <nav className="menu" id="menu">
-            <ul>
-                <li><Link to="/menu"><img src={menu} alt="menu" height="80px" /></Link></li>
+      <div className="navigation-bar" id="header">
 
-            </ul>
-          </nav>
+          <div className="menu" >
+            <Link to="/menu"><img src={menu} className="icon" alt="menu" height="80px" /></Link>
+          </div>
 
           <Link to="/"><img src={logo} alt="Let's Do Something" className="logo" /></Link>
 
-          <nav className="account" id="account">
-            <ul>
-                <li><Link to="/notifications">
-                  {this.checkNotifications() ? <img src={newNotification} onClick={this.handleClick} alt="notifications" height="80px" />:<img src={notification} alt="notifications" height="80px" />}
-                </Link></li>
+          <div className="account">
+            <Link to="/notifications">
+                  {this.checkNotifications() ? <img className="icon" src={newNotification} onClick={this.handleClick} alt="notifications" />:<img className="icon" src={notification} alt="notifications" />}
+            </Link>
 
-                <li><Link to="/account" ><img src={account} alt="account" height="80px" /></Link></li>
-              </ul>
-          </nav>
-        </div>
-      </header>
+            <Link to="/account" ><img src={account} className="icon" alt="account" height="80px" /></Link>
+          </div>
+      </div>
 
     );
   }

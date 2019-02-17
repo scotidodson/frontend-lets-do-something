@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { fetchCurrentUser } from '../Actions/UserActions.js'
 import { fetchEvents } from '../Actions/EventActions.js'
 import { fetchIdeas } from '../Actions/IdeaActions.js'
-import '../Stylesheets/NotificationContainer.css'
+// import '../Stylesheets/NotificationContainer.css'
 
 class NotificationContainer extends Component {
   renderNotifications = () => {
@@ -15,9 +15,9 @@ class NotificationContainer extends Component {
       })
     if (notifications && notifications.length > 0) {
       return notifications.map(alert => {
-        this.updateNotification(alert)
+        this.updateNotification(alert);
         return(
-            <div className="notification-border" key={alert.id}>
+            <div className="notification-box" key={alert.id}>
               <Link to={`/events/${alert.event_id}`} >
               <p>{alert.message}</p>
               </Link>

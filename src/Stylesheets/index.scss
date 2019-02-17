@@ -1,1 +1,49 @@
+$navy: #161846;
+$orange: #dd7a00;
+$teal: #54a4a6;
+$white: #fff;
+
 // HOME
+.home {
+  width: 100%;
+  height: 100%;
+  font-family: futura, arial, sans-serif;
+  font-size: 3em;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: $white;
+  position: fixed;
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .brainstorm {
+    background-color: $navy;
+    float: left;
+
+    h3:hover {
+      color: $orange;
+    }
+  }
+
+  .host {
+    background-color: $teal;
+    float: right;
+
+    h3:hover {
+      color: $navy;
+    }
+  }
+
+  .launch {
+    width: 50%;
+    height: 100vh;
+    text-align: center;
+    h3 {
+      padding: 30% 0 0 0;
+    }
+  }
+
+}

@@ -8,7 +8,7 @@ import logo from '../Images/lds_logo.png'
 import menu from '../Images/menu.png'
 import newNotification from '../Images/new_notification.png'
 import notification from '../Images/notification.png'
-import '../Stylesheets/Navigation.scss';
+// import '../Stylesheets/Navigation.scss';
 
 
 class Navigation extends Component {
@@ -40,7 +40,7 @@ class Navigation extends Component {
 
   render() {
     return (
-      <header>
+      <header className="navigation-bar">
         <div className="container" >
           <nav className="menu" id="menu">
             <ul>

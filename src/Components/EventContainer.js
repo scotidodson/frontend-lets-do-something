@@ -4,9 +4,6 @@ import EventCard from './EventCard.js'
 import EventDetails from './EventDetails.js'
 import { connect } from 'react-redux';
 import { fetchEvents } from '../Actions/EventActions.js'
-import '../Stylesheets/IdeaContainer.css'
-
-
 
 class EventContainer extends Component {
 

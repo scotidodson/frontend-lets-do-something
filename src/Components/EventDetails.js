@@ -6,7 +6,6 @@ import { fetchCurrentUser } from '../Actions/UserActions.js'
 import { fetchIdeas } from '../Actions/IdeaActions.js'
 import { fetchEvents } from '../Actions/EventActions.js'
 import OptionCard from './OptionCard.js'
-import '../Stylesheets/EventDetails.css'
 
 
 class EventDetails extends Component {

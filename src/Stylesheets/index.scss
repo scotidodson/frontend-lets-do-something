@@ -3,6 +3,15 @@ $orange: #dd7a00;
 $teal: #54a4a6;
 $white: #fff;
 
+//  TO DO -- MEDIA QUERY
+
+body {
+  margin: 0;
+  font-family: futura;
+  font-weight: 700;
+  font-size: 16px;
+}
+
 // HOME
 .home {
   width: 100%;
@@ -45,5 +54,196 @@ $white: #fff;
       padding: 30% 0 0 0;
     }
   }
+}
 
+// BRAINSTORM
+.brainstorm-page {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 2% 7% 2% 7%;
+  font-family: futura;
+  color: $white;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-content: flex-start;
+  align-items: center;
+
+  .brainstorm-buttons {
+    a {
+      text-decoration: none;
+      color: $white;
+    }
+
+    button {
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 800;
+      font-size: 1em;
+      color: $navy;
+      border-color:$teal;
+      background-color: $teal;
+      text-align: center;
+      padding: 2% 0;
+      margin: 5px;
+      width: 200px;
+    }
+
+    div {
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 800;
+      font-size: 15px;
+      color: #161846;
+      display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     align-content: center;
+     align-items: center;
+      margin: 5px;
+      position: relative;
+      padding-right: 400px;
+    }
+
+    h3 {
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 800;
+      font-size: 2em;
+      color: $navy;
+      text-align: center;
+      align-items: center;
+      border-top-style: solid;
+      border-top-width: thick;
+    }
+  }
+
+  .idea-card {
+    position: relative;
+    width: 180px;
+    height: 100px;
+    font-size: 15px;
+    border-color: $navy;
+    background-color: $navy;
+    border-radius: 5%;
+    text-align: center;
+    margin-top: 2%;
+    margin-right: 2px;
+    margin-left: 2px;
+    padding: 1%;
+
+    button {
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 800;
+      font-size: 12px;
+      color: $navy;
+      text-align: center;
+      background: $orange;
+      border-color:$orange;
+      margin: 2%;
+      border-radius: 20%
+    }
+
+    .idea-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
+      overflow: auto;
+      padding-left: 5%;
+      width: 80%;
+    }
+  }
+
+}
+
+// NAVIGATION
+.navigation-bar {
+  header::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  .container {
+    width: 90%;
+    margin: 0 auto;
+    // display: inline-block;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: space-between;
+  }
+
+  .logo {
+    float: center;
+    display: block;
+    max-height:125px;
+    height: auto;
+    width: auto;
+    padding: 2% 7% 5% 0%;
+    flex-shrink: 2;
+  }
+
+  #account {
+    float: right;
+    width: 100%;
+    ul {
+      float: right;
+    }
+  }
+
+  #menu {
+    float: left;
+    width: 100%;
+  }
+
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline-flex;
+    padding-top: 5%;
+  }
+
+  nav li {
+    display: inline-block;
+    margin-left: 5%;
+    padding-top: 8%;
+
+    position: relative;
+  }
+
+  nav a {
+    color: #161846;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  nav a:hover {
+    color: #54a4a6;
+  }
+
+  nav a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    width: 0%;
+    background-color: #dd7a00;
+
+    position: absolute;
+    top:0;
+    transition: all ease-in-out 250ms;
+  }
+
+  nav a:hover::before {
+    width: 100%;
+  }
+
+  nav img {
+    margin: 5%;
+
+  }
 }

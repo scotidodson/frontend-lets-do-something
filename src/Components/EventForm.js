@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import OptionsHolder from './OptionsHolder.js'
 import { connect } from 'react-redux';
 import { createEvent, fetchEvents } from '../Actions/EventActions.js'
-import '../Stylesheets/EventForm.css'
 
 
 class EventForm extends Component {

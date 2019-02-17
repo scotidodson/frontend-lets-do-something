@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { fetchIdeas } from '../Actions/IdeaActions.js'
 import IdeaCard from './IdeaCard.js'
-import '../Stylesheets/IdeaContainer.css'
+
 
 
 class IdeaContainer extends Component {
@@ -24,16 +24,15 @@ class IdeaContainer extends Component {
   render() {
     return (
       <div className="brainstorm-page">
-      <div>
-        <h3>Add to your NYC Bucket List</h3>
-        <br/>
-        <br/>
-      </div>
+        <div>
+          <h3>Add to your NYC Bucket List</h3>
+        </div>
 
-      <div className="brainstorm-buttons">
-        <Link to="/new-idea"><button>Add New Idea</button></Link>
-        <Link to="/saved-ideas"><button>Saved Ideas</button></Link>
-      </div>
+        <div className="brainstorm-buttons">
+          <Link to="/new-idea"><button>Add New Idea</button></Link>
+          <Link to="/saved-ideas"><button>Saved Ideas</button></Link>
+        </div>
+
         <div className="idea-container">
           {this.renderIdeaCards()}
         </div>

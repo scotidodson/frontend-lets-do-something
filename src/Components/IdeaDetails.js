@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { saveIdea, fetchIdeas, removeIdea, fetchUserIdeas } from '../Actions/IdeaActions.js'
 import { updateUser } from '../Actions/UserActions.js'
-import '../Stylesheets/IdeaDetails.css'
+
 
 
 class IdeaDetails extends Component {

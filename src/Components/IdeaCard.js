@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
-import '../Stylesheets/IdeaContainer.css'
 import { connect } from 'react-redux';
 import { saveIdea, removeIdea } from '../Actions/IdeaActions.js'
 import { updateUser } from '../Actions/UserActions.js'

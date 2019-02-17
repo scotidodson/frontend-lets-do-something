@@ -169,7 +169,7 @@ body {
 // MENU
 .menu-page {
   font-family: $futura;
-  color: $navy;
+  color: $teal;
   font-weight: 800;
   text-align: center;
   display: flex;
@@ -181,7 +181,7 @@ body {
 
   a {
     text-decoration: none;
-    color: #161846;
+    color: $teal;
   }
 
   .back {
@@ -199,7 +199,7 @@ body {
   }
 
   .menu-div {
-    background: $teal;
+    background: $navy;
     min-height: 150px;
     display: flex;
     align-content: center;
@@ -214,7 +214,7 @@ body {
       text-transform: uppercase;
       font-weight: 800;
       font-size: 2em;
-      color: #161846;
+      color: $teal;
       text-align: center;
       align-items: center;
     }
@@ -261,7 +261,7 @@ body {
 .notification-page {
     width: 100%;
     font-family: $futura;
-    color: $navy;
+    color: $teal;
     font-weight: 800;
     text-align: center;
     display: flex;
@@ -272,6 +272,9 @@ body {
 
   .back {
     float: right;
+    position: sticky;
+    top: 20%;
+    background: $white;
     display: flex;
     justify-content: flex-end;
     width: 90%;
@@ -289,17 +292,16 @@ body {
     text-transform: uppercase;
     font-weight: 800;
     font-size: 1.5em;
-    color: $navy;
     padding: 5%;
   }
 
   a {
     text-decoration: none;
-    color: $navy;
+    color: $teal;
   }
 
   .notification-box {
-    background: $teal;
+    background: $navy;
     width: 90%;
     margin: 0 0 5px 0;
     height: auto;

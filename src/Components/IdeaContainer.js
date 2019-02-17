@@ -24,13 +24,15 @@ class IdeaContainer extends Component {
   render() {
     return (
       <div className="brainstorm-page">
-        <div>
-          <h3>Add to your NYC Bucket List</h3>
-        </div>
+        <div className="brainstorm-header">
 
-        <div className="brainstorm-buttons">
-          <Link to="/new-idea"><button>Add New Idea</button></Link>
-          <Link to="/saved-ideas"><button>Saved Ideas</button></Link>
+        <div className="brainstorm-buttons title">
+        <h3>BRAINSTORM</h3>
+        </div>
+          <div className="brainstorm-buttons">
+            <Link to="/new-idea"><button>Add New Idea</button></Link>
+            <Link to="/saved-ideas"><button>See Saved Ideas</button></Link>
+          </div>
         </div>
 
         <div className="idea-container">

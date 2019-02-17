@@ -30,6 +30,49 @@ class EventForm extends Component {
     ]
   }
 
+  createNotification = (newGuest) => {
+    if (newGuest.host) {
+      const newNotification = {
+        user_id: newGuest.user_id,
+        event_id: this.state.event_id,
+        seen: false,
+        message: "You created an event. Poll in process."
+      }
+      this.submitNotification(newNotification)
+    } else {
+      const newNotification = {
+        user_id: newGuest.user_id,
+        event_id: this.state.event_id,
+        seen: false,
+        message: "You have been invited to an event - cast your vote on what to do!"
+      }
+      this.submitNotification(newNotification)
+    }
+  }
+
+  guestChecked = (e, targetId) => {
+    if (e.target.checked === true) {
+      this.setState((currentState) => {
+        return {
+          guests: [
+            ...currentState.guests,
+            {user_id: targetId, host: false}
+          ]
+        }
+      })} else {
+        this.setState((currentState) => {
+          console.log('currentState', currentState);
+          const reducedGuestSets = currentState.guests.filter(guest => {
+            return guest.user_id !== targetId
+          })
+          console.log('reducedGuestSets', reducedGuestSets);
+          return {
+            guests: [...reducedGuestSets]
+          }
+        })
+      }
+    }
+
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -46,78 +89,6 @@ class EventForm extends Component {
       default:
         return
     }
-  }
-
-  ideaChecked = (e, targetId) => {
-    if (e.target.checked === true) {
-      const ideaToAdd = this.props.allIdeas.find(idea => idea.id === targetId )
-      this.setState((currentState) => {
-      return {
-        options: [
-          ...currentState.options,
-          { ...ideaToAdd }
-        ]
-      }})
-    } else {
-      this.setState((currentState) => {
-        console.log('currentState', currentState);
-        const reducedIdeaSets = currentState.options.filter(idea => {
-          return idea.idea_id !== targetId
-        })
-        console.log('reducedIdeaSets', reducedIdeaSets);
-        return {
-          options: [...reducedIdeaSets]
-        }
-      })
-    }
-  }
-
-  guestChecked = (e, targetId) => {
-    if (e.target.checked === true) {
-      this.setState((currentState) => {
-      return {
-        guests: [
-          ...currentState.guests,
-          {user_id: targetId, host: false}
-        ]
-      }
-    })} else {
-      this.setState((currentState) => {
-        console.log('currentState', currentState);
-        const reducedGuestSets = currentState.guests.filter(guest => {
-          return guest.user_id !== targetId
-        })
-        console.log('reducedGuestSets', reducedGuestSets);
-        return {
-          guests: [...reducedGuestSets]
-        }
-      })
-    }
-  }
-
-  renderIdeas = () => {
-    const ideas = this.props.savedIdeas.map(ideaObj=> ideaObj.idea )
-    const mySaved = ideas.map(idea => { return idea.id })
-    const suggestions = this.props.allIdeas.filter(idea=> {  return !mySaved.includes(idea.id) })
-    return ideas.map(idea =>{
-      return(
-          <p key={idea.id}>
-            <input type="checkbox" name="idea" data-id={idea.id} onChange={this.handleCheckbox} />
-            {idea.title}
-          </p>)
-    })
-  }
-
-  renderFriends = () => {
-    const userFriendships = this.props.currentUser.friendships
-      return userFriendships.map(friendship =>{
-        return(
-          <p key={friendship.id}>
-          <input  type="checkbox" name="guests" data-id={friendship.friend.id} onChange={this.handleCheckbox} />
-          {friendship.friend.first_name} {friendship.friend.last_name}
-          </p>
-        )
-      })
   }
 
   handleDateSubmit = (e) => {
@@ -149,7 +120,14 @@ class EventForm extends Component {
         dateStage: false,
         ideaStage: true
       })
-      })
+    })
+  }
+
+  handleGuestSubmit = (e) => {
+    e.preventDefault();
+    const newGuests = [...this.state.guests]
+    const thisEventId = this.state.event_id
+    this.prepareGuestObjs(newGuests, thisEventId)
   }
 
   handleOptionSubmit = (e) => {
@@ -172,11 +150,28 @@ class EventForm extends Component {
     })
   }
 
-  handleGuestSubmit = (e) => {
-    e.preventDefault();
-    const newGuests = [...this.state.guests]
-    const thisEventId = this.state.event_id
-    this.prepareGuestObjs(newGuests, thisEventId)
+  ideaChecked = (e, targetId) => {
+    if (e.target.checked === true) {
+      const ideaToAdd = this.props.allIdeas.find(idea => idea.id === targetId )
+      this.setState((currentState) => {
+      return {
+        options: [
+          ...currentState.options,
+          { ...ideaToAdd }
+        ]
+      }})
+    } else {
+      this.setState((currentState) => {
+        console.log('currentState', currentState);
+        const reducedIdeaSets = currentState.options.filter(idea => {
+          return idea.idea_id !== targetId
+        })
+        console.log('reducedIdeaSets', reducedIdeaSets);
+        return {
+          options: [...reducedIdeaSets]
+        }
+      })
+    }
   }
 
   prepareGuestObjs = (newGuests, thisEventId) => {
@@ -193,35 +188,32 @@ class EventForm extends Component {
     this.props.history.push('/');
   }
 
-  createNotification = (newGuest) => {
-    if (newGuest.host) {
-      const newNotification = {
-        user_id: newGuest.user_id,
-        event_id: this.state.event_id,
-        seen: false,
-        message: "You created an event. Poll in process."
-      }
-      this.submitNotification(newNotification)
-    } else {
-      const newNotification = {
-        user_id: newGuest.user_id,
-        event_id: this.state.event_id,
-        seen: false,
-        message: "You have been invited to an event - cast your vote on what to do!"
-      }
-      this.submitNotification(newNotification)
-    }
+  renderDayDropdown = () => {
+    const arr = [...Array(32).keys()].slice(3,32)
+    return arr.map(x => {
+      return <option key={x} value={x}>{x}</option>
+    })
   }
 
-  submitNotification = (newNotification) => {
-    console.log('submitting alert:', newNotification);
-    fetch(`http://localhost:4000/api/v1/notifications`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(newNotification)
+  renderIdeas = () => {
+    const ideas = this.props.savedIdeas.map(ideaObj=> ideaObj.idea )
+    const mySaved = ideas.map(idea => { return idea.id })
+    const suggestions = this.props.allIdeas.filter(idea=> {  return !mySaved.includes(idea.id) })
+    return ideas.map(idea =>{
+      return(<p key={idea.id}>{idea.title}</p>);
     })
+  }
+
+  renderFriends = () => {
+    const userFriendships = this.props.currentUser.friendships
+      return userFriendships.map(friendship =>{
+        return(
+          <p key={friendship.id}>
+          <input  type="checkbox" name="guests" data-id={friendship.friend.id} onChange={this.handleCheckbox} />
+          {friendship.friend.first_name} {friendship.friend.last_name}
+          </p>
+        )
+      })
   }
 
   submitGuests = (newGuest) => {
@@ -233,6 +225,17 @@ class EventForm extends Component {
       body: JSON.stringify(newGuest)
     })
     this.props.fetchEvents()
+  }
+
+  submitNotification = (newNotification) => {
+    console.log('submitting alert:', newNotification);
+    fetch(`http://localhost:4000/api/v1/notifications`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(newNotification)
+    })
   }
 
   submitOptions = (newOptions) => {
@@ -247,13 +250,6 @@ class EventForm extends Component {
 
   startPoll = () => {
     const eventId = this.state.event_id
-  }
-
-  renderDayDropdown = () => {
-    const arr = [...Array(32).keys()].slice(3,32)
-    return arr.map(x => {
-      return <option key={x} value={x}>{x}</option>
-    })
   }
 
   render() {
@@ -320,12 +316,15 @@ class EventForm extends Component {
                 </div>
                 <div className="select-ideas">
                   <form onSubmit={this.handleOptionSubmit} >
-                  {this.state.options.length < 3 ? this.renderIdeas():<p>Great - time to invite guests!</p>}
+                    <div className="idea-list">
+                      {this.state.options.length < 3 ? this.renderIdeas():<p>Great - time to invite guests!</p>}
+                    </div>
                     <input type="submit" value="Submit" />
                   </form>
                 </div>
               </div>
           </div>
+
           <div className="event-form" style={this.state.guestStage ? {} : { display: 'none' }}>
           <form onSubmit={this.handleGuestSubmit} >
             <h1>WHO</h1>

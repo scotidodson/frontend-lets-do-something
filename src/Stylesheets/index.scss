@@ -427,12 +427,23 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
-    font-family: futura;
+    font-family: $futura;
     color: $teal;
     font-weight: 800;
-    position: relative;
+    position: fixed;
     margin-top: 2%;
     text-align: center;
     height: 200px;
+  }
+
+  .idea-stage {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+  .select-ideas {
+    overflow: auto;
   }
 }

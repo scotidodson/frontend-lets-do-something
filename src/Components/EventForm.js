@@ -314,15 +314,17 @@ class EventForm extends Component {
 
           <div className="event-form" style={this.state.ideaStage ? {} : { display: 'none' }}>
               <h1>WHAT</h1>
+              <div className="idea-stage">
                 <div className="options-holder">
-                <OptionsHolder selectedOptions={this.state.options} />
+                  <OptionsHolder selectedOptions={this.state.options} />
                 </div>
-              <div>
-            <form onSubmit={this.handleOptionSubmit} >
-                {this.state.options.length < 3 ? this.renderIdeas():<p>Great - time to invite guests!</p>}
-                <input type="submit" value="Submit" />
-            </form>
-          </div>
+                <div className="select-ideas">
+                  <form onSubmit={this.handleOptionSubmit} >
+                  {this.state.options.length < 3 ? this.renderIdeas():<p>Great - time to invite guests!</p>}
+                    <input type="submit" value="Submit" />
+                  </form>
+                </div>
+              </div>
           </div>
           <div className="event-form" style={this.state.guestStage ? {} : { display: 'none' }}>
           <form onSubmit={this.handleGuestSubmit} >

@@ -2,6 +2,7 @@ $navy: #161846;
 $orange: #dd7a00;
 $teal: #54a4a6;
 $white: #fff;
+$gray: #E9EEEE;
 $futura: futura, arial, sans-serif;
 
 //  TO DO -- MEDIA QUERY
@@ -21,12 +22,12 @@ body {
   font-size: 3em;
   font-weight: 800;
   text-transform: uppercase;
-  color: $white;
+  color: $gray;
   position: fixed;
 
   a {
     text-decoration: none;
-    color: white;
+    color: $gray;
   }
 
   .brainstorm {
@@ -59,19 +60,18 @@ body {
 
 // BRAINSTORM
 .brainstorm-page {
-  padding: 2% 7% 2% 7%;
   font-family: $futura;
-  color: $white;
-  font-size: 1em;
+  color: $gray;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: flex-start;
-  align-items: center;
+  // align-items: center;
+
 
   a {
     text-decoration: none;
-    color: $white;
+    color: $gray;
   }
 
   .brainstorm-buttons {
@@ -80,11 +80,11 @@ body {
     justify-content: center;
     align-content: center;
     align-items: flex-start;
-    margin: 0 5% 5%;
+    margin: 0 5% 2%;
 
     a {
       text-decoration: none;
-      color: $white;
+      color: $gray;
     }
 
     button {
@@ -97,52 +97,44 @@ body {
       background-color: $teal;
       text-align: center;
       padding: 2% 0;
-      margin: 5px;
+      margin: 0 10px;
       width: 200px;
+      cursor: pointer;
     }
-    //
-    // div {
-    //   text-decoration: none;
-    //   text-transform: uppercase;
-    //   font-weight: 800;
-    //   font-size: 15px;
-    //   color: #161846;
-    //   display: flex;
-    //  flex-direction: column;
-    //  justify-content: space-between;
-    //  align-content: center;
-    //  align-items: center;
-    //   margin: 5px;
-    //   position: relative;
-    //   padding-right: 400px;
-    // }
+
+    div {
+      margin: 0;
+    }
 
     h3 {
       text-decoration: none;
       text-transform: uppercase;
       font-weight: 800;
-      font-size: 1.5em;
+      font-size: 2em;
       color: $navy;
+      margin: 2% 0 0;
+      padding: 0;
     }
   }
 
-
   .brainstorm-header {
-    float: center;
+    position: sticky;
+    top: 20%;
+    // padding: 3% 0 0 0;
+    background-color: $white;
+    width: 100%;
   }
 
   .idea-card {
-    position: relative;
-    width: 100%;
-    height: 200px;
+    max-height: 200px;
     font-size: 1em;
     border-color: $navy;
     background-color: $navy;
     text-align: center;
-    margin: 5px;
-    padding: 1%;
+    margin: 1%;
+    padding: 1% 0 5%;
     text-transform: uppercase;
-
+    
     button {
       text-decoration: none;
       text-transform: uppercase;
@@ -160,19 +152,17 @@ body {
 
     h4 {
       font-size: 2em;
+      padding: 2% 0 0;
     }
   }
 
   .idea-container {
-    position: sticky;
-    // bottom: 0;
+    top: 0;
     flex-direction: column;
     justify-content: center;
     align-content: flex-start;
     align-items: center;
-    // padding-left: 5%;
     width: 100%;
-
   }
 
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import IdeaCard from './IdeaCard.js'
- 
+
 class IdeaBoard extends Component {
 
   renderSavedIdeaCards = () => {
@@ -21,15 +21,16 @@ class IdeaBoard extends Component {
   render() {
     return (
       <div className="brainstorm-page">
-        <div>
-          <h3>Your NYC Bucket List</h3>
-          <br/>
-          <br/>
-        </div>
+        <div className="brainstorm-header">
 
-        <div className="brainstorm-buttons">
-          <Link to="/new-idea"><button>Add New Idea</button></Link>
-          <Link to="/brainstorm"><button>Brainstorm</button></Link>
+          <div className="brainstorm-buttons">
+          <h3>NYC BUCKET LIST</h3>
+          </div>
+
+          <div className="brainstorm-buttons">
+            <Link to="/new-idea"><button>Add New Idea</button></Link>
+            <Link to="/brainstorm"><button>Brainstorm</button></Link>
+          </div>
         </div>
           <div className="idea-container">
             {this.renderSavedIdeaCards()}

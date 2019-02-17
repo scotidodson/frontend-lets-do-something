@@ -26,9 +26,10 @@ class IdeaContainer extends Component {
       <div className="brainstorm-page">
         <div className="brainstorm-header">
 
-        <div className="brainstorm-buttons title">
-        <h3>BRAINSTORM</h3>
-        </div>
+          <div className="brainstorm-buttons">
+          <h3>BRAINSTORM</h3>
+          </div>
+
           <div className="brainstorm-buttons">
             <Link to="/new-idea"><button>Add New Idea</button></Link>
             <Link to="/saved-ideas"><button>See Saved Ideas</button></Link>

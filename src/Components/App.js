@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import store from '../store.js'
 import Login from './Login.js'
 import PageContainer from './PageContainer.js'
-import Splash from './Splash.js'
 import SignUp from './SignUp.js'
 
 class App extends Component {
@@ -12,7 +11,6 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Switch>
-          <Route exact path='/welcome' component={Splash}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/sign-up' component={SignUp}/>
           <Route path='/' component={PageContainer}/>

@@ -162,11 +162,11 @@ class EventForm extends Component {
       }})
     } else {
       this.setState((currentState) => {
-        console.log('currentState', currentState);
+        // console.log('currentState', currentState);
         const reducedIdeaSets = currentState.options.filter(idea => {
           return idea.idea_id !== targetId
         })
-        console.log('reducedIdeaSets', reducedIdeaSets);
+        // console.log('reducedIdeaSets', reducedIdeaSets);
         return {
           options: [...reducedIdeaSets]
         }
@@ -197,10 +197,13 @@ class EventForm extends Component {
 
   renderIdeas = () => {
     const ideas = this.props.savedIdeas.map(ideaObj=> ideaObj.idea )
-    const mySaved = ideas.map(idea => { return idea.id })
-    const suggestions = this.props.allIdeas.filter(idea=> {  return !mySaved.includes(idea.id) })
+    // const mySaved = ideas.map(idea => { return idea.id })
+    // const suggestions = this.props.allIdeas.filter(idea=> {  return !mySaved.includes(idea.id) })
     return ideas.map(idea =>{
-      return(<p key={idea.id}>{idea.title}</p>);
+      return(
+        <button type="button" data-id={idea.id} name="idea" onClick={this.handleCheckbox} key={idea.id}>
+          {idea.title}
+        </button>);
     })
   }
 
@@ -311,9 +314,7 @@ class EventForm extends Component {
           <div className="event-form" style={this.state.ideaStage ? {} : { display: 'none' }}>
               <h1>WHAT</h1>
               <div className="idea-stage">
-                <div className="options-holder">
-                  <OptionsHolder selectedOptions={this.state.options} />
-                </div>
+                <OptionsHolder selectedOptions={this.state.options} />
                 <div className="select-ideas">
                   <form onSubmit={this.handleOptionSubmit} >
                     <div className="idea-list">

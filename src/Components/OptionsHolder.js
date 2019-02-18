@@ -13,16 +13,22 @@ class OptionsHolder extends Component {
     switch (options.length) {
       case 0:
         return (
-          <div>
+          <div className="options-holder">
+            <div>
               <p> _____________________</p>
+            </div>
+            <div>
               <p> _____________________</p>
+            </div>
+            <div>
               <p> _____________________</p>
+            </div>
           </div>
         )
         break;
       case 1:
         return (
-          <div>
+          <div className="options-holder">
             <div>
               <p>{options[0].title}</p>
             </div>
@@ -37,7 +43,7 @@ class OptionsHolder extends Component {
         break;
       case 2:
         return (
-          <div>
+          <div className="options-holder">
             <div>
               <p>{options[0].title}</p>
             </div>

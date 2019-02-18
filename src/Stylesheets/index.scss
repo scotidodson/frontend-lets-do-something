@@ -5,6 +5,17 @@ $white: #fff;
 $gray: #E9EEEE;
 $futura: futura, arial, sans-serif;
 
+
+
+.container {
+  width: 500px / 960px * 100%;
+}
+
+
+
+
+
+
 //  TO DO -- MEDIA QUERY
 
 body {
@@ -53,7 +64,7 @@ body {
     height: 100vh;
     text-align: center;
     h3 {
-      padding: 30% 0 0 0;
+      padding: 35% 0 0 0;
     }
   }
 }
@@ -416,11 +427,18 @@ body {
     margin-top: 2%;
     text-align: center;
     height: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    div {
+      margin: 10px;
+    }
   }
 
   .idea-stage {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
 

@@ -6,11 +6,11 @@ import { createEvent, fetchEvents } from '../Actions/EventActions.js'
 
 
 class EventForm extends Component {
-
   state = {
     dateStage: true,
     ideaStage: false,
     guestStage: false,
+    eventIdeas: [],
     event_id: 0,
     year: 2019,
     month: 1,
@@ -78,10 +78,12 @@ class EventForm extends Component {
   }
 
   handleCheckbox = (e) => {
-    const targetId = Number(e.target.dataset.id)
-    switch (e.target.name) {
+    const targetId = Number(e.target.dataset.id);
+    switch (e.target.dataset.type) {
       case "idea":
-        this.ideaChecked(e, targetId)
+        const ideaToAdd = this.props.allIdeas.find(idea => idea.id === targetId )
+        e.target.parentNode.removeChild(e.target)
+        this.ideaChecked(ideaToAdd)
         break;
       case "guests":
           this.guestChecked(e, targetId)
@@ -150,28 +152,14 @@ class EventForm extends Component {
     })
   }
 
-  ideaChecked = (e, targetId) => {
-    if (e.target.checked === true) {
-      const ideaToAdd = this.props.allIdeas.find(idea => idea.id === targetId )
-      this.setState((currentState) => {
-      return {
-        options: [
-          ...currentState.options,
-          { ...ideaToAdd }
-        ]
-      }})
-    } else {
-      this.setState((currentState) => {
-        // console.log('currentState', currentState);
-        const reducedIdeaSets = currentState.options.filter(idea => {
-          return idea.idea_id !== targetId
-        })
-        // console.log('reducedIdeaSets', reducedIdeaSets);
-        return {
-          options: [...reducedIdeaSets]
-        }
-      })
-    }
+  ideaChecked = (ideaToAdd) => {
+    this.setState((currentState) => {
+    return {
+      options: [
+        ...currentState.options,
+        { ...ideaToAdd }
+      ]};
+    });
   }
 
   prepareGuestObjs = (newGuests, thisEventId) => {
@@ -201,9 +189,9 @@ class EventForm extends Component {
     // const suggestions = this.props.allIdeas.filter(idea=> {  return !mySaved.includes(idea.id) })
     return ideas.map(idea =>{
       return(
-        <button type="button" data-id={idea.id} name="idea" onClick={this.handleCheckbox} key={idea.id}>
+        <div data-id={idea.id} data-type="idea" onClick={this.handleCheckbox} key={idea.id}>
           {idea.title}
-        </button>);
+        </div>);
     })
   }
 
@@ -212,11 +200,15 @@ class EventForm extends Component {
       return userFriendships.map(friendship =>{
         return(
           <p key={friendship.id}>
-          <input  type="checkbox" name="guests" data-id={friendship.friend.id} onChange={this.handleCheckbox} />
+          <input  type="checkbox" data-type="guests" data-id={friendship.friend.id} onChange={this.handleCheckbox} />
           {friendship.friend.first_name} {friendship.friend.last_name}
           </p>
         )
       })
+  }
+
+  startPoll = () => {
+    const eventId = this.state.event_id
   }
 
   submitGuests = (newGuest) => {
@@ -251,9 +243,6 @@ class EventForm extends Component {
     })
   }
 
-  startPoll = () => {
-    const eventId = this.state.event_id
-  }
 
   render() {
     return (
@@ -317,8 +306,8 @@ class EventForm extends Component {
                 <OptionsHolder selectedOptions={this.state.options} />
                 <div className="select-ideas">
                   <form onSubmit={this.handleOptionSubmit} >
-                    <div className="idea-list">
-                      {this.state.options.length < 3 ? this.renderIdeas():<p>Great - time to invite guests!</p>}
+                    <div className="idea-list" style={this.state.options.length < 3 ? {} : { display: 'none' }}>
+                      {this.renderIdeas()}
                     </div>
                     <input type="submit" value="Submit" />
                   </form>

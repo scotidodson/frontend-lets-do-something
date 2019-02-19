@@ -51,23 +51,20 @@ class EventForm extends Component {
   }
 
   guestChecked = (e, targetId) => {
-    if (e.target.checked === true) {
+    if (e.target.id === "not-selected") {
+      e.target.id="contact-selected"
       this.setState((currentState) => {
         return {
           guests: [
             ...currentState.guests,
             {user_id: targetId, host: false}
-          ]
-        }
-      })} else {
+          ]}
+        });
+      } else if (e.target.id === "contact-selected") {
+        e.target.id="not-selected"
         this.setState((currentState) => {
-          console.log('currentState', currentState);
-          const reducedGuestSets = currentState.guests.filter(guest => {
-            return guest.user_id !== targetId
-          })
-          console.log('reducedGuestSets', reducedGuestSets);
           return {
-            guests: [...reducedGuestSets]
+            guests: currentState.guests.filter(guest => guest.user_id !== targetId)
           }
         })
       }
@@ -199,10 +196,9 @@ class EventForm extends Component {
     const userFriendships = this.props.currentUser.friendships
       return userFriendships.map(friendship =>{
         return(
-          <p key={friendship.id}>
-          <input  type="checkbox" data-type="guests" data-id={friendship.friend.id} onChange={this.handleCheckbox} />
+          <div key={friendship.id} data-type="guests" data-id={friendship.friend.id} onClick={this.handleCheckbox} className="contact-card" id="not-selected">
           {friendship.friend.first_name} {friendship.friend.last_name}
-          </p>
+          </div>
         )
       })
   }
@@ -296,7 +292,7 @@ class EventForm extends Component {
                   <option value="false">pm</option>
                 </select></h4><br/><br/>
 
-                <input className="event-teal-button" type="submit" value="Submit" />
+                <input className="event-teal-button" type="submit" value="Select Ideas" />
             </form>
           </div>
 
@@ -305,14 +301,14 @@ class EventForm extends Component {
               <div className="idea-stage">
                 <OptionsHolder selectedOptions={this.state.options} />
                 <div className="select-ideas">
-                  <form onSubmit={this.handleOptionSubmit}>
-                    <div className="idea-submit" style={this.state.options.length > 0 ? {} : { display: 'none' }}>
-                      <input type="submit" value="Submit" />
-                    </div>
-                  </form>
                   <div className="idea-list" style={this.state.options.length < 3 ? {} : { display: 'none' }}>
                   {this.renderIdeas()}
                   </div>
+                  <form onSubmit={this.handleOptionSubmit}>
+                  <div className="idea-submit" style={this.state.options.length > 0 ? {} : { display: 'none' }}>
+                  <input type="submit" value="Invite Guests" />
+                  </div>
+                  </form>
                 </div>
               </div>
           </div>
@@ -320,8 +316,12 @@ class EventForm extends Component {
           <div className="event-form" style={this.state.guestStage ? {} : { display: 'none' }}>
           <form onSubmit={this.handleGuestSubmit} >
             <h1>WHO</h1>
+            <div className="contact-holder">
             {this.state.guestStage ? this.renderFriends():null}
+            </div>
+            <div className="guest-submit" style={this.state.options.length > 0 ? {} : { display: 'none' }}>
             <input type="submit" value="Submit" />
+            </div>
 
           </form>
         </div>

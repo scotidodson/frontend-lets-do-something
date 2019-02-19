@@ -6,7 +6,6 @@ import { fetchIdeas } from '../Actions/IdeaActions.js'
 import { fetchEvents } from '../Actions/EventActions.js'
 import login from '../Images/log_in.png'
 import logo from '../Images/lds_logo.png'
-import '../Stylesheets/Login.css'
 
 
 class Login extends Component {
@@ -47,24 +46,23 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="login-page">
-      <img src={logo} alt="Let's Do Something" className="welcome-logo" /><br/>
-      <img src={login} onClick={this.handleClick} alt="Log In" width="220px" /><br/>
-        <div className="login-form">
-          <form onSubmit={this.handleSubmit} >
-            <br/>
-            <br/>
-            Username:<br/>
-            <input type="text" name="username" value={this.state.username} onChange={this.handleInput}/>
-            <br/>
-            <br/>
-            <br/>
-            Password:<br/>
-            <input type="password" name="password" value={this.state.password} onChange={this.handleInput}/>
-            <br/><br/>
-            <input className="teal-welcome-button" type="submit" value="Submit"/>
-          </form>
+      <div className="welcome">
+        <div className="welcome-header">
+          <img src={logo} alt="Let's Do Something" className="welcome-logo" /><br/>
+          <img src={login} onClick={this.handleClick} className="toggle" alt="Log In" width="220px" /><br/>
         </div>
+        <div className="login-form">
+          <form onSubmit={this.handleSubmit}>
+            <div>
+              <h4>Username:</h4>
+              <input type="text" name="username" value={this.state.username} onChange={this.handleInput}/>
+              <h4>Password:</h4>
+              <input type="password" name="password" value={this.state.password} onChange={this.handleInput}/>
+            </div>
+
+            <input className="welcome-button" type="submit" value="Login" height="80px"/>
+          </form>
+          </div>
       </div>
     );
   }

@@ -5,24 +5,65 @@ $white: #fff;
 $gray: #E9EEEE;
 $futura: futura, arial, sans-serif;
 
-
-
-.container {
-  width: 500px / 960px * 100%;
-}
-
-
-
-
-
-
 //  TO DO -- MEDIA QUERY
 
 body {
-  margin: 0;
-  font-family: futura;
+  font-family: $futura;
   font-weight: 700;
   font-size: 16px;
+
+  a:hover {
+    cursor: pointer;
+  }
+}
+
+//  LOGIN / SIGN UP
+.welcome {
+  font-family: $futura;
+  color: #161846;
+  font-weight: 800;
+  text-align: center;
+
+  form {
+    margin: 5% 0 0;
+  }
+
+  input, select, textarea {
+    font-size: 1em;
+    text-align: center;
+    font-family: $futura;
+  }
+
+  textarea {
+    min-height: 30px;
+  }
+
+  .toggle {
+    margin: 5% 0 2% 0;
+  }
+
+  .welcome-button {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 1em;
+    color: $navy;
+    border-color:$teal;
+    background-color: $teal;
+    text-align: center;
+    margin: 2%;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+  }
+
+  .welcome-header {
+    position: sticky;
+    top: 20px;
+    margin: 20px;
+    background: $white;
+  }
+
 }
 
 // HOME

@@ -108,46 +108,60 @@ body {
 // CONTACTS
 .contact-page {
     color: $navy;
-    font-weight: 800;
-    text-align: center;
     display: flex;
     flex-direction: column;
-    align-content: flex-start;
-    align-items: center;
-    position: fixed;
-    margin: 0 5% 0 3%;
+    justify-content: center;
+    align-content: center;
 
+    .contact-header {
+      position: sticky;
+      top: 20%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-content: center;
+      background-color: $white;
+      width: 100%;
+      cursor: pointer;
+    }
+
+  #selected {
+    border: 5px solid $navy;
+  }
+
+  #hidden {
+    visibility: hidden;
+  }
+
+  .not-contacts, .contacts {
+    width: 200px;
+    background: $teal;
+    color: $navy;
+    text-align: center;
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+  }
 
   h3 {
     text-transform: uppercase;
     font-weight: 800;
-    font-size: 2em;
+    font-size: 1em;
     padding: 5px;
   }
 
-  .friend-card-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
-    overflow-x: scroll;
-    padding: 1%;
-    height: 260px;
-    max-width: 800px;
-  }
-
-  .contact-card-container {
+  .friend-container, .contacts-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start;
-    align-content: flex-start;
+    align-items: center;
+    align-content: center;
+    padding: 1% 10%;
     overflow: auto;
-    margin: 0 5%;
-    height: 250px;
   }
 
   .contact-card {
@@ -244,7 +258,6 @@ body {
   .brainstorm-header {
     position: sticky;
     top: 20%;
-    // padding: 3% 0 0 0;
     background-color: $white;
     width: 100%;
   }

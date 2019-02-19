@@ -46,20 +46,41 @@ class ContactsContainer extends Component {
     return userFriends
   }
 
+  handleButtons = (e) => {
+    console.log(e.target);
+    if (e.target.dataset.type === "show-friends") {
+      console.log('in if');
+      document.querySelector('.contacts').id = "selected"
+      document.querySelector('.not-contacts').id = ""
+      document.querySelector('.friend-container').id = ""
+      document.querySelector('.friend-container').style.height = "auto"
+      document.querySelector('.contacts-container').id = "hidden"
+      document.querySelector('.contacts-container').style.height = 0
+    } else if (e.target.dataset.type === "find-friends") {
+      document.querySelector('.contacts').id = ""
+      document.querySelector('.not-contacts').id = "selected"
+      document.querySelector('.friend-container').id = "hidden"
+      document.querySelector('.friend-container').style.height = 0
+      document.querySelector('.contacts-container').id = ""
+      document.querySelector('.contacts-container').style.height = "auto"
+    }
+  }
+
   render() {
     return(
       <div className="contact-page">
-      <h3>Contacts</h3>
-        <div>
+        <div className="contact-header" onClick={this.handleButtons}>
+          <div data-type="show-friends" className="contacts" id="selected">
+            <h3 data-type="show-friends">CONTACTS</h3>
+          </div>
+          <div data-type="find-friends" className="not-contacts">
+            <h3 data-type="find-friends">FIND FRIENDS</h3>
+          </div>
         </div>
-        <div className="friend-card-container" >
+        <div className="friend-container" >
           {this.renderFriendCards()}
         </div>
-        <div>
-
-        </div>
-        <div className="contact-card-container">
-          {this.state.showForm ? <ContactForm /> : null }
+        <div className="contacts-container" id="hidden">
           {this.renderContactCards()}
         </div>
       </div>

@@ -3,12 +3,10 @@ $orange: #dd7a00;
 $teal: #54a4a6;
 $white: #fff;
 $gray: #E9EEEE;
-$futura: futura, arial, sans-serif;
-
 //  TO DO -- MEDIA QUERY
 
 body {
-  font-family: $futura;
+  font-family: futura, arial, sans-serif;
   font-weight: 700;
   font-size: 16px;
 
@@ -19,7 +17,6 @@ body {
 
 //  LOGIN / SIGN UP
 .welcome {
-  font-family: $futura;
   color: #161846;
   font-weight: 800;
   text-align: center;
@@ -31,7 +28,6 @@ body {
   input, select, textarea {
     font-size: 1em;
     text-align: center;
-    font-family: $futura;
   }
 
   textarea {
@@ -70,7 +66,6 @@ body {
 .home {
   width: 100%;
   height: 100%;
-  font-family: futura, arial, sans-serif;
   font-size: 3em;
   font-weight: 800;
   text-transform: uppercase;
@@ -110,9 +105,86 @@ body {
   }
 }
 
+// CONTACTS
+.contact-page {
+    color: $navy;
+    font-weight: 800;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: center;
+    position: fixed;
+    margin: 0 5% 0 3%;
+
+
+  h3 {
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 2em;
+    padding: 5px;
+  }
+
+  .friend-card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    overflow-x: scroll;
+    padding: 1%;
+    height: 260px;
+    max-width: 800px;
+  }
+
+  .contact-card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    overflow: auto;
+    margin: 0 5%;
+    height: 250px;
+  }
+
+  .contact-card {
+    padding: 5px;
+    margin: 1%;
+    text-align: center;
+    max-width: 180px;
+
+    .remove-friend {
+      text-transform: uppercase;
+      font-weight: 800;
+      font-size: 1em;
+      color: $navy;
+      background-color: $teal;
+      text-align: center;
+      padding: 2% 0;
+      margin: 0 10px;
+      width: 120px;
+    }
+
+    .add-friend {
+      text-transform: uppercase;
+      font-weight: 800;
+      font-size: 1em;
+      color: $navy;
+      background-color: $orange;
+      text-align: center;
+      padding: 2% 0;
+      margin: 0 10px;
+      width: 120px;
+    }
+  }
+}
+
+
 // BRAINSTORM
 .brainstorm-page {
-  font-family: $futura;
   color: $gray;
   display: flex;
   flex-direction: column;
@@ -221,7 +293,6 @@ body {
 
 // MENU
 .menu-page {
-  font-family: $futura;
   color: $teal;
   font-weight: 800;
   text-align: center;
@@ -313,7 +384,6 @@ body {
 // NOTIFICATIONS
 .notification-page {
     width: 100%;
-    font-family: $futura;
     color: $teal;
     font-weight: 800;
     text-align: center;
@@ -368,7 +438,6 @@ body {
   flex-direction: column;
   align-content: flex-start;
   align-items: center;
-  font-family: $futura;
   color: $navy;
   font-weight: 800;
   font-size: 1em;
@@ -391,7 +460,6 @@ body {
     min-height: 30px;
     font-size: 12px;
     min-width: 315px;
-    font-family: $futura;
     font-size: 1em;
     padding: 5px;
   }
@@ -401,7 +469,6 @@ body {
 
 // HOST FORM
 .event-form-page {
-  font-family: $futura;
   color: $navy;
   font-weight: 800;
   text-align: center;
@@ -463,7 +530,6 @@ body {
       min-height: 40px;
       font-size: 1em;
       text-align: center;
-      font-family: $futura;
       margin: 5px;
     }
 
@@ -471,14 +537,12 @@ body {
       min-height: 40px;
       font-size: 1em;
       text-align: center;
-      font-family: $futura;
     }
 
     textarea {
       min-height: 40px;
       font-size: 1em;
       text-align: center;
-      font-family: $futura;
     }
 
   }
@@ -507,7 +571,6 @@ body {
   // }
 
   .options-holder {
-    font-family: $futura;
     color: $teal;
     font-weight: 800;
     margin-top: 2%;

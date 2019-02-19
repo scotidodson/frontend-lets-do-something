@@ -84,16 +84,10 @@ class ContactCard extends Component {
         <div data-id={this.props.user.id} className="contact-card">
           <img src={avatars[this.props.user.img_url]} value={this.state.img_url} alt="avatar" height="150px" /><br/>
           <h4>{this.props.user.first_name} {this.props.user.last_name} </h4>
-          
-          {this.props.alreadyFriended ? <button data-id={this.props.user.id} name="removeFriend"
-          onClick={this.handleFriendship}> Remove Friend </button> : <button data-id={this.props.user.id} name="addFriend"
-          onClick={this.handleFriendship}> Add Friend </button>}
 
-          {this.props.alreadyFriended ? null: <p>@{this.props.user.username}</p>}
-          {this.props.alreadyFriended ? null: <p>{this.props.user.default_city} </p>}
-          {this.props.alreadyFriended ? null: <p>{this.props.user.bio} </p>}
-          <br/>
-          <br/>
+          {this.props.alreadyFriended ? <button data-id={this.props.user.id} name="removeFriend"
+          onClick={this.handleFriendship} className="remove-friend"> Unfriend </button> : <button data-id={this.props.user.id} name="addFriend"
+          onClick={this.handleFriendship} className="add-friend"> Add Friend </button>}
         </div>
     );
   }
@@ -115,3 +109,9 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps, { updateUser, addFriend, removeFriend, fetchUsers })(ContactCard);
+
+// {this.props.alreadyFriended ? null: <p>@{this.props.user.username}</p>}
+// {this.props.alreadyFriended ? null: <p>{this.props.user.default_city} </p>}
+// {this.props.alreadyFriended ? null: <p>{this.props.user.bio} </p>}
+// <br/>
+// <br/>

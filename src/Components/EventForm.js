@@ -189,9 +189,9 @@ class EventForm extends Component {
     // const suggestions = this.props.allIdeas.filter(idea=> {  return !mySaved.includes(idea.id) })
     return ideas.map(idea =>{
       return(
-        <div data-id={idea.id} data-type="idea" onClick={this.handleCheckbox} key={idea.id}>
+        <p data-id={idea.id} data-type="idea" onClick={this.handleCheckbox} key={idea.id} className="option-selection">
           {idea.title}
-        </div>);
+        </p>);
     })
   }
 
@@ -301,16 +301,18 @@ class EventForm extends Component {
           </div>
 
           <div className="event-form" style={this.state.ideaStage ? {} : { display: 'none' }}>
-              <h1>WHAT</h1>
+              <h1 className="what-title">WHAT</h1>
               <div className="idea-stage">
                 <OptionsHolder selectedOptions={this.state.options} />
                 <div className="select-ideas">
-                  <form onSubmit={this.handleOptionSubmit} >
-                    <div className="idea-list" style={this.state.options.length < 3 ? {} : { display: 'none' }}>
-                      {this.renderIdeas()}
+                  <form onSubmit={this.handleOptionSubmit}>
+                    <div className="idea-submit" style={this.state.options.length > 0 ? {} : { display: 'none' }}>
+                      <input type="submit" value="Submit" />
                     </div>
-                    <input type="submit" value="Submit" />
                   </form>
+                  <div className="idea-list" style={this.state.options.length < 3 ? {} : { display: 'none' }}>
+                  {this.renderIdeas()}
+                  </div>
                 </div>
               </div>
           </div>

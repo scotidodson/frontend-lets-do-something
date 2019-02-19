@@ -360,14 +360,12 @@ body {
 
 // HOST FORM
 .event-form-page {
-  width: 100%;
   font-family: $futura;
   color: $navy;
   font-weight: 800;
   text-align: center;
   padding: 2%;
   overflow: auto;
-
 
   .event-form {
     input {
@@ -395,8 +393,7 @@ body {
   }
 
   form {
-    padding-bottom: 2%;
-    padding-top: 2%;
+    padding: 2%;
   }
 
   h1 {
@@ -426,14 +423,35 @@ body {
     font-weight: 800;
     margin-top: 2%;
     text-align: center;
-    height: 200px;
+    height: 120px;
     display: flex;
     flex-direction: row;
     justify-content: center;
 
-    div {
-      margin: 10px;
+    .full {
+      border-style: solid;
     }
+
+    .option-box {
+      margin: 10px;
+      border: 3px dashed $teal;
+      height: 60px;
+      width: 200px;
+      color: $navy;
+      padding: 2%;
+      vertical-align: middle;
+    }
+
+
+  }
+
+  .idea-list {
+    float: center;
+    text-align: center;
+    overflow-y: scroll;
+    max-height: 150px;
+    max-width: 300px;
+    margin: 2%;
   }
 
   .idea-stage {
@@ -441,14 +459,19 @@ body {
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
+    align-items: center;
+    align-content: center;
 
   }
 
-  .idea-list {
-    text-align: left;
+  .idea-submit {
+    position: sticky;
   }
 
   .select-ideas {
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
   }
 }

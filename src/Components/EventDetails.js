@@ -131,8 +131,10 @@ class EventDetails extends Component {
             <p>{winningIdea.city}, {winningIdea.state} {winningIdea.zip}</p>
             <p>{winningIdea.details}</p>
             <br/>
-            <h4>Guests</h4>
-            {this.renderGuests(thisEvent)}
+            <div className="guest-div">
+              <h4>Guests</h4>
+              {this.renderGuests(thisEvent)}
+            </div>
           </div>
 
       </div>
@@ -196,19 +198,19 @@ class EventDetails extends Component {
       }
 
     return(
-      <div className="event-details-page">
+      <div className="event-container">
         <div className="poll-in-process">
           <div className="event-details-header">
           <h3>Poll in Process<br/>
           {month} {thisEvent.day} at {thisEvent.hour}:{thisEvent.minute} {thisEvent.am ? "am":"pm"}</h3>
           <br/>
           </div>
-          <div>
+          <div className="event-details">
             <h4>Options</h4>
             {this.renderOptionCards(thisEvent, false)}
             <br/>
           </div>
-          <div>
+          <div className="guest-div">
             <h4>Guests</h4>
             {this.renderGuests(thisEvent)}
           </div>
@@ -342,7 +344,7 @@ class EventDetails extends Component {
   }
 
   redirect = (thisEvent) => {
-    this.props.history.push('/events')
+    this.props.history.push('/')
   }
 
 
@@ -453,7 +455,7 @@ class EventDetails extends Component {
 
 
     return (
-      <div className="event-details-page">
+      <div className="event-page">
         {this.renderEvent()}
       </div>
     );

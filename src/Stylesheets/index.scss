@@ -525,6 +525,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin: 1%;
     cursor: pointer;
   }
 
@@ -617,4 +618,140 @@ body {
     justify-content: center;
     cursor: pointer;
   }
+}
+
+// EVENT DETAILS
+.event-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+
+  a {
+   text-decoration: none;
+   color: $teal;
+  }
+
+  h3 {
+   text-decoration: none;
+   text-transform: uppercase;
+   font-weight: 800;
+   font-size: 2em;
+   color: #161846;
+   text-align: center;
+   align-items: center;
+  }
+  .event-details-buttons {
+   text-decoration: none;
+   text-transform: uppercase;
+   font-weight: 800;
+   font-size: 15px;
+   color: #161846;
+   text-align: center;
+   margin: 5px;
+   position: relative;
+
+   button {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 16px;
+    color: #161846;
+    border-color:#54a4a6;
+    background-color: #54a4a6;
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin: 5px;
+    width: 200px;
+   }
+  }
+
+  .event-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+  }
+
+
+  .idea-card {
+   text-decoration: none;
+   text-transform: uppercase;
+   font-weight: 800;
+   font-size: 1em;
+   color: #161846;
+   text-align: center;
+   background: #dd7a00;
+   border-color:#dd7a00;
+   // margin: 2%;
+   border-radius: 20%
+  }
+
+
+  // .voting {
+  //   display: flex;
+  //   flex-direction: column;
+  //   flex-wrap: nowrap;
+  //   padding-left: 50px;
+  //   text-align: center;
+  // }
+
+  .guest-div {
+    overflow: auto;
+    // max-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    text-align: center;
+
+  }
+
+  .event-container {
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: stretch;
+   overflow: auto;
+   text-align: center;
+   width: 100%;
+   max-width: 1000px;
+  }
+
+  .event-card {
+   position: relative;
+   width: 180px;
+   height: 80px;
+   background-color: #161846;
+   border-radius: 5%;
+   text-align: center;
+   padding: 1%;
+  }
+  //
+  // .idea-container {
+  //  display: flex;
+  //  flex-wrap: wrap;
+  //  justify-content: center;
+  //  align-items: stretch;
+  //  width: 80%;
+  // }
+
+  .idea-card {
+   width: 180px;
+   height: 80px;
+   background-color: #161846;
+   text-align: center;
+   margin: 1%;
+   padding: 1%;
+
+   /* margin-right: 10px; */
+  }
+
 }

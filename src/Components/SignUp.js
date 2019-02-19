@@ -5,7 +5,6 @@ import { createUser, assignUser } from '../Actions/UserActions.js'
 import avatars from '../Images/avatars/avatars.js'
 import logo from '../Images/lds_logo.png'
 import signup from '../Images/sign_up.png'
-import '../Stylesheets/SignUp.css'
 
 class SignUp extends Component {
   state = {
@@ -78,17 +77,17 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div className="sign-up-page">
-
+      <div className="welcome">
+        <div className="welcome-header">
           <img src={logo} alt="Let's Do Something" className="welcome-logo" /><br/>
           <img src={signup} className="toggle" onClick={this.handleClick} alt="Sign Up" width="220px" height="auto" />
-
+        </div>
 
         <div className="sign-up-form">
           <img src={avatars[this.state.img_url]} value={this.state.img_url} alt="avatar" width="auto" height="200px" /><br/>
-          <label>Choose an Avatar</label><br/>
           <a onClick={this.handleAvatar} data-id={this.state.img_url} name='back'> ⬅️ </a>
-          <a onClick={this.handleAvatar} data-id={this.state.img_url} name='next'> ➡️ </a>
+          <a onClick={this.handleAvatar} data-id={this.state.img_url} name='next'> ➡️ </a><br/>
+          <label>Choose an Avatar</label>
 
 
           <form onSubmit={this.handleSubmit}>
@@ -123,7 +122,7 @@ class SignUp extends Component {
             placeholder="Bio"
              value={this.state.neighborhood} /><br/><br/>
 
-            <input className="teal-welcome-button" type="submit" value="Submit" />
+            <input className="welcome-button" type="submit" value="Sign Up" />
           </form>
         </div>
       </div>

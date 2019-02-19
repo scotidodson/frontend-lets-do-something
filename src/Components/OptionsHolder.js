@@ -14,14 +14,11 @@ class OptionsHolder extends Component {
       case 0:
         return (
           <div className="options-holder">
-            <div>
-              <p> _____________________</p>
+            <div className="option-box">
             </div>
-            <div>
-              <p> _____________________</p>
+            <div className="option-box">
             </div>
-            <div>
-              <p> _____________________</p>
+            <div className="option-box">
             </div>
           </div>
         )
@@ -29,14 +26,12 @@ class OptionsHolder extends Component {
       case 1:
         return (
           <div className="options-holder">
-            <div>
+            <div className="option-box full">
               <p>{options[0].title}</p>
             </div>
-            <div >
-              <p> _____________________</p>
+            <div className="option-box">
             </div>
-            <div>
-              <p> _____________________</p>
+            <div className="option-box">
             </div>
           </div>
         )
@@ -44,28 +39,27 @@ class OptionsHolder extends Component {
       case 2:
         return (
           <div className="options-holder">
-            <div>
+            <div className="option-box full">
               <p>{options[0].title}</p>
             </div>
-            <div>
+            <div className="option-box full">
               <p>{options[1].title}</p>
             </div>
-            <div>
-              <p> _____________________</p>
+            <div className="option-box">
             </div>
           </div>
         )
         break;
       case 3:
         return (
-          <div>
-            <div>
+          <div className="options-holder">
+            <div className="option-box full">
               <p>{options[0].title}</p>
             </div>
-            <div>
+            <div className="option-box full">
               <p>{options[1].title}</p>
             </div>
-            <div>
+            <div className="option-box full">
               <p>{options[2].title}</p>
             </div>
           </div>

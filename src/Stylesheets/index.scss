@@ -17,7 +17,7 @@ body {
 
 //  LOGIN / SIGN UP
 .welcome {
-  color: #161846;
+  color: $navy;
   font-weight: 800;
   text-align: center;
 
@@ -32,6 +32,10 @@ body {
 
   textarea {
     min-height: 30px;
+  }
+
+  img {
+    max-width: 100%;
   }
 
   .toggle {
@@ -688,18 +692,7 @@ body {
    text-align: center;
    background: #dd7a00;
    border-color:#dd7a00;
-   // margin: 2%;
-   border-radius: 20%
   }
-
-
-  // .voting {
-  //   display: flex;
-  //   flex-direction: column;
-  //   flex-wrap: nowrap;
-  //   padding-left: 50px;
-  //   text-align: center;
-  // }
 
   .guest-div {
     overflow: auto;
@@ -730,18 +723,9 @@ body {
    width: 180px;
    height: 80px;
    background-color: #161846;
-   border-radius: 5%;
    text-align: center;
    padding: 1%;
   }
-  //
-  // .idea-container {
-  //  display: flex;
-  //  flex-wrap: wrap;
-  //  justify-content: center;
-  //  align-items: stretch;
-  //  width: 80%;
-  // }
 
   .idea-card {
    width: 180px;
@@ -753,5 +737,30 @@ body {
 
    /* margin-right: 10px; */
   }
+}
 
+@media only screen and (max-width: 900px) {
+  .home {
+    font-size: 2em;
+
+    .brainstorm {
+      float: center;
+    }
+    .host {
+      float: center;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .home {
+    font-size: 1em;
+
+    .brainstorm {
+      float: center;
+    }
+    .host {
+      float: center;
+    }
+  }
 }
